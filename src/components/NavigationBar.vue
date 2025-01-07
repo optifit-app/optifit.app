@@ -1,23 +1,29 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import { Menubar } from 'primevue';
-import router from '@/router';
+
+const router = useRouter();
+const route = useRoute();
 
 const items = ref([
   {
     label: 'Accueil',
     icon: 'pi pi-home',
+    pathname: '/',
     command: () => router.push('/'),
   },
   {
     label: 'Fonctionnalités',
     icon: 'pi pi-envelope',
+    pathname: '/features',
     command: () => router.push('/features'),
   },
   {
-    label: 'Contact',
+    label: 'Démo',
     icon: 'pi pi-envelope',
-    command: () => router.push('/contact'),
+    pathname: '/demo',
+    command: () => router.push('/demo'),
   },
   {
     label: 'Connexion',
@@ -26,7 +32,7 @@ const items = ref([
   },
 ]);
 
-const handleRefresh = (): string => (window.location.href = window.location.origin);
+const isActive = (pathname: string): boolean => route.path === pathname;
 </script>
 
 <template>
@@ -38,11 +44,15 @@ const handleRefresh = (): string => (window.location.href = window.location.orig
           alt="logo"
           height="40px"
           style="cursor: pointer"
-          @click="handleRefresh"
+          @click="() => router.push('/')"
         />
       </template>
       <template #item="{ item, props, hasSubmenu, root }">
-        <a v-ripple class="flex items-center" v-bind="props.action">
+        <a
+          v-ripple
+          :class="['flex items-center', { active: isActive(item.pathname) }]"
+          v-bind="props.action"
+        >
           <span>{{ item.label }}</span>
           <Badge
             v-if="item.badge"
@@ -71,7 +81,12 @@ const handleRefresh = (): string => (window.location.href = window.location.orig
 .card {
   display: flex;
   justify-content: center;
-  padding: 0.5rem 1rem;
+  padding: 0 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 
   .p-menubar.p-component {
     background-color: #ffffff;
@@ -80,7 +95,14 @@ const handleRefresh = (): string => (window.location.href = window.location.orig
     display: flex;
     justify-content: space-between;
     padding: 10px 30px;
-    border-radius: 20px;
+    border-radius: 0 0 20px 20px;
+    border-top: none;
   }
+}
+
+.active {
+  background: var(--p-menubar-item-focus-background);
+  border-radius: 10px;
+  color: var(--p-primary-color);
 }
 </style>

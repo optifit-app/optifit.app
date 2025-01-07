@@ -1,15 +1,34 @@
 <script setup lang="ts">
 import { Button } from 'primevue';
+import router from '@/router';
 </script>
 
 <template>
   <div class="header-section">
+    <div class="brand">
+      <img src="../assets/icon.png" alt="Logo" />
+      <span>Optifit</span>
+    </div>
     <h1>Gestions de tournois <span>simple et intuitive</span></h1>
     <span class="swiss-made">
       <img src="../assets/swiss-flag.png" alt="Swiss flag" />
       Swiss made
     </span>
-    <Button label="Découvrir" />
+    <div class="actions">
+      <Button
+        label="Voir les fonctionnalités"
+        icon="pi pi-sparkles"
+        icon-pos="right"
+        @click="router.push('/features')"
+      />
+      <Button
+        label="Je veux une démo"
+        icon="pi pi-arrow-right"
+        icon-pos="right"
+        variant="outlined"
+        @click="router.push('/demo')"
+      />
+    </div>
   </div>
 </template>
 
@@ -21,12 +40,29 @@ import { Button } from 'primevue';
   justify-content: center;
   padding: 50px 0 0 0;
 
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: 0 0 30px 0;
+
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 5px;
+    }
+  }
+
   h1 {
     font-size: 3em;
     font-weight: 600;
+    text-align: center;
+    padding: 0 50px;
 
     span {
-      color: #454ade;
+      color: var(--p-primary-color);
     }
   }
 
@@ -43,6 +79,15 @@ import { Button } from 'primevue';
       height: 25px;
       border-radius: 5px;
     }
+  }
+
+  .actions {
+    margin-top: 100px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 }
 </style>
