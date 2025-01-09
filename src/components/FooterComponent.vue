@@ -59,6 +59,12 @@ import { RouterLink } from 'vue-router';
   border-bottom: none;
   margin: 150px auto 0 auto;
 
+  @media screen and (max-width: 1110px) {
+    flex-direction: column;
+    gap: 50px;
+    padding: 50px 20px;
+  }
+
   .column {
     display: flex;
     flex-direction: column;

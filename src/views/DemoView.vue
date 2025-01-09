@@ -25,7 +25,7 @@ onMounted(() => {
       <div
         class="calendly-inline-widget"
         data-url="https://calendly.com/gabriel-optifit/demo-optifit?hide_gdpr_banner=1"
-        style="min-width: 320px; height: 700px"
+        style="height: 700px"
       ></div>
     </div>
   </main>

@@ -84,10 +84,23 @@ onMounted(() => {
     width: 70%;
     margin: 50px auto;
 
+    @media screen and (max-width: 1880px) {
+      width: 85%;
+    }
+
+    @media screen and (max-width: 1560px) {
+      width: 95%;
+    }
+
     .feature {
       display: flex;
       align-items: center;
       gap: 100px;
+
+      @media screen and (max-width: 1385px) {
+        flex-direction: column;
+        gap: 50px;
+      }
 
       .feature-text {
         h2 {
