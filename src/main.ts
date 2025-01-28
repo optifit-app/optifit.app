@@ -11,13 +11,13 @@ import { definePreset } from '@primevue/themes';
 const preset = definePreset(Aura, {
   semantic: {
     primary: {
-      50: '#454ade10',
+      50: '#454ade20',
       100: '#454ade50',
       200: '#454ade',
       300: '#454ade',
       400: '#454ade',
       500: '#454ade',
-      600: '#454ade99',
+      600: '#454ade',
       700: '#454ade',
       800: '#454ade',
       900: '#454ade',

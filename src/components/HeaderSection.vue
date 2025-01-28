@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { Button } from 'primevue';
 import router from '@/router';
+
+const socraft = () => window.open('https://socraft.ch');
 </script>
 
 <template>
@@ -13,6 +15,10 @@ import router from '@/router';
     <span class="swiss-made">
       <img src="../assets/swiss-flag.png" alt="Swiss flag" />
       Swiss made
+    </span>
+    <span class="key-partner">
+      Partenaire clé
+      <img src="../assets/socraft.svg" alt="socraft" class="logo" @click="socraft()" />
     </span>
     <div class="actions">
       <Button
@@ -78,6 +84,21 @@ import router from '@/router';
       width: 25px;
       height: 25px;
       border-radius: 5px;
+    }
+  }
+
+  .key-partner {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 1.4em;
+    font-weight: 500;
+    margin: 3em 0 0 0;
+    align-items: center;
+
+    .logo {
+      height: 45px;
+      cursor: pointer;
     }
   }
 
