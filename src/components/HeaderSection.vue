@@ -3,6 +3,7 @@ import { Button } from 'primevue';
 import router from '@/router';
 
 const socraft = () => window.open('https://socraft.ch');
+const dashboard = () => window.location.href = 'https://my.optifit.app';
 </script>
 
 <template>
@@ -28,11 +29,11 @@ const socraft = () => window.open('https://socraft.ch');
         @click="router.push('/features')"
       />
       <Button
-        label="Je veux une démo"
-        icon="pi pi-arrow-right"
+        label="Connexion à mon tableau de bord"
+        icon="pi pi-sign-in"
         icon-pos="right"
         variant="outlined"
-        @click="router.push('/demo')"
+        @click="dashboard()"
       />
     </div>
   </div>
