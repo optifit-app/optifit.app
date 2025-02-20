@@ -28,7 +28,13 @@ const items = ref([
   {
     label: 'Connexion',
     icon: 'pi pi-user',
-    command: () => window.open('https://my.optifit.app', '_blank'),
+    command: () =>
+      window.open(
+        window.location.origin === 'https://preview.optifit.app'
+          ? 'https://qa.my.optifit.app'
+          : 'https://my.optifit.app',
+        '_blank',
+      ),
   },
 ]);
 
