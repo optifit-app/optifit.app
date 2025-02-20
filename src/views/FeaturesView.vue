@@ -52,10 +52,10 @@ onMounted(() => {
       <div class="call-to-action">
         <h2>Ça vous intéresse ?</h2>
         <Button
-          label="Je veux une démo"
+          label="Souscrire à l'abonnement"
           icon="pi pi-arrow-right"
           icon-pos="right"
-          @click="router.push('/demo')"
+          @click="router.push('/subscribe')"
         />
       </div>
     </div>

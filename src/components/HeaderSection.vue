@@ -3,7 +3,7 @@ import { Button } from 'primevue';
 import router from '@/router';
 
 const socraft = () => window.open('https://socraft.ch');
-const dashboard = () => window.location.href = 'https://my.optifit.app';
+const dashboard = () => (window.location.href = 'https://my.optifit.app');
 </script>
 
 <template>

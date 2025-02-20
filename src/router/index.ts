@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '@/views/HomeView.vue';
 import FeaturesView from '@/views/FeaturesView.vue';
-import DemoView from '@/views/DemoView.vue';
+import SubscribeView from '@/views/SubscribeView.vue';
 import NotFoundView from '@/views/NotFoundView.vue';
 
 const router = createRouter({
@@ -18,15 +18,15 @@ const router = createRouter({
       component: FeaturesView,
     },
     {
-      path: '/demo',
-      name: 'Demo',
-      component: DemoView,
+      path: '/subscribe',
+      name: 'Souscrire',
+      component: SubscribeView,
     },
     {
       path: '/:pathMatch(.*)*',
       name: 'NotFound',
       component: NotFoundView,
-    }
+    },
   ],
 });
 

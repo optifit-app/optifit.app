@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import { Carousel } from 'primevue';
 import ashbLogo from '@/assets/ASHB.png';
+import gdfLogo from '@/assets/gdf.png';
 
 interface Supporter {
   name: string;
@@ -14,6 +15,11 @@ const supporters: Supporter[] = [
     name: 'AS Haute-Broye',
     logo: ashbLogo,
     website: 'https://www.ashb.ch/',
+  },
+  {
+    name: 'Graines de foot',
+    logo: gdfLogo,
+    website: 'https://www.grainesdefoot.ch/',
   },
 ];
 
@@ -59,7 +65,7 @@ const responsiveOptions = ref([
             :src="slotProps.data.logo"
             :alt="slotProps.data.name"
             class="supporter-logo"
-            height="50px"
+            width="150px"
           />
         </a>
       </template>
@@ -84,7 +90,7 @@ const responsiveOptions = ref([
 }
 
 .custom-carousel {
-  max-width: 60%;
+  max-width: 50%;
   margin: 50px auto;
 
   @media screen and (max-width: 455px) {

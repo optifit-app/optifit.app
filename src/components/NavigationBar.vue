@@ -20,15 +20,15 @@ const items = ref([
     command: () => router.push('/features'),
   },
   {
-    label: 'Démo',
+    label: 'Souscrire',
     icon: 'pi pi-envelope',
-    pathname: '/demo',
-    command: () => router.push('/demo'),
+    pathname: '/subscribe',
+    command: () => router.push('/subscribe'),
   },
   {
     label: 'Connexion',
     icon: 'pi pi-user',
-    command: () => window.open('https://optifit.app', '_blank'),
+    command: () => window.open('https://my.optifit.app', '_blank'),
   },
 ]);
 
