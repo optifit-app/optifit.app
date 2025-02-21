@@ -13,7 +13,7 @@ const showSuccess = ref<boolean>(false);
 const successMessage = ref<string>('Redirection vers la page de connexion dans 7 secondes...');
 
 const isLocal = window.location.origin === 'http://localhost:5173';
-const isPreview = window.location.origin === 'https://preview.optifit.app/';
+const isPreview = window.location.origin === 'https://preview.optifit.app';
 
 const apiBaseUrl = isLocal
   ? 'http://localhost:8000/api'
