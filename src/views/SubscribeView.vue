@@ -209,6 +209,14 @@ const handleOpenPayment = (): Window | null => window.open(paymentLink.value, '_
     width: 40%;
     margin: 40px auto 0 auto;
 
+    @media screen and (max-width: 1460px) {
+      width: 60%;
+    }
+
+    @media screen and (max-width: 975px) {
+      width: 95%;
+    }
+
     &.loading {
       min-height: 250px;
     }
