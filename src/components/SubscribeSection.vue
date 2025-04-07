@@ -16,10 +16,10 @@ const isLocal = window.location.origin === 'http://localhost:5173';
 const isPreview = window.location.origin === 'https://preview.optifit.app';
 
 const apiBaseUrl = isLocal
-  ? 'http://localhost:8000/api'
+  ? 'http://localhost:8000'
   : isPreview
-    ? 'https://qa.my.optifit.app/api'
-    : 'https://my.optifit.app/api';
+    ? 'https://qa.api.optifit.app'
+    : 'https://api.optifit.app';
 
 onMounted(() => {
   document.title = 'Optifit - Souscrire';
@@ -98,57 +98,55 @@ const handleOpenPayment = (): Window | null => window.open(paymentLink.value, '_
 </script>
 
 <template>
-  <main>
-    <div class="subscribe-section" v-if="showSuccess">
-      <div class="step-card">
-        <img alt="logo" src="@/assets/icon.png" width="50" height="50" />
-        <h3 style="margin: 10px 0">Merci pour votre <span>souscription</span> !</h3>
-        <Message severity="success" style="margin: 0 0 10px 0">
-          Votre compte a été créé avec succès, vous pouvez dès maintenant vous connecter.
-        </Message>
-        <p>{{ successMessage }}</p>
-      </div>
+  <div class="subscribe-section" v-if="showSuccess" id="subscribe">
+    <div class="step-card">
+      <img alt="logo" src="@/assets/icon.png" width="50" height="50" />
+      <h3 style="margin: 10px 0">Merci pour votre <span>souscription</span> !</h3>
+      <Message severity="success" style="margin: 0 0 10px 0">
+        Votre compte a été créé avec succès, vous pouvez dès maintenant vous connecter.
+      </Message>
+      <p>{{ successMessage }}</p>
     </div>
-    <div class="subscribe-section" v-if="!showSuccess">
-      <h1>Commencez à utiliser Optifit <span>dès maintenant</span></h1>
-      <div class="pricing-informations">
-        <h2><span>7</span> jours gratuits</h2>
-        <span>Puis CHF 50.- par année</span>
-        <span class="small">(tarif de lancement)</span>
-      </div>
-      <div class="step-card loading" v-if="loading">
-        <ProgressSpinner style="width: 50px; height: 50px" strokeWidth="4" fill="transparent" />
-      </div>
-      <div class="step-card" v-if="step === 0 && !loading">
-        <h3>Tout d'abord, créons votre compte.</h3>
-        <Message v-if="error.length" severity="error" style="margin: 0 0 10px 0">
-          {{ error }}
-        </Message>
-        <InputText v-model="email" placeholder="Adresse e-mail" />
-        <InputText v-model="password" type="password" placeholder="Mot de passe" />
-        <InputText
-          v-model="confirmPassword"
-          type="password"
-          placeholder="Répétez votre mot de passe"
-        />
-        <Button label="Suivant" icon="pi pi-arrow-right" icon-pos="right" @click="handleSubmit" />
-      </div>
-      <div class="step-card" v-if="step === 1 && !loading">
-        <Message severity="success" style="margin: 0 0 10px 0">
-          Votre compte a été créé avec succès !
-        </Message>
-        <h3>
-          Vous pouvez maintenant souscrire à l'abonnement annuel pour commencer à utiliser Optifit.
-        </h3>
-        <Button
-          label="Aller au paiement"
-          icon="pi pi-arrow-right"
-          icon-pos="right"
-          @click="handleOpenPayment"
-        />
-      </div>
+  </div>
+  <div class="subscribe-section" v-if="!showSuccess" id="subscribe">
+    <h1>Commencez à utiliser Optifit <span>dès maintenant</span></h1>
+    <div class="pricing-informations">
+      <h2><span>7</span> jours gratuits</h2>
+      <span>Puis CHF 50.- par année</span>
+      <span class="small">(tarif de lancement)</span>
     </div>
-  </main>
+    <div class="step-card loading" v-if="loading">
+      <ProgressSpinner style="width: 50px; height: 50px" strokeWidth="4" fill="transparent" />
+    </div>
+    <div class="step-card" v-if="step === 0 && !loading">
+      <h3>Tout d'abord, créons votre compte.</h3>
+      <Message v-if="error.length" severity="error" style="margin: 0 0 10px 0">
+        {{ error }}
+      </Message>
+      <InputText v-model="email" placeholder="Adresse e-mail" />
+      <InputText v-model="password" type="password" placeholder="Mot de passe" />
+      <InputText
+        v-model="confirmPassword"
+        type="password"
+        placeholder="Répétez votre mot de passe"
+      />
+      <Button label="Suivant" icon="pi pi-arrow-right" icon-pos="right" @click="handleSubmit" />
+    </div>
+    <div class="step-card" v-if="step === 1 && !loading">
+      <Message severity="success" style="margin: 0 0 10px 0">
+        Votre compte a été créé avec succès !
+      </Message>
+      <h3>
+        Vous pouvez maintenant souscrire à l'abonnement annuel pour commencer à utiliser Optifit.
+      </h3>
+      <Button
+        label="Aller au paiement"
+        icon="pi pi-arrow-right"
+        icon-pos="right"
+        @click="handleOpenPayment"
+      />
+    </div>
+  </div>
 </template>
 
 <style scoped lang="scss">

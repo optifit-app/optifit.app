@@ -8,26 +8,23 @@ const route = useRoute();
 
 const items = ref([
   {
-    label: 'Accueil',
-    icon: 'pi pi-home',
-    pathname: '/',
-    command: () => router.push('/'),
+    label: 'Home',
+    icon: 'pi pi-fw pi-home',
+    command: () => (window.location.href = '/#'),
   },
   {
     label: 'Fonctionnalités',
-    icon: 'pi pi-envelope',
-    pathname: '/features',
-    command: () => router.push('/features'),
+    icon: 'pi pi-fw pi-sparkles',
+    command: () => (window.location.href = '/#features'),
   },
   {
-    label: 'Souscrire',
-    icon: 'pi pi-envelope',
-    pathname: '/subscribe',
-    command: () => router.push('/subscribe'),
+    label: 'Tarifs',
+    icon: 'pi pi-fw pi-dollar',
+    command: () => (window.location.href = '/#subscribe'),
   },
   {
     label: 'Connexion',
-    icon: 'pi pi-user',
+    icon: 'pi pi-sign-in',
     command: () =>
       window.open(
         window.location.origin === 'https://preview.optifit.app'
@@ -59,12 +56,8 @@ const isActive = (pathname: string): boolean => route.path === pathname;
           :class="['flex items-center', { active: isActive(item.pathname) }]"
           v-bind="props.action"
         >
+          <i v-if="item.icon" :class="['pi', item.icon]"></i>
           <span>{{ item.label }}</span>
-          <Badge
-            v-if="item.badge"
-            :class="{ 'ml-auto': !root, 'ml-2': root }"
-            :value="item.badge"
-          />
           <span
             v-if="item.shortcut"
             class="ml-auto border border-surface rounded bg-emphasis text-muted-color text-xs p-1"
