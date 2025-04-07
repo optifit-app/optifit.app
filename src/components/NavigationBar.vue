@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
 import { Menubar } from 'primevue';
 
-const router = useRouter();
 const route = useRoute();
 
 const items = ref([
@@ -36,6 +35,7 @@ const items = ref([
 ]);
 
 const isActive = (pathname: string): boolean => route.path === pathname;
+const refresh = () => window.location.href = window.location.origin;
 </script>
 
 <template>
@@ -47,7 +47,7 @@ const isActive = (pathname: string): boolean => route.path === pathname;
           alt="logo"
           height="40px"
           style="cursor: pointer"
-          @click="() => router.push('/')"
+          @click="refresh()"
         />
       </template>
       <template #item="{ item, props, hasSubmenu, root }">

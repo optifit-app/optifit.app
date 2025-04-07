@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Button } from 'primevue';
-import router from '@/router';
 
 const socraft = () => window.open('https://socraft.ch');
 const dashboard = () =>
@@ -8,6 +7,7 @@ const dashboard = () =>
     window.location.origin === 'https://preview.optifit.app'
       ? 'https://qa.my.optifit.app'
       : 'https://my.optifit.app');
+const features = () => window.location.href = '/#features';
 </script>
 
 <template>
@@ -30,7 +30,7 @@ const dashboard = () =>
         label="Voir les fonctionnalités"
         icon="pi pi-sparkles"
         icon-pos="right"
-        @click="router.push('/features')"
+        @click="features()"
       />
       <Button
         label="Connexion à mon tableau de bord"

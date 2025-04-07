@@ -18,7 +18,7 @@ import { RouterLink } from 'vue-router';
       <div class="links">
         <RouterLink to="/">Accueil</RouterLink>
         <RouterLink to="/features">Fonctionnalités</RouterLink>
-        <RouterLink to="/demo">Je veux une démo</RouterLink>
+        <a href="https://calendly.com/gabriel-optifit/demo-optifit?hide_gdpr_banner=1&month=2025-04" target="_blank">Je veux une démo</a>
       </div>
     </div>
     <div class="column">
