@@ -3,6 +3,8 @@ import { ref } from 'vue';
 import { Carousel } from 'primevue';
 import ashbLogo from '@/assets/ASHB.png';
 import gdfLogo from '@/assets/gdf.png';
+import fsfLogo from '@/assets/swiss-football.svg';
+import acvfLogo from '@/assets/acvf.png';
 
 interface Supporter {
   name: string;
@@ -12,14 +14,24 @@ interface Supporter {
 
 const supporters: Supporter[] = [
   {
-    name: 'AS Haute-Broye',
-    logo: ashbLogo,
-    website: 'https://www.ashb.ch/',
+    name: 'Fédération Suisse de Football',
+    logo: fsfLogo,
+    website: 'https://www.football.ch/fr/',
+  },
+  {
+    name: 'Association Cantonale Vaudoise de Football',
+    logo: acvfLogo,
+    website: 'https://www.acvf.ch/',
   },
   {
     name: 'Graines de foot',
     logo: gdfLogo,
     website: 'https://www.grainesdefoot.ch/',
+  },
+  {
+    name: 'AS Haute-Broye',
+    logo: ashbLogo,
+    website: 'https://www.ashb.ch/',
   },
 ];
 

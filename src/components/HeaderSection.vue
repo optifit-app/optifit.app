@@ -67,7 +67,7 @@ const dashboard = () =>
   }
 
   h1 {
-    font-size: 3em;
+    font-size: 3.25em;
     font-weight: 600;
     text-align: center;
     padding: 0 50px;
