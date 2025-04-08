@@ -7,6 +7,7 @@ import 'primeicons/primeicons.css';
 import PrimeVue from 'primevue/config';
 import Aura from '@primevue/themes/aura';
 import { definePreset } from '@primevue/themes';
+import posthog from 'posthog-js';
 
 const preset = definePreset(Aura, {
   semantic: {
@@ -26,6 +27,10 @@ const preset = definePreset(Aura, {
   },
 });
 
+posthog.init("phc_nWTs5bs2keWqxj1L8eGmQZ6MgGnNlf8Qbz6YAc0YEtN", {
+  api_host: "https://eu.i.posthog.com",
+});
+
 createApp(App)
   .use(PrimeVue, {
     theme: {
@@ -37,4 +42,5 @@ createApp(App)
   })
   .use(createPinia())
   .use(router)
+  .provide('posthog', posthog)
   .mount('#app');
