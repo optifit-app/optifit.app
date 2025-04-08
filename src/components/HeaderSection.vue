@@ -23,7 +23,7 @@ const features = () => window.location.href = '/#features';
     </span>
     <span class="key-partner">
       Partenaire clé
-      <img src="../assets/socraft.svg" alt="socraft" class="logo" @click="socraft()" />
+      <img src="../assets/socraft.svg" alt="socraft" class="logo socraft" @click="socraft()" />
     </span>
     <div class="actions">
       <Button
