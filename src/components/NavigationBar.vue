@@ -17,8 +17,8 @@ const items = ref([
     command: () => (window.location.href = '/#features'),
   },
   {
-    label: 'Tarifs',
-    icon: 'pi pi-fw pi-dollar',
+    label: 'Souscrire',
+    icon: 'pi pi-fw pi-users',
     command: () => (window.location.href = '/#subscribe'),
   },
   {

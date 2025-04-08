@@ -151,7 +151,8 @@ const handleOpenPayment = (): Window | null => window.open(paymentLink.value, '_
 
 <style scoped lang="scss">
 .subscribe-section {
-  margin: 100px 0 0 0;
+  padding: 100px 0;
+  background-color: #f1f1f1;
 
   h1 {
     font-size: 2.1rem;

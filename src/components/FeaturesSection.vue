@@ -1,6 +1,6 @@
 <template>
   <div class="features-section" id="features">
-    <h1>Gérez <span>facilement</span> vos tournois</h1>
+    <h1>Laissez la complexité <span>de côté</span></h1>
     <div class="features">
       <div class="feature">
         <img src="../assets/feature-1.png" alt="Matchs" class="feature-image" />
@@ -138,12 +138,12 @@
 
       .feature-text {
         h2 {
-          font-size: 1.8rem;
+          font-size: 1.6rem;
           font-weight: 500;
         }
 
         p {
-          font-size: 1.2rem;
+          font-size: 1.1rem;
           margin-block: 20px;
           text-align: justify;
 
@@ -153,9 +153,8 @@
         }
 
         ul {
-          font-size: 1.2rem;
+          font-size: 1rem;
           margin-block: 20px;
-          text-align: justify;
           list-style-type: none;
           padding-left: 0;
 

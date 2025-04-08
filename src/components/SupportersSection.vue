@@ -88,7 +88,7 @@ const responsiveOptions = ref([
 <style scoped lang="scss">
 .supporters-section {
   text-align: center;
-  margin: 100px 0 50px 0;
+  padding: 100px 0 50px 0;
 
   h2 {
     font-size: 1.5rem;

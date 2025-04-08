@@ -4,6 +4,7 @@ import SupportersSection from '@/components/SupportersSection.vue';
 import { onMounted } from 'vue';
 import FeaturesSection from '@/components/FeaturesSection.vue';
 import SubscribeSection from '@/components/SubscribeSection.vue';
+import BrandSection from '@/components/BrandSection.vue';
 
 onMounted(() => {
   document.title = 'Optifit - Gestion de tournois sportifs';
@@ -14,8 +15,9 @@ onMounted(() => {
 <template>
   <main>
     <HeaderSection />
-    <SupportersSection />
     <FeaturesSection />
+    <SupportersSection />
     <SubscribeSection />
+    <BrandSection />
   </main>
 </template>

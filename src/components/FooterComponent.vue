@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import { RouterLink } from 'vue-router';
-</script>
-
 <template>
   <footer class="footer">
     <div class="column">
@@ -9,15 +5,21 @@ import { RouterLink } from 'vue-router';
         <img src="../assets/icon.png" alt="logo" height="50px" />
         <div class="text">
           <span class="brand-name">Optifit</span>
-          <span class="brand-text">Gestion de tournois simple et intuitive</span>
+          <span class="brand-text">
+            &copy; {{ new Date().getFullYear() }} Tous droits réservés.
+          </span>
+          <span class="swiss-made">
+            <img src="../assets/swiss-flag.png" alt="Swiss flag" />
+            Swiss made
+          </span>
         </div>
       </div>
     </div>
     <div class="column">
       <h2>Liens utiles</h2>
       <div class="links">
-        <RouterLink to="/">Accueil</RouterLink>
-        <RouterLink to="/features">Fonctionnalités</RouterLink>
+        <a href="/#">Accueil</a>
+        <a href="/#features">Fonctionnalités</a>
         <a href="https://calendly.com/gabriel-optifit/demo-optifit?hide_gdpr_banner=1&month=2025-04" target="_blank">Je veux une démo</a>
       </div>
     </div>
@@ -81,8 +83,8 @@ import { RouterLink } from 'vue-router';
       gap: 15px;
 
       img {
-        width: 60px;
-        height: 60px;
+        width: 80px;
+        height: 80px;
         border-radius: 5px;
       }
 
@@ -98,6 +100,21 @@ import { RouterLink } from 'vue-router';
 
         .brand-text {
           font-size: 1em;
+        }
+
+        .swiss-made {
+          font-size: 1em;
+          margin-block: 5px 0;
+          display: flex;
+          align-items: center;
+          gap: 7px;
+          font-weight: 400;
+
+          img {
+            width: 15px;
+            height: 15px;
+            border-radius: 5px;
+          }
         }
       }
     }
