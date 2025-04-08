@@ -115,16 +115,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
-    width: 80%;
-    margin: 0 auto 50px auto;
+    justify-content: center;
+    gap: 100px;
+    padding: 0 100px;
 
-    @media screen and (max-width: 1880px) {
-      width: 85%;
-    }
-
-    @media screen and (max-width: 1560px) {
-      width: 95%;
+    @media screen and (max-width: 900px) {
+      padding: 0 50px;
     }
 
     .feature {
@@ -133,6 +129,7 @@
 
       @media screen and (max-width: 1385px) {
         flex-direction: column;
+        align-items: flex-start;
         gap: 50px;
       }
 
@@ -169,10 +166,8 @@
         width: 100%;
         max-width: 800px;
 
-        &:first-child {
-          max-width: unset;
-          width: auto;
-          height: 700px;
+        @media screen and (max-width: 952px) {
+          max-width: 90%;
         }
       }
     }

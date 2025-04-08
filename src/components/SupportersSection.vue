@@ -61,7 +61,7 @@ const responsiveOptions = ref([
 
 <template>
   <div class="supporters-section">
-    <h2>Ils nous font confiance</h2>
+    <h2>Ils utilisent <span>Optifit</span></h2>
     <Carousel
       :value="supporters"
       circular
@@ -91,9 +91,13 @@ const responsiveOptions = ref([
   padding: 100px 0 50px 0;
 
   h2 {
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin-bottom: 20px;
-    font-weight: 500;
+    font-weight: 600;
+
+    span {
+      color: var(--p-primary-color);
+    }
   }
 
   .supporter-logo {
