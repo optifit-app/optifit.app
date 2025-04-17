@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import CarbonBadge from 'vue-carbonbadge';
+</script>
+
 <template>
   <footer class="footer">
     <div class="column">
@@ -5,13 +9,14 @@
         <img src="../assets/icon.png" alt="logo" height="50px" />
         <div class="text">
           <span class="brand-name">Optifit</span>
-          <span class="brand-text">
-            &copy; {{ new Date().getFullYear() }} Tous droits réservés.
-          </span>
           <span class="swiss-made">
             <img src="../assets/swiss-flag.png" alt="Swiss flag" />
             Swiss made
           </span>
+          <span class="brand-text copyright">
+            &copy; {{ new Date().getFullYear() }} Tous droits réservés.
+          </span>
+          <CarbonBadge class="carbon-badge" />
         </div>
       </div>
     </div>
@@ -79,12 +84,11 @@
 
     .brand {
       display: flex;
-      align-items: center;
       gap: 15px;
 
       img {
-        width: 80px;
-        height: 80px;
+        width: 85px;
+        height: 85px;
         border-radius: 5px;
       }
 
@@ -96,15 +100,19 @@
         .brand-name {
           font-size: 1.5em;
           font-weight: 600;
+          margin-block-start: 0;
         }
 
         .brand-text {
           font-size: 1em;
+
+          &.copyright {
+            margin-block: 10px 0;
+          }
         }
 
         .swiss-made {
           font-size: 1em;
-          margin-block: 5px 0;
           display: flex;
           align-items: center;
           gap: 7px;
@@ -115,6 +123,10 @@
             height: 15px;
             border-radius: 5px;
           }
+        }
+
+        .carbon-badge {
+          margin: 10px 0 0 0;
         }
       }
     }
