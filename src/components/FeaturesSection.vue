@@ -138,9 +138,17 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    padding: 0 100px;
+    padding: 0 400px;
     gap: 10px;
     margin: 60px 0 0 0;
+
+    @media screen and (max-width: 2120px) {
+      padding: 0 250px;
+    }
+
+    @media screen and (max-width: 1680px) {
+      padding: 0 100px;
+    }
 
     @media screen and (max-width: 900px) {
       padding: 0 50px;
@@ -193,14 +201,11 @@
       }
 
       .feature-image {
-        width: 100%;
+        width: 80%;
         margin-left: auto;
-      }
 
-      &:nth-child(odd) {
-        .feature-image {
-          margin-left: unset;
-          margin-right: auto;
+        @media screen and (max-width: 980px) {
+          width: 100%;
         }
       }
     }
