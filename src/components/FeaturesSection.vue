@@ -1,6 +1,12 @@
 <template>
   <div class="features-section" id="features">
     <h1>Laissez la complexité <span>de côté</span></h1>
+    <p>
+      <span>Optifit</span> vous aide à gérer vos tournois de manière simple et efficace. Grâce à notre
+      interface intuitive, créez ou importez simplement vos équipes, les matchs et les phases de
+      votre tournoi sont générés et vous n'avez plus qu'à vous concentrer sur l'essentiel : le
+      plaisir de vos participants!
+    </p>
     <div class="features">
       <div class="feature">
         <img src="../assets/feature-1.png" alt="Matchs" class="feature-image" />
@@ -18,6 +24,7 @@
         </div>
       </div>
       <div class="feature">
+        <img src="../assets/feature-2.png" alt="Matchs" class="feature-image" />
         <div class="feature-text">
           <h2>Génération intelligente des matchs</h2>
           <p>
@@ -30,7 +37,6 @@
             <li>🏟️ Gestion optimisée des terrains</li>
           </ul>
         </div>
-        <img src="../assets/feature-2.png" alt="Matchs" class="feature-image" />
       </div>
       <div class="feature">
         <img src="../assets/feature-3.png" alt="Matchs" class="feature-image" />
@@ -48,6 +54,7 @@
         </div>
       </div>
       <div class="feature">
+        <img src="../assets/feature-4.png" alt="Matchs" class="feature-image" />
         <div class="feature-text">
           <h2>Gérez les pauses à votre rythme</h2>
           <p>
@@ -60,7 +67,6 @@
             <li>🧠 Adaptation automatique du planning des matchs autour des pauses</li>
           </ul>
         </div>
-        <img src="../assets/feature-4.png" alt="Matchs" class="feature-image" />
       </div>
       <div class="feature">
         <img src="../assets/feature-5.png" alt="Matchs" class="feature-image" />
@@ -78,6 +84,7 @@
         </div>
       </div>
       <div class="feature">
+        <img src="../assets/feature-6.png" alt="Matchs" class="feature-image" />
         <div class="feature-text">
           <h2>Collaborez avec votre staff en toute simplicité</h2>
           <p>
@@ -89,7 +96,6 @@
             <li>🤝 Parfait pour les tournois organisés à plusieurs clubs ou bénévoles</li>
           </ul>
         </div>
-        <img src="../assets/feature-6.png" alt="Matchs" class="feature-image" />
       </div>
     </div>
   </div>
@@ -111,63 +117,90 @@
     }
   }
 
+  p {
+    font-size: 1.2rem;
+    text-align: center;
+    max-width: 60%;
+    color: #666666;
+    margin: 20px auto 0 auto;
+
+    @media screen and (max-width: 845px) {
+      max-width: 80%;
+    }
+
+    span {
+      color: var(--p-primary-color);
+      font-weight: 600;
+    }
+  }
+
   .features {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    gap: 100px;
+    flex-wrap: wrap;
     padding: 0 100px;
+    gap: 10px;
+    margin: 60px 0 0 0;
 
     @media screen and (max-width: 900px) {
       padding: 0 50px;
     }
 
-    .feature {
-      display: flex;
-      align-items: center;
+    @media screen and (max-width: 1300px) {
+      flex-direction: column;
+    }
 
-      @media screen and (max-width: 1385px) {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 50px;
-      }
+    .feature {
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      border: solid 1px #e0e0e0;
+      border-radius: 10px;
+      flex: 1;
+      min-width: 49%;
+      overflow: hidden;
 
       .feature-text {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px 40px 30px 40px;
+
         h2 {
-          font-size: 1.6rem;
-          font-weight: 500;
+          font-size: 1.9rem;
+          font-weight: 600;
         }
 
         p {
-          font-size: 1.1rem;
-          margin-block: 20px;
-          text-align: justify;
-
-          span {
-            color: var(--p-primary-color);
-          }
+          font-size: 1rem;
+          color: #666666;
+          margin: 0;
+          text-align: left;
+          max-width: 100%;
         }
 
         ul {
-          font-size: 1rem;
-          margin-block: 20px;
           list-style-type: none;
           padding-left: 0;
 
           li {
+            font-size: 1rem;
+            color: #666666;
             margin-bottom: 10px;
-            font-weight: 500;
           }
         }
       }
 
       .feature-image {
         width: 100%;
-        max-width: 800px;
+        margin-left: auto;
+      }
 
-        @media screen and (max-width: 952px) {
-          max-width: 90%;
+      &:nth-child(odd) {
+        .feature-image {
+          margin-left: unset;
+          margin-right: auto;
         }
       }
     }

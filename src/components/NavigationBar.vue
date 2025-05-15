@@ -56,7 +56,6 @@ const refresh = () => window.location.href = window.location.origin;
           :class="['flex items-center', { active: isActive(item.pathname) }]"
           v-bind="props.action"
         >
-          <i v-if="item.icon" :class="['pi', item.icon]"></i>
           <span>{{ item.label }}</span>
           <span
             v-if="item.shortcut"
@@ -80,7 +79,6 @@ const refresh = () => window.location.href = window.location.origin;
 .card {
   display: flex;
   justify-content: center;
-  padding: 0 1rem;
   position: fixed;
   top: 0;
   left: 0;
@@ -90,12 +88,13 @@ const refresh = () => window.location.href = window.location.origin;
   .p-menubar.p-component {
     background-color: #ffffff;
     width: 100%;
-    max-width: 1500px;
     display: flex;
     justify-content: space-between;
     padding: 10px 30px;
-    border-radius: 0 0 20px 20px;
     border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
   }
 }
 
