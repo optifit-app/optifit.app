@@ -16,7 +16,7 @@ const features = () => window.location.href = '/#features';
       <img src="../assets/icon.png" alt="Logo" />
       <span>Optifit</span>
     </div>
-    <h1>Gestions de tournois <span>simple et intuitive</span></h1>
+    <h1>Gestion de tournois <span>simple et intuitive</span></h1>
     <span class="swiss-made">
       <img src="../assets/swiss-flag.png" alt="Swiss flag" />
       Swiss made
