@@ -115,6 +115,11 @@
     span {
       color: var(--p-primary-color);
     }
+
+    @media screen and (max-width: 600px) {
+      font-size: 1.6rem;
+      padding: 0 20px;
+    }
   }
 
   p {
@@ -154,6 +159,10 @@
       padding: 0 50px;
     }
 
+    @media screen and (max-width: 600px) {
+      padding: 0 5px;
+    }
+
     @media screen and (max-width: 1300px) {
       flex-direction: column;
     }
@@ -178,6 +187,10 @@
         h2 {
           font-size: 1.9rem;
           font-weight: 600;
+
+          @media screen and (max-width: 600px) {
+            font-size: 1.3rem;
+          }
         }
 
         p {

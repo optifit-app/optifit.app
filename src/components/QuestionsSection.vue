@@ -55,6 +55,10 @@ import AccordionContent from 'primevue/accordioncontent';
   .questions {
     margin: 50px auto 0 auto;
     width: 50%;
+
+    @media screen and (max-width: 1060px) {
+      width: 90%;
+    }
   }
 }
 
