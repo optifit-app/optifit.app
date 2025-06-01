@@ -111,8 +111,8 @@ const handleOpenPayment = (): Window | null => window.open(paymentLink.value, '_
   <div class="subscribe-section" v-if="!showSuccess" id="subscribe">
     <h1>Commencez à utiliser Optifit <span>dès maintenant</span></h1>
     <div class="pricing-informations">
-      <h2><span>7</span> jours gratuits</h2>
-      <span>Puis CHF 50.- par année</span>
+      <h2><span>30</span> jours gratuits</h2>
+      <span>Puis CHF 80.- par année</span>
       <span class="small">(tarif de lancement)</span>
     </div>
     <div class="step-card loading" v-if="loading">
@@ -140,7 +140,7 @@ const handleOpenPayment = (): Window | null => window.open(paymentLink.value, '_
         Vous pouvez maintenant souscrire à l'abonnement annuel pour commencer à utiliser Optifit.
       </h3>
       <Button
-        label="Aller au paiement"
+        label="Démarrer l'essai"
         icon="pi pi-arrow-right"
         icon-pos="right"
         @click="handleOpenPayment"
