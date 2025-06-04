@@ -2,12 +2,10 @@
 import { Button } from 'primevue';
 
 const socraft = () => window.open('https://socraft.ch');
-const dashboard = () =>
-  (window.location.href =
-    window.location.origin === 'https://preview.optifit.app'
-      ? 'https://qa.my.optifit.app'
-      : 'https://my.optifit.app');
 const features = () => window.location.href = '/#features';
+const donate = () =>
+  window.open('https://don.optifit.app', '_blank');
+
 </script>
 
 <template>
@@ -33,11 +31,11 @@ const features = () => window.location.href = '/#features';
         @click="features()"
       />
       <Button
-        label="Connexion à mon tableau de bord"
-        icon="pi pi-sign-in"
+        label="Soutenir le projet"
+        icon="pi pi-heart"
         icon-pos="right"
         variant="outlined"
-        @click="dashboard()"
+        @click="donate()"
       />
     </div>
   </div>

@@ -22,6 +22,12 @@ const items = ref([
     command: () => (window.location.href = '/#subscribe'),
   },
   {
+    label: 'Faire un don',
+    icon: 'pi pi-fw pi-heart',
+    command: () =>
+      window.open('https://don.optifit.app', '_blank'),
+  },
+  {
     label: 'Connexion',
     icon: 'pi pi-sign-in',
     command: () =>
