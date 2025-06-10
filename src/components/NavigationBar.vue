@@ -17,31 +17,20 @@ const items = ref([
     command: () => (window.location.href = '/#features'),
   },
   {
-    label: 'Souscrire',
-    icon: 'pi pi-fw pi-users',
-    command: () => (window.location.href = '/#subscribe'),
+    label: 'Questions fréquentes',
+    icon: 'pi pi-fw pi-question',
+    command: () => (window.location.href = '/#faq'),
   },
   {
-    label: 'Faire un don',
-    icon: 'pi pi-fw pi-heart',
-    command: () =>
-      window.open('https://don.optifit.app', '_blank'),
-  },
-  {
-    label: 'Connexion',
-    icon: 'pi pi-sign-in',
-    command: () =>
-      window.open(
-        window.location.origin === 'https://preview.optifit.app'
-          ? 'https://qa.my.optifit.app'
-          : 'https://my.optifit.app',
-        '_blank',
-      ),
+    label: 'Essayer Optifit',
+    icon: 'pi pi-arrow-down',
+    primary: true,
+    command: () => (window.location.href = '/#try'),
   },
 ]);
 
 const isActive = (pathname: string): boolean => route.path === pathname;
-const refresh = () => window.location.href = window.location.origin;
+const refresh = () => (window.location.href = window.location.origin);
 </script>
 
 <template>
@@ -61,8 +50,15 @@ const refresh = () => window.location.href = window.location.origin;
           v-ripple
           :class="['flex items-center', { active: isActive(item.pathname) }]"
           v-bind="props.action"
+          :style="{
+            backgroundColor: item.primary ? 'var(--p-primary-color)' : '',
+            color: item.primary ? '#ffffff' : '',
+            borderRadius: '10px',
+            fontWeight: item.primary ? '500' : 'normal',
+          }"
         >
           <span>{{ item.label }}</span>
+          <i v-if="item.icon" :class="item.icon"></i>
           <span
             v-if="item.shortcut"
             class="ml-auto border border-surface rounded bg-emphasis text-muted-color text-xs p-1"

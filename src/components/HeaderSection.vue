@@ -2,10 +2,8 @@
 import { Button } from 'primevue';
 
 const socraft = () => window.open('https://socraft.ch');
-const features = () => window.location.href = '/#features';
-const donate = () =>
-  window.open('https://don.optifit.app', '_blank');
-
+const features = () => (window.location.href = '/#features');
+const tryOptifit = () => (window.location.href = '/#try');
 </script>
 
 <template>
@@ -28,14 +26,15 @@ const donate = () =>
         label="Voir les fonctionnalités"
         icon="pi pi-sparkles"
         icon-pos="right"
+        variant="text"
         @click="features()"
       />
       <Button
-        label="Soutenir le projet"
-        icon="pi pi-heart"
+        label="Essayer Optifit"
+        icon="pi pi-arrow-down"
         icon-pos="right"
-        variant="outlined"
-        @click="donate()"
+        variant="text"
+        @click="tryOptifit()"
       />
     </div>
   </div>
