@@ -2,9 +2,9 @@
   <div class="features-section" id="features">
     <h1>Laissez la complexité <span>de côté</span></h1>
     <p>
-      <span>Optifit</span> vous aide à gérer vos tournois de manière simple et efficace. Grâce à notre
-      interface intuitive, créez ou importez simplement vos équipes, les matchs et les phases de
-      votre tournoi sont générés et vous n'avez plus qu'à vous concentrer sur l'essentiel : le
+      <span>Optifit</span> vous aide à gérer vos tournois de manière simple et efficace. Grâce à
+      notre interface intuitive, créez ou importez simplement vos équipes, les matchs et les phases
+      de votre tournoi sont générés et vous n'avez plus qu'à vous concentrer sur l'essentiel : le
       plaisir de vos participants!
     </p>
     <div class="features">
@@ -79,7 +79,10 @@
           <ul>
             <li>🖼️ Ajoutez votre logo en quelques secondes</li>
             <li>🧠 Renforcez la visibilité de votre club ou sponsor</li>
-            <li>📲 Icône visible sur la page publique du tournoi (résultats, classement, QR code, etc.)</li>
+            <li>
+              📲 Icône visible sur la page publique du tournoi (résultats, classement, QR code,
+              etc.)
+            </li>
           </ul>
         </div>
       </div>
@@ -88,8 +91,9 @@
         <div class="feature-text">
           <h2>Collaborez avec votre staff en toute simplicité</h2>
           <p>
-            Donnez un accès sécurisé à d'autres personnes <span>pour vous aider à gérer le tournoi</span>,
-            notamment la saisie des scores ou la supervision des matchs.
+            Donnez un accès sécurisé à d'autres personnes
+            <span>pour vous aider à gérer le tournoi</span>, notamment la saisie des scores ou la
+            supervision des matchs.
           </p>
           <ul>
             <li>👤 Invitez d'autres membres du staff en ajoutant simplement leur adresse e-mail</li>
@@ -238,5 +242,4 @@
   }
 }
 </style>
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>

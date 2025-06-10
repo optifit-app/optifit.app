@@ -27,8 +27,8 @@ const preset = definePreset(Aura, {
   },
 });
 
-posthog.init("phc_nWTs5bs2keWqxj1L8eGmQZ6MgGnNlf8Qbz6YAc0YEtN", {
-  api_host: "https://eu.i.posthog.com",
+posthog.init('phc_nWTs5bs2keWqxj1L8eGmQZ6MgGnNlf8Qbz6YAc0YEtN', {
+  api_host: 'https://eu.i.posthog.com',
 });
 
 createApp(App)

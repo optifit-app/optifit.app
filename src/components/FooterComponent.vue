@@ -25,7 +25,11 @@ import CarbonBadge from 'vue-carbonbadge';
       <div class="links">
         <a href="/#">Accueil</a>
         <a href="/#features">Fonctionnalités</a>
-        <a href="https://calendly.com/gabriel-optifit/demo-optifit?hide_gdpr_banner=1&month=2025-04" target="_blank">Je veux une démo</a>
+        <a
+          href="https://calendly.com/gabriel-optifit/demo-optifit?hide_gdpr_banner=1&month=2025-04"
+          target="_blank"
+          >Je veux une démo</a
+        >
       </div>
     </div>
     <div class="column">
