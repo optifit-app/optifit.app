@@ -28,7 +28,7 @@ const Cta = ({
   items = defaultItems,
 }: CtaProps) => {
   return (
-    <section className="py-32">
+    <section className="py-32" id="try">
       <div className="container mx-auto">
         <div className="flex justify-center">
           <div className="max-w-5xl">

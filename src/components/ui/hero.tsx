@@ -1,4 +1,4 @@
-import { ArrowDown, ExternalLink } from 'lucide-react';
+import { ArrowDown } from 'lucide-react';
 import icon from '@/assets/images/icon.png';
 import swissFlag from '@/assets/images/swiss-flag.png';
 import { Button } from '@/components/ui/button';
@@ -31,11 +31,17 @@ const Hero = () => {
               </p>
             </div>
             <div className="mt-6 flex justify-center gap-3 flex-wrap">
-              <Button className="shadow-sm transition-shadow hover:shadow">
-                Essayer maintenant{' '}
-                <ExternalLink className="h-4 transition-transform" />
+              <Button
+                className="shadow-sm transition-shadow hover:shadow"
+                onClick={() => (window.location.hash = '#try')}
+              >
+                Commencer à utiliser Optifit{' '}
+                <ArrowDown className="h-4 transition-transform" />
               </Button>
-              <Button variant="outline">
+              <Button
+                variant="outline"
+                onClick={() => (window.location.hash = '#features')}
+              >
                 En savoir plus{' '}
                 <ArrowDown className="h-4 transition-transform" />
               </Button>
