@@ -1,112 +1,20 @@
 import type { FC } from 'react';
-import { Hero } from '@/components/ui/hero.tsx';
-import { Cta } from '@/components/ui/cta.tsx';
-import { Faq } from '@/components/ui/faq.tsx';
-import { Feature } from '@/components/ui/feature.tsx';
-import { Logos } from '@/components/ui/logos.tsx';
-import { Footer } from '@/components/ui/footer.tsx';
-import icon from '@/assets/images/icon.png';
-import { Instagram, Linkedin } from 'lucide-react';
+import { Route, Routes } from 'react-router-dom';
+import { Home } from '@/pages/home.tsx';
+import { Privacy } from '@/pages/privacy.tsx';
 
 type AppProps = object;
 
 const App: FC<AppProps> = () => {
   return (
-    <div className="max-w-screen bg-background text-foreground px-10">
-      <Hero />
-      <Feature
-        heading="Pourquoi choisir Optifit ?"
-        description="Optifit simplifie la gestion de vos tournois avec une interface intuitive et des fonctionnalités puissantes."
-        linkText="Je veux une démo"
-        linkUrl="https://demo.optifit.app"
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/privacy-policy" element={<Privacy />} />
+      <Route
+        path="/terms-and-conditions"
+        element={<div>Terms and Conditions</div>}
       />
-      <Faq
-        heading="Questions fréquemment posées"
-        description="Vous avez des questions ? Nous avons les réponses. Découvrez notre FAQ pour en savoir plus sur notre application de gestion de tournois."
-        supportHeading="Vous avez besoin d'aide ?"
-        supportDescription="Nous sommes là pour toute question ou assistance."
-        supportButtonText="Nous contacter"
-        supportButtonUrl="mailto:support@optifit.app"
-      />
-      <Logos />
-      <Cta
-        title="Testez dès maintenant"
-        subtitle={
-          <>
-            1er tournoi gratuit puis{' '}
-            <span className="font-semibold">CHF 100.-</span> par année
-          </>
-        }
-        description="Voyez par vous-même comment Optifit peut améliorer votre expérience de gestion de tournois."
-        buttonText="Créer mon compte"
-        buttonUrl="https://my.optifit.app/signin"
-        items={[
-          'Premier tournoi gratuit',
-          'Pas de carte bancaire requise',
-          'Toutes les fonctionnalités disponibles',
-          'Support client réactif',
-        ]}
-      />
-      <Footer
-        logo={{
-          url: 'https://www.optifit.app',
-          src: icon,
-          alt: 'Optifit Logo',
-          title: 'Optifit',
-        }}
-        description="Optifit est une application de gestion de tournois sportifs, développée en Suisse. Notre objectif est de simplifier l'organisation de vos événements sportifs avec une interface intuitive et des fonctionnalités puissantes."
-        copyright={`© ${new Date().getFullYear()} Optifit. Tous droits réservés.`}
-        sections={[
-          {
-            title: 'Liens utiles',
-            links: [
-              { name: 'Fonctionnalités', href: '#features' },
-              { name: 'Questions fréquentes', href: '#faq' },
-              { name: 'Je veux une démo', href: 'https://demo.optifit.app' },
-            ],
-          },
-          {
-            title: 'Support',
-            links: [
-              {
-                name: "Demander de l'aide",
-                href: 'mailto:support@optifit.app',
-              },
-              { name: 'Politique de confidentialité', href: '/privacy-policy' },
-              {
-                name: 'Conditions d’utilisation',
-                href: '/terms-and-conditions',
-              },
-            ],
-          },
-          {
-            title: 'Réseaux sociaux',
-            links: [
-              {
-                name: 'Instagram',
-                href: 'https://www.instagram.com/optifit.app/',
-              },
-              {
-                name: 'LinkedIn',
-                href: 'https://www.linkedin.com/company/optifit-software',
-              },
-            ],
-          },
-        ]}
-        socialLinks={[
-          {
-            icon: <Instagram />,
-            href: 'https://www.instagram.com/optifit.app/',
-            label: 'Instagram',
-          },
-          {
-            icon: <Linkedin />,
-            href: 'https://www.linkedin.com/company/optifit-software',
-            label: 'LinkedIn',
-          },
-        ]}
-      />
-    </div>
+    </Routes>
   );
 };
 
