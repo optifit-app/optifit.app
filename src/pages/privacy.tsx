@@ -1,11 +1,24 @@
 import icon from '@/assets/images/icon.png';
+import { Button } from '@/components/ui/button.tsx';
+import { ArrowLeft } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Privacy = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="py-25">
       <div className="container mx-auto lg:max-w-[60%] max-w-[90%]">
         <div className="md:col-span-7 md:col-start-5 lg:col-start-6">
           <article className="prose dark:prose-invert prose-sm">
+            <Button
+              variant="link"
+              className="mb-5"
+              onClick={() => navigate('/')}
+            >
+              <ArrowLeft />
+              Retour
+            </Button>
             <img src={icon} alt="Optifit Logo" className="mb-5 h-15" />
             <h1 className="text-2xl font-bold">Politique de confidentialité</h1>
             <p className="mt-5 text-justify">
