@@ -30,7 +30,7 @@ const Hero = () => {
                 Il ne vous reste qu’à profiter du jeu !
               </p>
             </div>
-            <div className="mt-6 flex justify-center gap-3">
+            <div className="mt-6 flex justify-center gap-3 flex-wrap">
               <Button className="shadow-sm transition-shadow hover:shadow">
                 Essayer maintenant{' '}
                 <ExternalLink className="h-4 transition-transform" />

@@ -7,7 +7,7 @@ const Privacy = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="py-25">
+    <section className="py-14">
       <div className="container mx-auto lg:max-w-[60%] max-w-[90%]">
         <div className="md:col-span-7 md:col-start-5 lg:col-start-6">
           <article className="prose dark:prose-invert prose-sm">
