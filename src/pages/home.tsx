@@ -44,7 +44,7 @@ const Home: FC<HomeProps> = () => (
           links: [
             { name: 'Fonctionnalités', href: '#features' },
             { name: 'Questions fréquentes', href: '#faq' },
-            { name: 'Tarifs', href: "#pricing" },
+            { name: 'Tarifs', href: '#pricing' },
             { name: 'Je veux une démo', href: 'https://demo.optifit.app' },
           ],
         },

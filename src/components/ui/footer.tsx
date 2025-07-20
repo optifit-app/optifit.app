@@ -133,7 +133,11 @@ const Footer = ({
               rel="noopener noreferrer"
               className="flex items-center gap-1 text-primary hover:underline"
             >
-              <img src={theme === 'dark' ? socraftLight : socraft} alt="Socraft Logo" className="h-5" />
+              <img
+                src={theme === 'dark' ? socraftLight : socraft}
+                alt="Socraft Logo"
+                className="h-5"
+              />
             </a>
           </p>
         </div>

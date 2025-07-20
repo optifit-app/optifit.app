@@ -12,7 +12,8 @@ type AppProps = object;
 const App: FC<AppProps> = () => {
   const { theme, setTheme } = useTheme();
 
-  const toggleTheme = (): void => setTheme(theme === 'light' ? 'dark' : 'light');
+  const toggleTheme = (): void =>
+    setTheme(theme === 'light' ? 'dark' : 'light');
 
   return (
     <div className="relative">
@@ -21,7 +22,12 @@ const App: FC<AppProps> = () => {
         <Route path="/privacy-policy" element={<Privacy />} />
         <Route path="/terms-and-conditions" element={<Terms />} />
       </Routes>
-      <Button variant="ghost" size="icon" className="fixed bottom-5 right-5" onClick={toggleTheme}>
+      <Button
+        variant="ghost"
+        size="icon"
+        className="fixed bottom-5 right-5"
+        onClick={toggleTheme}
+      >
         {theme === 'light' ? <Moon /> : <Sun />}
       </Button>
     </div>

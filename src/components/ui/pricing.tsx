@@ -1,4 +1,4 @@
-import { CircleCheck } from 'lucide-react';
+import { ArrowRight, CircleCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -60,19 +60,19 @@ const Pricing = ({
 }: PricingProps) => {
   return (
     <section className="py-32" id="pricing">
-      <div className="container mx-auto">
-        <div className="mx-auto flex max-w-5xl flex-col items-center gap-6 text-center">
+      <div className="container mx-auto w-full">
+        <div className="mx-auto w-full max-w-[1120px] px-4 flex flex-col items-center gap-6 text-center">
           <h2 className="text-4xl font-extrabold text-pretty lg:text-4xl">
             {heading}
           </h2>
           <p className="text-lg font-medium text-pretty text-muted-foreground">
             1er tournoi gratuit
           </p>
-          <div className="flex flex-col items-stretch gap-6 md:flex-row mt-6">
+          <div className="flex flex-col w-full items-stretch gap-6 md:flex-row mt-6">
             {plans.map((plan) => (
               <Card
                 key={plan.id}
-                className="flex w-90 flex-col justify-between text-left"
+                className="flex flex-1 mx-auto max-w-[600px] flex-col justify-between text-left"
               >
                 <CardHeader>
                   <CardTitle>
@@ -87,7 +87,7 @@ const Pricing = ({
                         {plan.currency.toUpperCase()}
                       </span>
                     )}
-                    <span className="text-3xl text-primary font-semibold">
+                    <span className="text-5xl font-semibold">
                       {plan.price}
                     </span>
                     {typeof plan.price === 'number' && (
@@ -100,9 +100,7 @@ const Pricing = ({
                 <CardContent>
                   <Separator className="mb-6" />
                   {plan.id === 'pro' && (
-                    <p className="mb-3 font-semibold">
-                      Tout du basique, et :
-                    </p>
+                    <p className="mb-3 font-semibold">Tout du basique, et :</p>
                   )}
                   <ul className="space-y-4">
                     {plan.features.map((feature, index) => (
@@ -110,16 +108,17 @@ const Pricing = ({
                         key={index}
                         className="flex items-center gap-2 text-sm"
                       >
-                        <CircleCheck className="size-4" />
+                        <CircleCheck className="size-5 text-green-600" />
                         <span>{feature.text}</span>
                       </li>
                     ))}
                   </ul>
                 </CardContent>
-                <CardFooter className="mt-auto">
+                <CardFooter className="mt-3">
                   <Button asChild className="w-full">
-                    <a href={plan.button.url} target="_blank">
+                    <a href={plan.button.url}>
                       {plan.button.text}
+                      <ArrowRight />
                     </a>
                   </Button>
                 </CardFooter>

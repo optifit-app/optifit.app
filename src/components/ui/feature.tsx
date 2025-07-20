@@ -101,7 +101,10 @@ const Feature = ({
                 <img
                   src={feature.image}
                   alt={feature.title}
-                  className={cn('aspect-16/9 h-full w-full object-cover object-center', theme === 'dark' && 'opacity-55')}
+                  className={cn(
+                    'aspect-16/9 h-full w-full object-cover object-center',
+                    theme === 'dark' && 'opacity-55',
+                  )}
                 />
               </div>
               <div className="px-6 py-8 md:px-8 md:py-10 lg:px-10 lg:py-12">
