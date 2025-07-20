@@ -1,6 +1,8 @@
 import React from 'react';
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import socraft from '@/assets/images/logos/socraft.svg';
+import socraftLight from '@/assets/images/logos/socraft-light.svg';
+import { useTheme } from '@/components/providers/theme-provider.tsx';
 
 interface Footer7Props {
   logo?: {
@@ -71,6 +73,8 @@ const Footer = ({
   socialLinks = defaultSocialLinks,
   copyright = '© 2024 Shadcnblocks.com. All rights reserved.',
 }: Footer7Props) => {
+  const { theme } = useTheme();
+
   return (
     <section className="py-32">
       <div className="container mx-auto">
@@ -129,7 +133,7 @@ const Footer = ({
               rel="noopener noreferrer"
               className="flex items-center gap-1 text-primary hover:underline"
             >
-              <img src={socraft} alt="Socraft Logo" className="h-5" />
+              <img src={theme === 'dark' ? socraftLight : socraft} alt="Socraft Logo" className="h-5" />
             </a>
           </p>
         </div>

@@ -33,7 +33,7 @@ const Hero = () => {
             <div className="mt-6 flex justify-center gap-3 flex-wrap">
               <Button
                 className="shadow-sm transition-shadow hover:shadow"
-                onClick={() => (window.location.hash = '#try')}
+                onClick={() => (window.location.hash = '#pricing')}
               >
                 Commencer à utiliser Optifit{' '}
                 <ArrowDown className="h-4 transition-transform" />

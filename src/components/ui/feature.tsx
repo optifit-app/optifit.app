@@ -6,6 +6,8 @@ import feature3 from '@/assets/images/feature-3.png';
 import feature4 from '@/assets/images/feature-4.png';
 import feature5 from '@/assets/images/feature-5.png';
 import feature6 from '@/assets/images/feature-6.png';
+import { useTheme } from '@/components/providers/theme-provider.tsx';
+import { cn } from '@/lib/utils.ts';
 
 interface Feature {
   id: string;
@@ -72,11 +74,12 @@ const Feature = ({
     },
   ],
 }: FeatureProps) => {
+  const { theme } = useTheme();
   return (
     <section className="py-32" id="features">
       <div className="container mx-auto flex flex-col gap-16 lg:px-16">
-        <div className="lg:max-w-xl">
-          <h2 className="mb-3 text-xl font-semibold md:mb-4 md:text-4xl lg:mb-6">
+        <div className="lg:max-w-4xl">
+          <h2 className="mb-3 text-xl font-bold md:mb-4 md:text-6xl lg:mb-6">
             {heading}
           </h2>
           <p className="text-muted-foreground mb-8 lg:text-lg">{description}</p>
@@ -98,11 +101,11 @@ const Feature = ({
                 <img
                   src={feature.image}
                   alt={feature.title}
-                  className="aspect-16/9 h-full w-full object-cover object-center"
+                  className={cn('aspect-16/9 h-full w-full object-cover object-center', theme === 'dark' && 'opacity-55')}
                 />
               </div>
               <div className="px-6 py-8 md:px-8 md:py-10 lg:px-10 lg:py-12">
-                <h3 className="mb-3 text-lg font-semibold md:mb-4 md:text-2xl lg:mb-6">
+                <h3 className="mb-3 text-lg font-bold md:mb-4 md:text-3xl lg:mb-6">
                   {feature.title}
                 </h3>
                 <p className="text-muted-foreground lg:text-lg">

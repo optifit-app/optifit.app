@@ -6,7 +6,7 @@ import {
   type ReactNode,
 } from 'react';
 
-type Theme = 'dark' | 'light' | 'system';
+type Theme = 'dark' | 'light';
 
 type ThemeProviderProps = {
   children: ReactNode;
@@ -29,7 +29,7 @@ const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
 export function ThemeProvider({
   children,
   defaultTheme = 'light',
-  storageKey = 'optifit--website-ui-theme',
+  storageKey = 'optifit-website-ui-theme',
   ...props
 }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(
@@ -41,29 +41,12 @@ export function ThemeProvider({
 
     const applyTheme = (currentTheme: Theme) => {
       root.classList.remove('light', 'dark');
-
-      if (currentTheme === 'system') {
-        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
-          .matches
-          ? 'dark'
-          : 'light';
-        root.classList.add(systemTheme);
-      } else {
-        root.classList.add(currentTheme);
-      }
+      root.classList.add(currentTheme);
 
       window.localStorage.setItem(storageKey, currentTheme);
     };
 
     applyTheme(theme);
-
-    if (theme === 'system') {
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      const handleChange = () => applyTheme('system');
-      mediaQuery.addEventListener('change', handleChange);
-
-      return () => mediaQuery.removeEventListener('change', handleChange);
-    }
   }, [theme]);
 
   const value = {
