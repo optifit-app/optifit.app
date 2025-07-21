@@ -28,7 +28,7 @@ const Home: FC<HomeProps> = () => (
       supportButtonUrl="mailto:support@optifit.app"
     />
     <Logos />
-    <Pricing heading="Combien ça coûte ?" />
+    <Pricing />
     <Footer
       logo={{
         url: 'https://www.optifit.app',
