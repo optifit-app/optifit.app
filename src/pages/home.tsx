@@ -3,10 +3,10 @@ import { Hero } from '@/components/ui/hero.tsx';
 import { Feature } from '@/components/ui/feature.tsx';
 import { Faq } from '@/components/ui/faq.tsx';
 import { Logos } from '@/components/ui/logos.tsx';
-import { Cta } from '@/components/ui/cta.tsx';
 import { Footer } from '@/components/ui/footer.tsx';
 import icon from '@/assets/images/icon.png';
 import { Instagram, Linkedin } from 'lucide-react';
+import { Pricing } from '@/components/ui/pricing.tsx';
 
 type HomeProps = object;
 
@@ -28,24 +28,7 @@ const Home: FC<HomeProps> = () => (
       supportButtonUrl="mailto:support@optifit.app"
     />
     <Logos />
-    <Cta
-      title="Testez dès maintenant"
-      subtitle={
-        <>
-          1er tournoi gratuit puis{' '}
-          <span className="font-semibold">CHF 100.-</span> par année
-        </>
-      }
-      description="Voyez par vous-même comment Optifit peut améliorer votre expérience de gestion de tournois."
-      buttonText="Créer mon compte"
-      buttonUrl="https://my.optifit.app/signin"
-      items={[
-        'Premier tournoi gratuit',
-        'Pas de carte bancaire requise',
-        'Toutes les fonctionnalités disponibles',
-        'Support client réactif',
-      ]}
-    />
+    <Pricing />
     <Footer
       logo={{
         url: 'https://www.optifit.app',
@@ -59,8 +42,9 @@ const Home: FC<HomeProps> = () => (
         {
           title: 'Liens utiles',
           links: [
-            { name: 'Fonctionnalités', href: '#features' },
-            { name: 'Questions fréquentes', href: '#faq' },
+            { name: 'Fonctionnalités', href: '/#features' },
+            { name: 'Questions fréquentes', href: '/#faq' },
+            { name: 'Tarifs', href: '/#pricing' },
             { name: 'Je veux une démo', href: 'https://demo.optifit.app' },
           ],
         },
