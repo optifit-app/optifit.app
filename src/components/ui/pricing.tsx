@@ -1,6 +1,12 @@
 import { ArrowRight, CircleCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { useEffect, useState } from 'react';
 import type { Product } from '@/types/pricing';
@@ -32,7 +38,7 @@ const Pricing = () => {
 
   useEffect(() => {
     const price = product?.prices.find(
-      (price) => price.currency === currency.toLowerCase()
+      (price) => price.currency === currency.toLowerCase(),
     );
 
     setAmount((price?.amount ?? 10000) / 100);
@@ -46,7 +52,7 @@ const Pricing = () => {
     'Gestion des pauses',
     'Branding du tournoi personnalisé',
     'Collaboration avec votre staff',
-    'Support réactif'
+    'Support réactif',
   ];
 
   return (
@@ -81,7 +87,9 @@ const Pricing = () => {
                   Tout ce dont vous avez besoin pour organiser vos tournois
                 </p>
                 <div className="flex gap-2 items-end">
-                  <span className="text-4xl font-semibold">{format(currency, amount)}</span>
+                  <span className="text-4xl font-semibold">
+                    {format(currency, amount)}
+                  </span>
                   <span className="text-2xl font-semibold text-muted-foreground">
                     /an
                   </span>
