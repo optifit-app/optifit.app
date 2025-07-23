@@ -31,6 +31,7 @@ jobs:
           echo VITE_SENTRY_DSN=${{ secrets.SENTRY_DSN_PROD }} >> .env
           echo VITE_POSTHOG_KEY=${{ secrets.POSTHOG_KEY_PROD }} >> .env
           echo VITE_POSTHOG_HOST=${{ secrets.POSTHOG_HOST_PROD }} >> .env
+          echo VITE_IS_PRODUCTION=true >> .env
 
       - name: Build app
         run: npm run build
