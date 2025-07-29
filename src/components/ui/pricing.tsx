@@ -18,6 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { BorderBeam } from '@/components/ui/border-beam.tsx';
 
 const Pricing = () => {
   const [product, setProduct] = useState<Product | undefined>(undefined);
@@ -58,8 +59,8 @@ const Pricing = () => {
   return (
     <section className="py-32" id="pricing">
       <div className="container mx-auto w-full">
-        <div className="mx-auto w-full max-w-[1120px] px-4 flex flex-col items-center gap-6 text-center">
-          <h2 className="text-4xl font-extrabold text-pretty lg:text-4xl">
+        <div className="mx-auto w-full lg:max-w-[1120px] px-4 flex flex-col items-center gap-6 text-center">
+          <h2 className="text-4xl font-extrabold text-pretty">
             Combien ça coûte ?
           </h2>
           <p className="text-lg font-medium text-pretty text-muted-foreground">
@@ -78,7 +79,8 @@ const Pricing = () => {
             </SelectContent>
           </Select>
           <div className="flex flex-col w-full items-stretch gap-6 md:flex-row mt-6">
-            <Card className="flex flex-1 mx-auto max-w-[600px] flex-col justify-between text-left">
+            <Card className="flex flex-1 mx-auto w-full lg:max-w-[600px] flex-col justify-between text-left relative">
+              <BorderBeam size={100} borderWidth={2} />
               <CardHeader>
                 <CardTitle>
                   <p>Accès complet à Optifit</p>

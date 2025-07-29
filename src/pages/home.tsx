@@ -11,10 +11,10 @@ import { Pricing } from '@/components/ui/pricing.tsx';
 type HomeProps = object;
 
 const Home: FC<HomeProps> = () => (
-  <div className="max-w-screen bg-background text-foreground px-10">
+  <div className="max-w-screen bg-background text-foreground px-4 lg:px-10">
     <Hero />
     <Feature
-      heading="Pourquoi choisir Optifit ?"
+      heading="Pourquoi choisir Optifit?"
       description="Optifit simplifie la gestion de vos tournois avec une interface intuitive et des fonctionnalités puissantes."
       linkText="Je veux une démo"
       linkUrl="https://demo.optifit.app"

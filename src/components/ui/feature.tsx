@@ -79,7 +79,7 @@ const Feature = ({
     <section className="py-32" id="features">
       <div className="container mx-auto flex flex-col gap-16 lg:px-16">
         <div className="lg:max-w-4xl">
-          <h2 className="mb-3 text-xl font-bold md:mb-4 md:text-6xl lg:mb-6">
+          <h2 className="mb-3 text-4xl md:mb-4 font-extrabold text-pretty md:text-5xl lg:mb-6">
             {heading}
           </h2>
           <p className="text-muted-foreground mb-8 lg:text-lg">{description}</p>
@@ -108,7 +108,7 @@ const Feature = ({
                 />
               </div>
               <div className="px-6 py-8 md:px-8 md:py-10 lg:px-10 lg:py-12">
-                <h3 className="mb-3 text-lg font-bold md:mb-4 md:text-3xl lg:mb-6">
+                <h3 className="mb-3 font-bold md:mb-4 text-3xl lg:mb-6">
                   {feature.title}
                 </h3>
                 <p className="text-muted-foreground lg:text-lg">
