@@ -58,9 +58,9 @@ const Pricing = () => {
 
   return (
     <section className="py-32" id="pricing">
-      <div className="container mx-auto w-full">
+      <div className="container mx-auto">
         <div className="mx-auto w-full lg:max-w-[1120px] px-4 flex flex-col items-center gap-6 text-center">
-          <h2 className="text-4xl font-extrabold text-pretty">
+          <h2 className="text-4xl font-bold text-pretty">
             Combien ça coûte ?
           </h2>
           <p className="text-lg font-medium text-pretty text-muted-foreground">

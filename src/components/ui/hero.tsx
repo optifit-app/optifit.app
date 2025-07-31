@@ -20,7 +20,7 @@ const Hero = () => {
               <img src={icon} alt="logo" className="h-15" />
             </div>
             <div className="mx-auto">
-              <h1 className="mb-6 font-extrabold tracking-tight text-pretty text-5xl lg:text-7xl">
+              <h1 className="mb-6 font-bold tracking-tight text-pretty text-5xl">
                 Gestion de tournois{' '}
                 <span className="text-primary">simple & intuitive</span>
               </h1>

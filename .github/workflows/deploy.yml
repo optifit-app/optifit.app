@@ -64,8 +64,8 @@ jobs:
         with:
           credentials_json: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
 
-      - name: Deploy to https://preview.start.optifit.app
-        run: firebase deploy --only hosting:preview-optifit-website --force
+      - name: Deploy to https://preview.optifit.app
+        run: firebase deploy --only hosting:optifit-landing-website-preview --force
 
   deploy_prod:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -89,5 +89,5 @@ jobs:
         with:
           credentials_json: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
 
-      - name: Deploy to https://start.optifit.app
-        run: firebase deploy --only hosting:website-optifit --force
+      - name: Deploy to https://optifit.app
+        run: firebase deploy --only hosting:optifit-landing-website --force
