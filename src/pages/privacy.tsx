@@ -1,8 +1,7 @@
 import icon from '@/assets/images/icon.png';
 import { Button } from '@/components/ui/button.tsx';
-import { ArrowLeft, Instagram, Linkedin } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { Footer } from '@/components/ui/footer.tsx';
 
 const Privacy = () => {
   const navigate = useNavigate();
@@ -100,65 +99,6 @@ const Privacy = () => {
           </div>
         </div>
       </section>
-      <Footer
-        logo={{
-          url: 'https://www.optifit.app',
-          src: icon,
-          alt: 'Optifit Logo',
-          title: 'Optifit',
-        }}
-        description="Optifit est une application de gestion de tournois sportifs, développée en Suisse. Notre objectif est de simplifier l'organisation de vos événements sportifs avec une interface intuitive et des fonctionnalités puissantes."
-        copyright={`© ${new Date().getFullYear()} Optifit. Tous droits réservés.`}
-        sections={[
-          {
-            title: 'Liens utiles',
-            links: [
-              { name: 'Fonctionnalités', href: '#features' },
-              { name: 'Questions fréquentes', href: '#faq' },
-              { name: 'Je veux une démo', href: 'https://demo.optifit.app' },
-            ],
-          },
-          {
-            title: 'Support',
-            links: [
-              {
-                name: "Demander de l'aide",
-                href: 'mailto:support@optifit.app',
-              },
-              { name: 'Politique de confidentialité', href: '/privacy-policy' },
-              {
-                name: 'Conditions d’utilisation',
-                href: '/terms-and-conditions',
-              },
-            ],
-          },
-          {
-            title: 'Réseaux sociaux',
-            links: [
-              {
-                name: 'Instagram',
-                href: 'https://www.instagram.com/optifit.app/',
-              },
-              {
-                name: 'LinkedIn',
-                href: 'https://www.linkedin.com/company/optifit-software',
-              },
-            ],
-          },
-        ]}
-        socialLinks={[
-          {
-            icon: <Instagram />,
-            href: 'https://www.instagram.com/optifit.app/',
-            label: 'Instagram',
-          },
-          {
-            icon: <Linkedin />,
-            href: 'https://www.linkedin.com/company/optifit-software',
-            label: 'LinkedIn',
-          },
-        ]}
-      />
     </>
   );
 };
