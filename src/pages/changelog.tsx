@@ -22,8 +22,8 @@ const Changelog: FC<ChangelogProps> = () => {
 
   return (
     <div className="px-3">
-      <div className="flex flex-col items-center gap-3 mt-10">
-        <div className="flex items-center gap-5">
+      <div className="flex flex-col items-center gap-3 mt-10 w-full">
+        <div className="flex items-center flex-wrap w-full justify-center gap-5">
           <img src={icon} alt="icon" className="h-18 w-18" />
           <div>
             <h1 className="text-3xl font-semibold text-pretty">Changelog</h1>
