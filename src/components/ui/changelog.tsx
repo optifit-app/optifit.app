@@ -74,7 +74,8 @@ const ChangelogEntries = ({ title, description, entries }: Changelog1Props) => {
                       <img
                         src={entry.image}
                         alt={`${entry.version} visual`}
-                        className="mt-8 w-full rounded-lg object-cover"
+                        className="mt-8 w-full rounded-lg object-cover border"
+                        loading="lazy"
                       />
                     )}
                     {entry.button && (
@@ -97,11 +98,11 @@ const ChangelogEntries = ({ title, description, entries }: Changelog1Props) => {
                   className="relative flex flex-col gap-4 md:flex-row md:gap-16"
                 >
                   <div className="top-8 flex h-min w-64 shrink-0 items-center gap-4 md:sticky">
-                    <Skeleton className="h-10 w-50" />
-                    <Skeleton className="h-10 w-50" />
+                    <Skeleton className="h-5 w-20" />
+                    <Skeleton className="h-5 w-20" />
                   </div>
                   <div className="flex flex-col">
-                    <Skeleton className="h-15 w-100" />
+                    <Skeleton className="h-10 w-100" />
                     <Skeleton className="h-80 w-100 mt-5" />
                     <Skeleton className="h-50 w-100 mt-5" />
                   </div>
