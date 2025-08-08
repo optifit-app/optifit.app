@@ -4,6 +4,7 @@ import { Feature } from '@/components/ui/feature.tsx';
 import { Faq } from '@/components/ui/faq.tsx';
 import { Logos } from '@/components/ui/logos.tsx';
 import { Pricing } from '@/components/ui/pricing.tsx';
+import { Cta } from '@/components/ui/cta.tsx';
 
 type HomeProps = object;
 
@@ -25,6 +26,10 @@ const Home: FC<HomeProps> = () => (
       supportButtonUrl="mailto:support@optifit.app"
     />
     <Logos />
+    <Cta
+      heading="Suivez l'évolution de Optifit"
+      description="Suivez toute l'évolution de l'application en regardant notre changelog."
+    />
     <Pricing />
   </div>
 );

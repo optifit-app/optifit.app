@@ -28,11 +28,7 @@ const Changelog: FC<ChangelogProps> = () => {
   return (
     <div className="px-10 flex flex-col gap-5 w-full items-center">
       <div className="flex flex-col gap-3 mt-10 mx-auto">
-        <Button
-          variant="link"
-          className="mb-5"
-          onClick={() => navigate('/')}
-        >
+        <Button variant="link" className="mb-5" onClick={() => navigate('/')}>
           <ArrowLeft />
           Retour
         </Button>
