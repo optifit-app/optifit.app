@@ -1,28 +1,19 @@
 import { ChangelogEntries } from '@/components/ui/changelog';
 import icon from '@/assets/images/icon.png';
-import { type FC, useEffect, useState } from 'react';
-import { parseNotionChangelog } from '@/lib/notion.ts';
+import { type FC, useEffect } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button.tsx';
 import { useNavigate } from 'react-router-dom';
+import { useChangelog } from '@/components/providers/changelog.provider.tsx';
 
 type ChangelogProps = object;
 
 const Changelog: FC<ChangelogProps> = () => {
-  const [raw, setRaw] = useState<any[]>([]);
-
+  const { entries } = useChangelog();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const initChangelog = async (): Promise<void> => {
-      const request = await fetch('https://api.optifit.app/changelog');
-      const result = await request.json();
-
-      const parsed = parseNotionChangelog(result.blocks);
-      setRaw(parsed);
-    };
-
-    void initChangelog();
+    window.scrollTo({ top: 0 });
   }, []);
 
   return (
@@ -40,7 +31,7 @@ const Changelog: FC<ChangelogProps> = () => {
           Suivez les dernières mises à jour de Optifit
         </p>
       </div>
-      <ChangelogEntries entries={raw} />
+      <ChangelogEntries entries={entries} />
     </div>
   );
 };

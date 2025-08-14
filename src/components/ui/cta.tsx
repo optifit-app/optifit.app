@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 interface CtaProps {
   heading: string;
@@ -45,7 +46,7 @@ const Cta = ({
             )}
             {buttons.primary && (
               <Button asChild variant="default" size="lg">
-                <a href={buttons.primary.url}>{buttons.primary.text}</a>
+                <Link to={buttons.primary.url}>{buttons.primary.text}</Link>
               </Button>
             )}
           </div>

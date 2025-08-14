@@ -3,19 +3,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { Badge } from '@/components/ui/badge.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { Skeleton } from '@/components/ui/skeleton.tsx';
-
-export type ChangelogEntry = {
-  version: string;
-  date: string;
-  title: string;
-  description: string;
-  items?: string[];
-  image?: string;
-  button?: {
-    url: string;
-    text: string;
-  };
-};
+import type { ChangelogEntry } from '@/components/providers/changelog.provider.tsx';
 
 export interface Changelog1Props {
   title?: string;
