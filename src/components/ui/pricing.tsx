@@ -1,24 +1,11 @@
 import { ArrowRight, CircleCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { useEffect, useState } from 'react';
 import type { Product } from '@/types/pricing';
 import { useCurrency } from '@/hooks/use-currency.ts';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import { BorderBeam } from '@/components/ui/border-beam.tsx';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const Pricing = () => {
   const [product, setProduct] = useState<Product | undefined>(undefined);
@@ -39,7 +26,7 @@ const Pricing = () => {
 
   useEffect(() => {
     const price = product?.prices.find(
-      (price) => price.currency === currency.toLowerCase(),
+      (price) => price.currency === currency.toLowerCase()
     );
 
     setAmount((price?.amount ?? 10000) / 100);
@@ -53,7 +40,7 @@ const Pricing = () => {
     'Gestion des pauses',
     'Branding du tournoi personnalisé',
     'Collaboration avec votre staff',
-    'Support réactif',
+    'Support réactif'
   ];
 
   return (
@@ -78,7 +65,6 @@ const Pricing = () => {
           </Select>
           <div className="flex flex-col w-full items-stretch gap-6 md:flex-row mt-6">
             <Card className="flex flex-1 mx-auto w-full lg:max-w-[600px] flex-col justify-between text-left relative">
-              <BorderBeam size={100} borderWidth={2} />
               <CardHeader>
                 <CardTitle>
                   <p>Accès complet à Optifit</p>

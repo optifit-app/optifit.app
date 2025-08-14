@@ -1,4 +1,11 @@
-import { createContext, type FC, type ReactNode, useContext, useEffect, useState } from 'react';
+import {
+  createContext,
+  type FC,
+  type ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { parseNotionChangelog } from '@/lib/notion.ts';
 
 export type ChangelogEntry = {
@@ -22,7 +29,9 @@ interface ChangelogContextProps {
   entries: ChangelogEntry[];
 }
 
-const ChangelogContext = createContext<ChangelogContextProps | undefined>(undefined);
+const ChangelogContext = createContext<ChangelogContextProps | undefined>(
+  undefined,
+);
 
 export const ChangelogProvider: FC<ChangelogProviderProps> = ({ children }) => {
   const [entries, setEntries] = useState<ChangelogEntry[]>([]);
