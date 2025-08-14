@@ -75,11 +75,12 @@ const Feature = ({
   ],
 }: FeatureProps) => {
   const { theme } = useTheme();
+
   return (
-    <section className="py-32" id="features">
+    <section className="pb-32" id="features">
       <div className="container mx-auto flex flex-col gap-16 lg:px-16">
         <div className="lg:max-w-4xl">
-          <h2 className="mb-3 text-4xl md:mb-4 font-bold text-pretty md:text-5xl lg:mb-6">
+          <h2 className="mb-3 text-4xl md:mb-4 font-bold text-pretty lg:mb-6">
             {heading}
           </h2>
           <p className="text-muted-foreground mb-8 lg:text-lg">{description}</p>
@@ -95,14 +96,14 @@ const Feature = ({
           {features.map((feature) => (
             <div
               key={feature.id}
-              className="border-border flex flex-col overflow-clip rounded-xl border"
+              className="border-border flex flex-col overflow-clip rounded-xl border shadow bg-background"
             >
               <div>
                 <img
                   src={feature.image}
                   alt={feature.title}
                   className={cn(
-                    'aspect-16/9 h-full w-full object-cover object-center',
+                    'aspect-16/9 h-full w-full object-cover object-center h-30',
                     theme === 'dark' && 'opacity-55',
                   )}
                 />

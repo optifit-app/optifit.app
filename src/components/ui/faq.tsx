@@ -26,19 +26,19 @@ interface FaqProps {
 const faqItems = [
   {
     id: 'faq-1',
-    question: "Qu'est-ce que Optifit stocke comme données ?",
+    question: "Qu'est-ce que Optifit stocke comme données?",
     answer:
       'Optifit stocke uniquement les données nécessaires à la gestion de vos tournois, telles que les équipes, les matchs et les résultats. Nous ne stockons pas de données personnelles sensibles.',
   },
   {
     id: 'faq-2',
-    question: 'Où sont hébergées les données ?',
+    question: 'Où sont hébergées les données?',
     answer:
       'Toutes les donnés sont hébergées en Suisse, dans les datacenters de Google à Zurich.',
   },
   {
     id: 'faq-3',
-    question: 'Qui développe Optifit ?',
+    question: 'Qui développe Optifit?',
     answer:
       "Je m'appelle Gabriel, j’ai 17 ans et je suis originaire de la région de Lavaux-Oron, dans le canton de Vaud.\n" +
       'Je développe Optifit seul, avec l’objectif de proposer une solution simple et efficace pour gérer des tournois sportifs.\n' +
@@ -84,7 +84,7 @@ const Faq = ({
             </AccordionItem>
           ))}
         </Accordion>
-        <div className="mx-auto flex max-w-4xl flex-col items-center rounded-lg bg-accent p-4 text-center md:rounded-xl md:p-6 lg:p-8">
+        <div className="mx-auto flex max-w-4xl flex-col items-center rounded-lg bg-background shadow p-4 text-center md:rounded-xl md:p-6 lg:p-8">
           <div className="relative">
             <Avatar className="absolute mb-4 size-16 origin-bottom -translate-x-[60%] scale-[80%] border md:mb-5">
               <AvatarImage src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-2.webp" />

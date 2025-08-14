@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils.ts';
 interface Change {
   title: string;
   description: string;
+  date: string;
   image?: string;
 }
 
@@ -22,19 +23,19 @@ interface LatestChangesProps {
 }
 
 const LatestChanges = ({
-                         heading,
-                         description,
-                         loading,
-                         change1,
-                         change2,
-                         change3,
-                         change4
-                       }: LatestChangesProps) => {
+  heading,
+  description,
+  loading,
+  change1,
+  change2,
+  change3,
+  change4,
+}: LatestChangesProps) => {
   const navigate = useNavigate();
   const { theme } = useTheme();
 
   return (
-    <section className="pb-32">
+    <section className="pb-32 pt-10" id="latest-changes">
       <div className="container mx-auto">
         <div className="mb-12 flex flex-col items-start gap-3">
           <h1 className="text-2xl font-bold lg:max-w-3xl lg:text-3xl">
@@ -52,10 +53,12 @@ const LatestChanges = ({
           <Spinner className="h-12 w-12 border-5 mx-auto" />
         ) : (
           <div className="relative flex justify-center">
-            <div className="border-muted2 relative flex w-full flex-col border md:w-1/2 lg:w-full rounded-lg">
+            <div className="border-muted2 relative flex w-full flex-col border md:w-1/2 lg:w-full rounded-xl shadow overflow-hidden">
               <div className="relative flex flex-col lg:flex-row">
-                <div
-                  className="border-muted2 flex flex-col justify-between border-b border-solid p-10 lg:w-3/5 lg:border-r lg:border-b-0">
+                <div className="bg-background border-muted2 flex flex-col justify-between border-b border-solid p-10 lg:w-3/5 lg:border-r lg:border-b-0">
+                  <span className="flex items-center justify-center bg-muted px-3 py-1.5 w-max h-7 text-muted-foreground font-medium text-xs rounded-lg mb-2">
+                    {change1?.date}
+                  </span>
                   <h2 className="text-xl font-semibold">{change1?.title}</h2>
                   <p className="text-muted-foreground mt-2">
                     {change1?.description}
@@ -65,11 +68,14 @@ const LatestChanges = ({
                     alt={change1?.title}
                     className={cn(
                       'mt-8 aspect-[1.5] h-full w-full object-cover lg:aspect-[2.4]',
-                      theme === 'dark' && 'opacity-55'
+                      theme === 'dark' && 'opacity-55',
                     )}
                   />
                 </div>
-                <div className="flex flex-col justify-between p-10 lg:w-2/5">
+                <div className="bg-background flex flex-col justify-between p-10 lg:w-2/5">
+                  <span className="flex items-center justify-center bg-muted px-3 py-1.5 w-max h-7 text-muted-foreground font-medium text-xs rounded-lg mb-2">
+                    {change2?.date}
+                  </span>
                   <h2 className="text-xl font-semibold">{change2?.title}</h2>
                   <p className="text-muted-foreground mt-2">
                     {change2?.description}
@@ -79,14 +85,16 @@ const LatestChanges = ({
                     alt={change2?.title}
                     className={cn(
                       'mt-8 aspect-[1.45] h-full w-full object-cover',
-                      theme === 'dark' && 'opacity-55'
+                      theme === 'dark' && 'opacity-55',
                     )}
                   />
                 </div>
               </div>
               <div className="border-muted2 relative flex flex-col border-t border-solid lg:flex-row">
-                <div
-                  className="border-muted2 flex flex-col justify-between border-b border-solid p-10 lg:w-2/5 lg:border-r lg:border-b-0">
+                <div className="bg-background border-muted2 flex flex-col justify-between border-b border-solid p-10 lg:w-2/5 lg:border-r lg:border-b-0">
+                  <span className="flex items-center justify-center bg-muted px-3 py-1.5 w-max h-7 text-muted-foreground font-medium text-xs rounded-lg mb-2">
+                    {change3?.date}
+                  </span>
                   <h2 className="text-xl font-semibold">{change3?.title}</h2>
                   <p className="text-muted-foreground mt-2">
                     {change3?.description}
@@ -96,11 +104,14 @@ const LatestChanges = ({
                     alt={change3?.title}
                     className={cn(
                       'mt-8 aspect-[1.45] h-full w-full object-cover',
-                      theme === 'dark' && 'opacity-55'
+                      theme === 'dark' && 'opacity-55',
                     )}
                   />
                 </div>
-                <div className="flex flex-col justify-between p-10 lg:w-3/5">
+                <div className="bg-background flex flex-col justify-between p-10 lg:w-3/5">
+                  <span className="flex items-center justify-center bg-muted px-3 py-1.5 w-max h-7 text-muted-foreground font-medium text-xs rounded-lg mb-2">
+                    {change4?.date}
+                  </span>
                   <h2 className="text-xl font-semibold">{change4?.title}</h2>
                   <p className="text-muted-foreground mt-2">
                     {change4?.description}
@@ -110,7 +121,7 @@ const LatestChanges = ({
                     alt={change4?.title}
                     className={cn(
                       'mt-8 aspect-[1.5] h-full w-full object-cover lg:aspect-[2.4]',
-                      theme === 'dark' && 'opacity-55'
+                      theme === 'dark' && 'opacity-55',
                     )}
                   />
                 </div>
