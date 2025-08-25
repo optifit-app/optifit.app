@@ -13,12 +13,11 @@ const Hero = () => {
           className="[mask-image:radial-gradient(75%_75%_at_center,white,transparent)] opacity-90"
         />
       </div>
-      <div className="absolute inset-x-0 top-0 flex h-full w-full max-w-screen items-center justify-center bg-gradient-to-b from-background/5 to-background/10">
+      <div
+        className="absolute inset-x-0 top-0 flex h-full w-full max-w-screen items-center justify-center bg-gradient-to-b from-background/5 to-background/10">
         <div className="mx-auto flex w-full flex-col items-center">
           <div className="flex flex-col items-center gap-6 text-center">
-            <div className="rounded-xl bg-background/30 p-2 shadow-sm backdrop-blur-sm">
-              <img src={icon} alt="logo" className="h-15" />
-            </div>
+            <img src={icon} alt="logo" className="h-20" />
             <div className="mx-auto">
               <h1 className="mb-6 font-bold tracking-tight text-pretty text-5xl">
                 Gestion de tournois{' '}
