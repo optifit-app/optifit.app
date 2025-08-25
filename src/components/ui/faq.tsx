@@ -84,7 +84,7 @@ const Faq = ({
             </AccordionItem>
           ))}
         </Accordion>
-        <div className="mx-auto flex max-w-4xl flex-col items-center rounded-lg bg-background shadow p-4 text-center md:rounded-xl md:p-6 lg:p-8">
+        <div className="mx-auto flex max-w-4xl flex-col items-center rounded-lg bg-card shadow p-4 text-center md:rounded-xl md:p-6 lg:p-8">
           <div className="relative">
             <Avatar className="absolute mb-4 size-16 origin-bottom -translate-x-[60%] scale-[80%] border md:mb-5">
               <AvatarImage src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-2.webp" />
