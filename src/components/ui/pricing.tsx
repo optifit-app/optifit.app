@@ -64,7 +64,7 @@ const Pricing = () => {
             1er tournoi gratuit
           </p>
           <Select onValueChange={setCurrency}>
-            <SelectTrigger className="w-[80px]">
+            <SelectTrigger disabled className="w-[80px]">
               <SelectValue placeholder={currency} />
             </SelectTrigger>
             <SelectContent>
