@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 export type Reference = {
   name: string;
@@ -9,10 +8,10 @@ export type Reference = {
 };
 
 export function Testimonials({
-  references,
-  intervalMs = 3500,
-  pauseOnHover = true,
-}: {
+                               references,
+                               intervalMs = 3500,
+                               pauseOnHover = true
+                             }: {
   references: Reference[];
   intervalMs?: number;
   pauseOnHover?: boolean;
@@ -30,7 +29,7 @@ export function Testimonials({
         if (hoverRef.current && pauseOnHover) return;
         setActive((i) => (i + 1) % count);
       },
-      Math.max(1200, intervalMs),
+      Math.max(1200, intervalMs)
     );
   };
 
@@ -60,16 +59,13 @@ export function Testimonials({
 
   return (
     <section
-      className="py-16 md:py-24"
+      className="pt-5 pb-15 md:pb-24"
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       aria-roledescription="carousel"
       aria-label="Témoignages"
     >
       <div className="container max-w-5xl px-6 mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center">
-          Qu'en pensent nos utilisateurs ?
-        </h2>
         <div className="relative mt-10 md:mt-12 min-h-[260px] md:min-h-[280px]">
           {references.map((ref, idx) => (
             <article
@@ -82,13 +78,7 @@ export function Testimonials({
                 &ldquo;{ref.quote}&rdquo;
               </p>
               <div className="flex items-center gap-3 md:gap-4">
-                <Avatar className="size-14 md:size-18">
-                  <AvatarImage
-                    src={ref.picture}
-                    alt={`${ref.name} - ${ref.subtitle}`}
-                  />
-                  <AvatarFallback>{twoLetters(ref.name)}</AvatarFallback>
-                </Avatar>
+                <img alt={ref.name} src={ref.picture} className="h-20 w-auto rounded-lg border" />
                 <div className="text-left">
                   <p className="text-sm md:text-lg font-semibold leading-tight">
                     {ref.name}
