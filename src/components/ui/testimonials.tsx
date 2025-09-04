@@ -8,10 +8,10 @@ export type Reference = {
 };
 
 export function Testimonials({
-                               references,
-                               intervalMs = 3500,
-                               pauseOnHover = true
-                             }: {
+  references,
+  intervalMs = 3500,
+  pauseOnHover = true,
+}: {
   references: Reference[];
   intervalMs?: number;
   pauseOnHover?: boolean;
@@ -29,7 +29,7 @@ export function Testimonials({
         if (hoverRef.current && pauseOnHover) return;
         setActive((i) => (i + 1) % count);
       },
-      Math.max(1200, intervalMs)
+      Math.max(1200, intervalMs),
     );
   };
 
@@ -51,9 +51,6 @@ export function Testimonials({
   const onMouseLeave = () => {
     hoverRef.current = false;
   };
-
-  const twoLetters = (name: string) =>
-    Array.from(name.trim()).slice(0, 2).join('').toUpperCase();
 
   if (!count) return null;
 
@@ -78,7 +75,11 @@ export function Testimonials({
                 &ldquo;{ref.quote}&rdquo;
               </p>
               <div className="flex items-center gap-3 md:gap-4">
-                <img alt={ref.name} src={ref.picture} className="h-20 w-auto rounded-lg border" />
+                <img
+                  alt={ref.name}
+                  src={ref.picture}
+                  className="h-20 w-auto rounded-lg border"
+                />
                 <div className="text-left">
                   <p className="text-sm md:text-lg font-semibold leading-tight">
                     {ref.name}

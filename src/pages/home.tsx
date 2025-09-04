@@ -11,6 +11,7 @@ import gabriel from '@/assets/images/gabriel.jpg';
 import farhdine from '@/assets/images/farhdine.jpg';
 import jose from '@/assets/images/jose.jpg';
 import thomas from '@/assets/images/thomas.jpg';
+import { Testimonials } from '@/components/ui/testimonials';
 
 type HomeProps = object;
 
@@ -89,6 +90,18 @@ const Home: FC<HomeProps> = () => {
         ]}
       />
       <Logos />
+      <Testimonials
+        references={[
+          {
+            name: 'François Eichenberger',
+            subtitle: "Organisateur de tournois à l'AS Haute-Broye",
+            quote:
+              "Optifit est un super outil pour l'organisation de tournois ! L’application est simple, efficace et fait gagner un temps précieux. Le support est hyper réactif et à l’écoute des suggestions d’amélioration.",
+            picture:
+              'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-2.webp',
+          },
+        ]}
+      />
       <Pricing />
     </div>
   );
