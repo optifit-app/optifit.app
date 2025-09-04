@@ -17,14 +17,14 @@ const Team = ({ members }: TeamProps) => {
   return (
     <section className="py-32">
       <div className="container mx-auto flex flex-col items-center text-center">
-        <h2 className="my-6 text-pretty text-2xl font-bold lg:text-4xl">
+        <h2 className="my-6 text-pretty font-bold text-4xl">
           L'équipe <span className="text-primary">Optifit</span>
         </h2>
       </div>
       <div className="mt-5 max-w-screen flex items-center gap-10 justify-center flex-wrap">
         {members?.map((member) => (
           <div key={member.id} className="flex flex-col items-center">
-            <Avatar className="mb-4 size-20 border md:mb-3 lg:size-34">
+            <Avatar className="mb-4 border md:mb-3 size-34">
               <AvatarImage src={member.avatar} />
               <AvatarFallback>{member.name}</AvatarFallback>
             </Avatar>
