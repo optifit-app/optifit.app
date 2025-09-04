@@ -27,7 +27,7 @@ const Pricing = () => {
 
   useEffect(() => {
     const initProduct = async (): Promise<void> => {
-      const response = await fetch('https://api.optifit.app/public/pricing');
+      const response = await fetch('https://api.optifit.app/pricing/arena');
       const result = await response.json();
 
       setProduct(result.products[0]);
@@ -64,7 +64,7 @@ const Pricing = () => {
             1er tournoi gratuit
           </p>
           <Select onValueChange={setCurrency}>
-            <SelectTrigger className="w-[80px]">
+            <SelectTrigger disabled className="w-[80px]">
               <SelectValue placeholder={currency} />
             </SelectTrigger>
             <SelectContent>

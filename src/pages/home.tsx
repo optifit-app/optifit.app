@@ -1,11 +1,17 @@
-import type { FC } from 'react';
-import { Hero } from '@/components/ui/hero.tsx';
+import { useChangelog } from '@/components/providers/changelog.provider.tsx';
 import { Feature } from '@/components/ui/feature.tsx';
-import { Faq } from '@/components/ui/faq.tsx';
+import { Hero } from '@/components/ui/hero.tsx';
+import { LatestChanges } from '@/components/ui/latest-changes.tsx';
 import { Logos } from '@/components/ui/logos.tsx';
 import { Pricing } from '@/components/ui/pricing.tsx';
-import { useChangelog } from '@/components/providers/changelog.provider.tsx';
-import { LatestChanges } from '@/components/ui/latest-changes.tsx';
+import { Team } from '@/components/ui/team';
+import type { FC } from 'react';
+
+import gabriel from '@/assets/images/gabriel.jpg';
+import farhdine from '@/assets/images/farhdine.jpg';
+import jose from '@/assets/images/jose.jpg';
+import thomas from '@/assets/images/thomas.jpg';
+import { Testimonials } from '@/components/ui/testimonials';
 
 type HomeProps = object;
 
@@ -50,15 +56,52 @@ const Home: FC<HomeProps> = () => {
         linkText="Je veux une démo"
         linkUrl="https://demo.optifit.app"
       />
-      <Faq
-        heading="Questions fréquemment posées"
-        description="Vous avez des questions ? Nous avons les réponses. Découvrez notre FAQ pour en savoir plus sur notre application de gestion de tournois."
-        supportHeading="Vous avez besoin d'aide ?"
-        supportDescription="Nous sommes là pour toute question ou assistance."
-        supportButtonText="Nous contacter"
-        supportButtonUrl="mailto:support@optifit.app"
+      <Team
+        members={[
+          {
+            id: '1',
+            name: 'Gabriel',
+            role: 'CEO, Tech lead',
+            avatar: gabriel,
+            linkedin: 'https://www.linkedin.com/in/gabriel-dovat-7a7830231/',
+          },
+          {
+            id: '2',
+            name: 'Farhdine',
+            role: 'Advisor',
+            avatar: farhdine,
+            linkedin: 'https://www.linkedin.com/in/farhdine/',
+          },
+          {
+            id: '3',
+            name: 'José',
+            role: 'Développeur',
+            avatar: jose,
+            linkedin: 'https://www.linkedin.com/in/jos%C3%A9-gomes-865b2b31a/',
+          },
+          {
+            id: '4',
+            name: 'Thomas',
+            role: 'Développeur',
+            avatar: thomas,
+            linkedin:
+              'https://www.linkedin.com/in/thomas-burkhalter-71645a2b0/',
+          },
+        ]}
       />
       <Logos />
+      <Testimonials
+        references={[
+          {
+            name: 'François Eichenberger',
+            subtitle: "Organisateur de tournois à l'AS Haute-Broye",
+            quote:
+              "Optifit est un super outil pour l'organisation de tournois ! L’application est simple, efficace et fait gagner un temps précieux. Le support est hyper réactif et à l’écoute des suggestions d’amélioration.",
+            picture:
+              'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar-2.webp',
+          },
+        ]}
+      />
       <Pricing />
     </div>
   );
