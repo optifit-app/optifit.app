@@ -38,7 +38,7 @@ export const ChangelogProvider: FC<ChangelogProviderProps> = ({ children }) => {
 
   useEffect(() => {
     const initChangelog = async (): Promise<void> => {
-      const request = await fetch('https://api.optifit.app/changelog');
+      const request = await fetch('https://api.arena.optifit.app/changelog');
       const result = await request.json();
 
       const parsed = parseNotionChangelog(result.blocks);

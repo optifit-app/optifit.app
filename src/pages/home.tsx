@@ -1,7 +1,8 @@
 import { useChangelog } from '@/components/providers/changelog.provider.tsx';
+import { LatestChanges } from '@/components/ui/latest-changes.tsx';
+import { Testimonials } from '@/components/ui/testimonials';
 import { Feature } from '@/components/ui/feature.tsx';
 import { Hero } from '@/components/ui/hero.tsx';
-import { LatestChanges } from '@/components/ui/latest-changes.tsx';
 import { Logos } from '@/components/ui/logos.tsx';
 import { Pricing } from '@/components/ui/pricing.tsx';
 import { Team } from '@/components/ui/team';
@@ -11,7 +12,6 @@ import gabriel from '@/assets/images/gabriel.jpg';
 import farhdine from '@/assets/images/farhdine.jpg';
 import jose from '@/assets/images/jose.jpg';
 import thomas from '@/assets/images/thomas.jpg';
-import { Testimonials } from '@/components/ui/testimonials';
 
 type HomeProps = object;
 
