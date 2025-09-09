@@ -6,7 +6,7 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { parseNotionChangelog } from '@/lib/notion.ts';
+import { parseNotionChangelog } from '@/lib/notion';
 
 export type ChangelogEntry = {
   version: string;

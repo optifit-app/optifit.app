@@ -27,7 +27,9 @@ const Pricing = () => {
 
   useEffect(() => {
     const initProduct = async (): Promise<void> => {
-      const response = await fetch('https://api.optifit.app/pricing/arena');
+      const response = await fetch(
+        'https://api.arena.optifit.app/public/pricing',
+      );
       const result = await response.json();
 
       setProduct(result.products[0]);
@@ -38,7 +40,7 @@ const Pricing = () => {
 
   useEffect(() => {
     const price = product?.prices.find(
-      (price) => price.currency === currency.toLowerCase(),
+      (price: any) => price.currency === currency.toLowerCase(),
     );
 
     setAmount((price?.amount ?? 10000) / 100);
@@ -64,11 +66,11 @@ const Pricing = () => {
             1er tournoi gratuit
           </p>
           <Select onValueChange={setCurrency}>
-            <SelectTrigger disabled className="w-[80px]">
+            <SelectTrigger disabled={!product} className="w-[80px]">
               <SelectValue placeholder={currency} />
             </SelectTrigger>
             <SelectContent>
-              {availableCurrencies.map((currency, key) => (
+              {availableCurrencies.map((currency: string, key: any) => (
                 <SelectItem value={currency} key={key}>
                   {currency}
                 </SelectItem>
