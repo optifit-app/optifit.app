@@ -8,10 +8,11 @@ import { Pricing } from '@/components/ui/pricing.tsx';
 import { Team } from '@/components/ui/team';
 import type { FC } from 'react';
 
-import gabriel from '@/assets/images/gabriel.jpg';
-import farhdine from '@/assets/images/farhdine.jpg';
-import jose from '@/assets/images/jose.jpg';
-import thomas from '@/assets/images/thomas.jpg';
+import gabriel from '@/assets/images/team/gab.png';
+import farhdine from '@/assets/images/team/farhdine.png';
+import jose from '@/assets/images/team/jose.png';
+import thomas from '@/assets/images/team/thomas.png';
+import dmytro from '@/assets/images/team/dmytro.png';
 
 type HomeProps = object;
 
@@ -86,6 +87,14 @@ const Home: FC<HomeProps> = () => {
             avatar: thomas,
             linkedin:
               'https://www.linkedin.com/in/thomas-burkhalter-71645a2b0/',
+          },
+          {
+            id: '5',
+            name: 'Dmytro',
+            role: 'UI/UX Designer',
+            avatar: dmytro,
+            linkedin:
+              'https://www.linkedin.com/in/dmytro-beznoskovych-525111306/',
           },
         ]}
       />

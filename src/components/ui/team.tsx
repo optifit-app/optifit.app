@@ -24,11 +24,11 @@ const Team = ({ members }: TeamProps) => {
       <div className="mt-5 max-w-screen flex items-center gap-10 justify-center flex-wrap">
         {members?.map((member) => (
           <div key={member.id} className="flex flex-col items-center">
-            <Avatar className="mb-4 border md:mb-3 size-34">
+            <Avatar className="mb-4 border md:mb-3 size-35 lg:size-40">
               <AvatarImage src={member.avatar} />
               <AvatarFallback>{member.name}</AvatarFallback>
             </Avatar>
-            <p className="text-center font-medium">{member.name}</p>
+            <p className="text-center text-xl font-medium">{member.name}</p>
             <p className="text-muted-foreground text-center">{member.role}</p>
             <a href={member.linkedin} target="_blank" className="mt-3">
               <img alt="linkedin" src={linkedin} className="h-5 w-5 rounded" />
