@@ -91,7 +91,7 @@ const Home: FC<HomeProps> = () => {
           {
             id: '5',
             name: 'Dmytro',
-            role: 'UI/UX Designer',
+            role: 'Designer',
             avatar: dmytro,
             linkedin:
               'https://www.linkedin.com/in/dmytro-beznoskovych-525111306/',
