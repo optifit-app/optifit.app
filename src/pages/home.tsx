@@ -33,19 +33,19 @@ const Home: FC<HomeProps> = () => {
         }}
         change2={{
           title: entries[1]?.title,
-          date: entries[0]?.date,
+          date: entries[1]?.date,
           description: entries[1]?.description,
           image: entries[1]?.image,
         }}
         change3={{
           title: entries[2]?.title,
-          date: entries[0]?.date,
+          date: entries[2]?.date,
           description: entries[2]?.description,
           image: entries[2]?.image,
         }}
         change4={{
           title: entries[3]?.title,
-          date: entries[0]?.date,
+          date: entries[3]?.date,
           description: entries[3]?.description,
           image: entries[3]?.image,
         }}

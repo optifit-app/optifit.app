@@ -96,7 +96,7 @@ const Feature = ({
           {features.map((feature) => (
             <div
               key={feature.id}
-              className="border-border flex flex-col overflow-clip rounded-xl border shadow bg-background"
+              className="border-border flex flex-col overflow-clip rounded-xl border shadow bg-card"
             >
               <div>
                 <img
