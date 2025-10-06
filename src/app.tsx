@@ -9,6 +9,7 @@ import { Instagram, Linkedin, Moon, Sun } from 'lucide-react';
 import Changelog from '@/pages/changelog.tsx';
 import icon from '@/assets/images/icon.png';
 import { Footer } from '@/components/ui/footer.tsx';
+import { WinterTournaments } from './pages/winter-tournaments';
 
 type AppProps = object;
 
@@ -22,6 +23,7 @@ const App: FC<AppProps> = () => {
     <div className="relative">
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/winter-tournaments" element={<WinterTournaments />} />
         <Route path="/changelog" element={<Changelog />} />
         <Route path="/privacy-policy" element={<Privacy />} />
         <Route path="/terms-and-conditions" element={<Terms />} />
