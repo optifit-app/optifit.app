@@ -2,6 +2,8 @@ import asf from '@/assets/images/logos/swiss-football.svg';
 import acvf from '@/assets/images/logos/acvf.png';
 import gdf from '@/assets/images/logos/gdf.png';
 import ashb from '@/assets/images/logos/ASHB.png';
+import cornhole from '@/assets/images/logos/cornhole.png';
+import { cn } from '@/lib/utils';
 
 interface Logo {
   name: string;
@@ -22,22 +24,27 @@ const Logos = ({
     {
       name: 'ASF',
       logo: asf,
-      className: 'h-17 w-auto',
+      className: 'h-23 w-auto',
     },
     {
       name: 'ACVF',
       logo: acvf,
-      className: 'h-22 w-auto',
+      className: 'h-28 w-auto',
     },
     {
       name: 'Graines de Foot',
       logo: gdf,
-      className: 'h-19 w-auto',
+      className: 'h-25 w-auto',
     },
     {
       name: 'AS Haute-Broye',
       logo: ashb,
-      className: 'h-17 w-auto',
+      className: 'h-23 w-auto',
+    },
+    {
+      name: 'Amicale CornHole',
+      logo: cornhole,
+      className: 'h-25 w-auto',
     },
   ],
 }: LogosProps) => {
@@ -55,10 +62,13 @@ const Logos = ({
                 alt={`${logo.name} logo`}
                 width={109}
                 height={48}
-                className={logo.className}
+                className={cn(logo.className, 'grayscale')}
               />
             ))}
           </div>
+          <span className="text-muted-foreground mt-15 text-xs font-medium">
+            Et encore bien d'autres...
+          </span>
         </div>
       </div>
     </section>
