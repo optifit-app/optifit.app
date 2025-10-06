@@ -8,6 +8,7 @@ import feature5 from '@/assets/images/feature-5.png';
 import feature6 from '@/assets/images/feature-6.png';
 import { useTheme } from '@/components/providers/theme-provider.tsx';
 import { cn } from '@/lib/utils.ts';
+import { Button } from './button';
 
 interface Feature {
   id: string;
@@ -84,13 +85,13 @@ const Feature = ({
             {heading}
           </h2>
           <p className="text-muted-foreground mb-8 lg:text-lg">{description}</p>
-          <a
-            href={linkUrl}
-            className="group flex items-center text-xs font-medium md:text-base lg:text-lg text-primary hover:underline"
+          <Button
+            variant="link"
+            onClick={() => (window.location.href = linkUrl)}
           >
             {linkText}
             <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
-          </a>
+          </Button>
         </div>
         <div className="grid gap-4 md:grid-cols-2 lg:gap-5">
           {features.map((feature) => (
