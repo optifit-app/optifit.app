@@ -55,7 +55,7 @@ const LatestChanges = ({
           <div className="relative flex justify-center">
             <div className="border-muted2 relative flex w-full flex-col border md:w-1/2 lg:w-full rounded-xl shadow overflow-hidden">
               <div className="relative flex flex-col lg:flex-row">
-                <div className="bg-background border-muted2 flex flex-col justify-between border-b border-solid p-10 lg:w-3/5 lg:border-r lg:border-b-0">
+                <div className="bg-card border-muted2 flex flex-col justify-between border-b border-solid p-10 lg:w-3/5 lg:border-r lg:border-b-0">
                   <span className="flex items-center justify-center bg-muted px-3 py-1.5 w-max h-7 text-muted-foreground font-medium text-xs rounded-lg mb-2">
                     {change1?.date}
                   </span>
@@ -72,7 +72,7 @@ const LatestChanges = ({
                     )}
                   />
                 </div>
-                <div className="bg-background flex flex-col justify-between p-10 lg:w-2/5">
+                <div className="bg-card flex flex-col justify-between p-10 lg:w-2/5">
                   <span className="flex items-center justify-center bg-muted px-3 py-1.5 w-max h-7 text-muted-foreground font-medium text-xs rounded-lg mb-2">
                     {change2?.date}
                   </span>
@@ -91,7 +91,7 @@ const LatestChanges = ({
                 </div>
               </div>
               <div className="border-muted2 relative flex flex-col border-t border-solid lg:flex-row">
-                <div className="bg-background border-muted2 flex flex-col justify-between border-b border-solid p-10 lg:w-2/5 lg:border-r lg:border-b-0">
+                <div className="bg-card border-muted2 flex flex-col justify-between border-b border-solid p-10 lg:w-2/5 lg:border-r lg:border-b-0">
                   <span className="flex items-center justify-center bg-muted px-3 py-1.5 w-max h-7 text-muted-foreground font-medium text-xs rounded-lg mb-2">
                     {change3?.date}
                   </span>
@@ -108,7 +108,7 @@ const LatestChanges = ({
                     )}
                   />
                 </div>
-                <div className="bg-background flex flex-col justify-between p-10 lg:w-3/5">
+                <div className="bg-card flex flex-col justify-between p-10 lg:w-3/5">
                   <span className="flex items-center justify-center bg-muted px-3 py-1.5 w-max h-7 text-muted-foreground font-medium text-xs rounded-lg mb-2">
                     {change4?.date}
                   </span>

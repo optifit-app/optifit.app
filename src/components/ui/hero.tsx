@@ -40,7 +40,7 @@ const Hero = () => {
               </Button>
               <Button
                 variant="outline"
-                onClick={() => (window.location.hash = '#latest-changes')}
+                onClick={() => (window.location.hash = '#features')}
               >
                 En savoir plus{' '}
                 <ArrowDown className="h-4 transition-transform" />
