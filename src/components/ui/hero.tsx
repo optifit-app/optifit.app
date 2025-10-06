@@ -1,4 +1,4 @@
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, ExternalLink } from 'lucide-react';
 import icon from '@/assets/images/icon.png';
 import swissFlag from '@/assets/images/swiss-flag.png';
 import { Button } from '@/components/ui/button';
@@ -31,10 +31,12 @@ const Hero = () => {
             <div className="mt-6 flex justify-center gap-3 flex-wrap">
               <Button
                 className="shadow-sm transition-shadow hover:shadow"
-                onClick={() => (window.location.hash = '#pricing')}
+                onClick={() =>
+                  (window.location.href = 'https://arena.optifit.app/signin')
+                }
               >
                 Commencer à utiliser Optifit{' '}
-                <ArrowDown className="h-4 transition-transform" />
+                <ExternalLink className="h-4 transition-transform" />
               </Button>
               <Button
                 variant="outline"
