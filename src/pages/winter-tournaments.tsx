@@ -1,9 +1,9 @@
+import icon from '@/assets/images/icon.png';
+import { useTheme } from '@/components/providers/theme-provider';
+import { Button } from '@/components/ui/button';
 import DarkVeil from '@/components/ui/dark-veil';
 import SplitText from '@/components/ui/split-text';
-import icon from '@/assets/images/icon.png';
-import { Button } from '@/components/ui/button';
-import { ExternalLink } from 'lucide-react';
-import { useTheme } from '@/components/providers/theme-provider';
+import { ArrowRight, ExternalLink } from 'lucide-react';
 import { useEffect } from 'react';
 
 export const WinterTournaments = () => {
@@ -11,18 +11,22 @@ export const WinterTournaments = () => {
 
   useEffect(() => setTheme('dark'), []);
 
-  const handleClick = () => window.open('https://arena.optifit.app/signin');
+  const handleStart = () => window.open('https://arena.optifit.app/signin');
+  const handleLearnMore = () => (window.location.href = window.location.origin);
 
   return (
     <div className="relative h-screen overflow-hidden">
       <DarkVeil />
-      <div className="absolute inset-0 flex flex-col gap-5 items-center justify-center text-center z-10 px-4">
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10 px-4">
         <img src={icon} alt="icon" className="h-20 w-20" />
+        <h1 className="mt-6 text-xl font-medium text-muted-foreground">
+          Organiser un tournoi prend des heures : équipes, horaire, classements…
+        </h1>
         <SplitText
-          text="Simplifiez votre prochain tournoi"
-          className="text-5xl font-bold text-center text-white"
-          delay={25}
-          duration={0.1}
+          text="Optifit automatise tout en quelques clics."
+          className="text-5xl font-extrabold text-pretty text-center text-white mt-2"
+          delay={50}
+          duration={0.25}
           ease="power3.out"
           splitType="chars"
           from={{ opacity: 0, y: 40 }}
@@ -31,12 +35,19 @@ export const WinterTournaments = () => {
           rootMargin="-100px"
           textAlign="center"
         />
-        <p className="mt-3 text-lg md:text-xl text-white/80">
-          Planifiez. Gérez. Suivez les résultats en live.
-        </p>
-        <Button size="lg" className="mt-5" onClick={handleClick}>
-          Commencer gratuitement <ExternalLink />
-        </Button>
+        <div className="flex items-center gap-3 flex-wrap">
+          <Button
+            size="lg"
+            variant="outline"
+            className="mt-10"
+            onClick={handleLearnMore}
+          >
+            En savoir plus <ArrowRight />
+          </Button>
+          <Button size="lg" className="mt-10" onClick={handleStart}>
+            Commencer maintenant <ExternalLink />
+          </Button>
+        </div>
       </div>
     </div>
   );
