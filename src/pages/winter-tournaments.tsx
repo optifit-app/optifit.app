@@ -35,17 +35,12 @@ export const WinterTournaments = () => {
           rootMargin="-100px"
           textAlign="center"
         />
-        <div className="flex items-center gap-3 flex-wrap">
-          <Button
-            size="lg"
-            variant="outline"
-            className="mt-10"
-            onClick={handleLearnMore}
-          >
+        <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
+          <Button size="lg" variant="outline" onClick={handleLearnMore}>
             En savoir plus <ArrowRight />
           </Button>
-          <Button size="lg" className="mt-10" onClick={handleStart}>
-            Commencer maintenant <ExternalLink />
+          <Button size="lg" onClick={handleStart}>
+            Commencer gratuitement <ExternalLink />
           </Button>
         </div>
       </div>
