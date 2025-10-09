@@ -18,6 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { cn } from '@/lib/utils';
 
 const Pricing = () => {
   const [product, setProduct] = useState<Product | undefined>(undefined);
@@ -98,8 +99,15 @@ const Pricing = () => {
               <CardContent>
                 <Separator className="mb-6" />
                 <ul className="space-y-4">
-                  {features.map((feature, key) => (
-                    <li key={key} className="flex items-center gap-2 text-sm">
+                  {features.map((feature, index) => (
+                    <li
+                      key={index}
+                      className={cn(
+                        'flex items-center gap-2 text-sm',
+                        !index &&
+                          'font-bold text-green-700 dark:text-green-500',
+                      )}
+                    >
                       <CircleCheck className="size-5 text-green-600" />
                       <span>{feature}</span>
                     </li>
@@ -109,7 +117,7 @@ const Pricing = () => {
               <CardFooter className="mt-3">
                 <Button asChild className="w-full">
                   <a href="https://my.optifit.app/signin">
-                    Créer mon compte
+                    Je crée mon premier tournoi
                     <ArrowRight />
                   </a>
                 </Button>
