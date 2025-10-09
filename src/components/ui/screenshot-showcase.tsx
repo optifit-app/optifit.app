@@ -2,9 +2,8 @@ type Props = { left: string; center: string; right: string };
 
 export default function ScreenshotsShowcase({ left, center, right }: Props) {
   return (
-    <section className="relative w-full pt-10 pb-0 px-5">
+    <section className="relative w-full pt-10 pb-0 px-5 overflow-hidden">
       <div className="mx-auto max-w-[2000px] w-full md:px-4">
-        {/* --- MOBILE --- */}
         <div className="lg:hidden w-full space-y-6">
           <img
             src={center}
@@ -25,8 +24,6 @@ export default function ScreenshotsShowcase({ left, center, right }: Props) {
             className="w-full max-w-full h-auto rounded-[10px] shadow-xl ring-1 ring-black/10 bg-white object-contain"
           />
         </div>
-
-        {/* --- DESKTOP --- */}
         <div className="hidden lg:flex items-end justify-center w-full max-w-full">
           <img
             src={left}
