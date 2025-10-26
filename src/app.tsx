@@ -10,6 +10,7 @@ import Changelog from '@/pages/changelog.tsx';
 import icon from '@/assets/images/icon.png';
 import { Footer } from '@/components/ui/footer.tsx';
 import { WinterTournaments } from './pages/winter-tournaments';
+import NotFound from './pages/not-found';
 
 type AppProps = object;
 
@@ -27,6 +28,7 @@ const App: FC<AppProps> = () => {
         <Route path="/changelog" element={<Changelog />} />
         <Route path="/privacy-policy" element={<Privacy />} />
         <Route path="/terms-and-conditions" element={<Terms />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer
         logo={{
