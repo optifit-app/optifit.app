@@ -38,8 +38,8 @@ export const WinterTournaments = () => {
         textAlign="center"
       />
       <h2 className="text-xl font-medium text-center">
-        Créez gratuitement votre premier tournoi — aucune carte bancaire
-        requise.
+        Créez <span className="bg-primary/30 p-1 rounded">gratuitement</span>{' '}
+        votre premier tournoi — aucune carte bancaire requise.
       </h2>
       <Button
         size="lg"
