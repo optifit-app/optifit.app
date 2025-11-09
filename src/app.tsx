@@ -6,7 +6,6 @@ import { Terms } from '@/pages/terms.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { useTheme } from '@/components/providers/theme-provider.tsx';
 import { Instagram, Linkedin, Moon, Sun } from 'lucide-react';
-import Changelog from '@/pages/changelog.tsx';
 import icon from '@/assets/images/icon.png';
 import { Footer } from '@/components/ui/footer.tsx';
 import { WinterTournaments } from './pages/winter-tournaments';
@@ -25,7 +24,6 @@ const App: FC<AppProps> = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/winter-tournaments" element={<WinterTournaments />} />
-        <Route path="/changelog" element={<Changelog />} />
         <Route path="/privacy-policy" element={<Privacy />} />
         <Route path="/terms-and-conditions" element={<Terms />} />
         <Route path="*" element={<NotFound />} />
