@@ -56,7 +56,7 @@ export const Footer = () => {
             Tarifs
           </a>
           <a
-            href="#pricing"
+            href="#faq"
             className="text-[15px] hover:underline hover:text-primary"
           >
             Questions fréquentes

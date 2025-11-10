@@ -9,6 +9,7 @@ import type { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import NotFound from './pages/not-found';
 import { WinterTournaments } from './pages/winter-tournaments';
+import { Navbar } from './components/ui/navbar';
 
 type AppProps = object;
 
@@ -20,6 +21,7 @@ const App: FC<AppProps> = () => {
 
   return (
     <div className="relative">
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/winter-tournaments" element={<WinterTournaments />} />

@@ -1,32 +1,32 @@
-import { PageSection } from '@/components/ui/page-section';
-import type { FC } from 'react';
-import icon from '@/assets/images/icon.png';
 import phones from '@/assets/images/feature-3.png';
-import { Button } from '@/components/ui/button';
-import { ArrowDown, ArrowRight, Check, ExternalLink, Info } from 'lucide-react';
-import { PageSeparation } from '@/components/ui/page-separation';
+import icon from '@/assets/images/icon.png';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { PageSection } from '@/components/ui/page-section';
+import { PageSeparation } from '@/components/ui/page-separation';
 import {
   Marquee,
   MarqueeContent,
   MarqueeItem,
 } from '@/components/ui/shadcn-io/marquee';
 import { useCurrency } from '@/hooks/use-currency';
-import { customers } from '@/optifit';
 import { cn } from '@/lib/utils';
+import { customers } from '@/optifit';
+import { ArrowDown, Check, ExternalLink } from 'lucide-react';
+import type { FC } from 'react';
 
-import swissFlag from '@/assets/images/swiss-flag.png';
 import teamsFeature from '@/assets/images/feature-1.png';
 import matchesFeature from '@/assets/images/feature-2.png';
 import rankingFeature from '@/assets/images/feature-3.png';
-import testimonial from '@/assets/images/testimonial-illustration.png';
-import gabriel from '@/assets/images/team/gab.png';
+import socraftLight from '@/assets/images/logos/socraft-light.svg';
+import socraft from '@/assets/images/logos/socraft.svg';
+import swissFlag from '@/assets/images/swiss-flag.png';
+import dmytro from '@/assets/images/team/dmytro.png';
 import farhdine from '@/assets/images/team/farhdine.png';
+import gabriel from '@/assets/images/team/gab.png';
 import jose from '@/assets/images/team/jose.png';
 import thomas from '@/assets/images/team/thomas.png';
-import dmytro from '@/assets/images/team/dmytro.png';
-import socraft from '@/assets/images/logos/socraft.svg';
-import socraftLight from '@/assets/images/logos/socraft-light.svg';
+import testimonial from '@/assets/images/testimonial-illustration.png';
 import { useTheme } from '@/components/providers/theme-provider';
 import { Faq } from '@/components/ui/faq';
 
@@ -49,24 +49,24 @@ const teamMembers = [
   },
   {
     id: '3',
+    name: 'Dmytro',
+    role: 'Designer',
+    avatar: dmytro,
+    linkedin: 'https://www.linkedin.com/in/dmytro-beznoskovych-525111306/',
+  },
+  {
+    id: '4',
     name: 'José',
     role: 'Développeur',
     avatar: jose,
     linkedin: 'https://www.linkedin.com/in/jos%C3%A9-gomes-865b2b31a/',
   },
   {
-    id: '4',
+    id: '5',
     name: 'Thomas',
     role: 'Développeur',
     avatar: thomas,
     linkedin: 'https://www.linkedin.com/in/thomas-burkhalter-71645a2b0/',
-  },
-  {
-    id: '5',
-    name: 'Dmytro',
-    role: 'Designer',
-    avatar: dmytro,
-    linkedin: 'https://www.linkedin.com/in/dmytro-beznoskovych-525111306/',
   },
 ];
 
@@ -74,9 +74,11 @@ const Home: FC<HomeProps> = () => {
   const { currency, format } = useCurrency();
   const { theme } = useTheme();
 
+  const handleStart = () => window.open('https://arena.optifit.app/signin');
+
   return (
-    <div className="lg:max-w-screen-2xl mx-auto border border-b-0 border-t-0 min-h-screen">
-      <PageSection className="pt-30 pb-20">
+    <div className="lg:max-w-screen-2xl mx-auto border border-b-0 mt-15 min-h-screen rounded-t-lg">
+      <PageSection className="py-20">
         <div className="flex items-center flex-2/3">
           <div className="flex flex-col gap-2">
             <img className="h-12 w-12 mb-2" alt="Optifit Icon" src={icon} />
@@ -90,8 +92,8 @@ const Home: FC<HomeProps> = () => {
               Créez vos équipes, on s'occupe de l'organisation.
             </h3>
             <div className="flex items-center gap-2 flex-wrap mt-5">
-              <Button variant="default" size="lg">
-                Tester gratuitement
+              <Button variant="default" size="lg" onClick={handleStart}>
+                Commencer gratuitement
                 <ExternalLink />
               </Button>
               <Button variant="outline" size="lg">
@@ -148,11 +150,16 @@ const Home: FC<HomeProps> = () => {
           <span className="text-primary">interface intuitive</span> et des{' '}
           <span className="text-primary">fonctionnalités puissantes</span>.
         </p>
-        <Button variant="default" size="lg" className="mt-10">
-          Tester gratuitement <ExternalLink />
+        <Button
+          variant="default"
+          size="lg"
+          className="mt-10"
+          onClick={handleStart}
+        >
+          Commencer gratuitement <ExternalLink />
         </Button>
       </PageSection>
-      <PageSeparation />
+      <PageSeparation id="features" />
       <PageSection className="pt-15 px-0">
         <div className="px-20 mb-15">
           <span className="text-xs font-medium uppercase text-muted-foreground">
@@ -219,7 +226,12 @@ const Home: FC<HomeProps> = () => {
           <span className="text-muted-foreground">
             pas de carte bancaire requise
           </span>
-          <Button variant="default" size="lg" className="mt-5">
+          <Button
+            variant="default"
+            size="lg"
+            className="mt-5"
+            onClick={handleStart}
+          >
             Commencer maintenant <ExternalLink />
           </Button>
         </div>
@@ -248,7 +260,7 @@ const Home: FC<HomeProps> = () => {
           />
         </div>
       </PageSection>
-      <PageSeparation />
+      <PageSeparation id="pricing" />
       <PageSection className="px-0">
         <div className="px-20">
           <span className="text-xs font-medium uppercase text-muted-foreground">
@@ -350,12 +362,17 @@ const Home: FC<HomeProps> = () => {
           <span className="text-muted-foreground">
             pas de carte bancaire requise
           </span>
-          <Button variant="default" size="lg" className="mt-5">
+          <Button
+            variant="default"
+            size="lg"
+            className="mt-5"
+            onClick={handleStart}
+          >
             Commencer maintenant <ExternalLink />
           </Button>
         </div>
       </PageSection>
-      <PageSeparation />
+      <PageSeparation id="team" />
       <PageSection className="px-0">
         <div className="flex flex-col gap-1 px-20">
           <span className="text-xs font-medium uppercase text-muted-foreground">
@@ -407,7 +424,7 @@ const Home: FC<HomeProps> = () => {
           onClick={() => window.open('https://socraft.io')}
         />
       </PageSection>
-      <PageSeparation />
+      <PageSeparation id="faq" />
       <PageSection className="pb-10 pr-20">
         <span className="text-xs font-medium uppercase text-muted-foreground">
           Questions fréquentes
@@ -416,7 +433,7 @@ const Home: FC<HomeProps> = () => {
         <Faq />
       </PageSection>
       <PageSeparation />
-      <PageSection className="pb-10">
+      <PageSection className="pb-10 px-20">
         <div className="flex flex-col items-center">
           <h2 className="text-2xl font-medium">
             Créez votre premier tournoi{' '}
@@ -425,7 +442,12 @@ const Home: FC<HomeProps> = () => {
           <span className="text-muted-foreground">
             pas de carte bancaire requise
           </span>
-          <Button variant="default" size="lg" className="mt-5">
+          <Button
+            variant="default"
+            size="lg"
+            className="mt-5"
+            onClick={handleStart}
+          >
             Commencer maintenant <ExternalLink />
           </Button>
         </div>
