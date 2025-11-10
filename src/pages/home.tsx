@@ -28,6 +28,7 @@ import dmytro from '@/assets/images/team/dmytro.png';
 import socraft from '@/assets/images/logos/socraft.svg';
 import socraftLight from '@/assets/images/logos/socraft-light.svg';
 import { useTheme } from '@/components/providers/theme-provider';
+import { Faq } from '@/components/ui/faq';
 
 type HomeProps = object;
 
@@ -407,16 +408,12 @@ const Home: FC<HomeProps> = () => {
         />
       </PageSection>
       <PageSeparation />
-      <PageSection className="pb-20">
+      <PageSection className="pb-10 pr-20">
         <span className="text-xs font-medium uppercase text-muted-foreground">
-          Changelog
+          Questions fréquentes
         </span>
-        <h2 className="text-4xl font-bold">
-          Suivez les dernières mises à jour
-        </h2>
-        <Button variant="outline" className="mt-5">
-          Voir le changelog <ArrowRight />
-        </Button>
+        <h2 className="text-4xl font-bold">FAQ</h2>
+        <Faq />
       </PageSection>
       <PageSeparation />
       <PageSection className="pb-10">
