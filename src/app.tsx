@@ -25,8 +25,8 @@ const App: FC<AppProps> = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/winter-tournaments" element={<WinterTournaments />} />
-        <Route path="/privacy-policy" element={<Privacy />} />
-        <Route path="/terms-and-conditions" element={<Terms />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

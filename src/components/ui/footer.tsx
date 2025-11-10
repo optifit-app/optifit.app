@@ -50,13 +50,13 @@ export const Footer = () => {
         <div className="flex flex-col">
           <h3 className="text-xl font-semibold">Liens utiles</h3>
           <a
-            href="#pricing"
+            href="/#pricing"
             className="text-[15px] hover:underline hover:text-primary mt-2"
           >
             Tarifs
           </a>
           <a
-            href="#faq"
+            href="/#faq"
             className="text-[15px] hover:underline hover:text-primary"
           >
             Questions fréquentes
@@ -77,20 +77,20 @@ export const Footer = () => {
             support@optifit.app
           </a>
           <a
-            href="/terms-and-conditions"
+            href="/terms"
             className="text-[15px] hover:underline hover:text-primary"
           >
-            Conditions générales d'utilisations
+            Conditions générales d'utilisation
           </a>
           <a
-            href="/privacy-policy"
+            href="/privacy"
             className="text-[15px] hover:underline hover:text-primary"
           >
             Politique de confidentialité
           </a>
         </div>
       </div>
-      <div className="flex justify-center py-5">
+      <div className="flex justify-center pt-5">
         <span className="text-md font-medium text-muted-foreground">
           © {new Date().getFullYear()} Optifit. Tous droits réservés.
         </span>

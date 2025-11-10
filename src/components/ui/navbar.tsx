@@ -31,17 +31,20 @@ export const Navbar = () => {
           <span className="text-lg font-semibold">Optifit</span>
         </div>
         <div className="flex items-center gap-5">
-          <a href="#features" className="text-sm">
+          <a href="/#features" className="text-sm">
             Fonctionnalités
           </a>
-          <a href="#pricing" className="text-sm">
+          <a href="/#pricing" className="text-sm">
             Tarifs
           </a>
-          <a href="#team" className="text-sm">
+          <a href="/#team" className="text-sm">
             Équipe
           </a>
-          <a href="#faq" className="text-sm">
+          <a href="/#faq" className="text-sm">
             FAQ
+          </a>
+          <a href="/changelog" className="text-sm">
+            Changelog
           </a>
         </div>
       </div>

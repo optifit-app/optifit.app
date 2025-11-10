@@ -96,7 +96,11 @@ const Home: FC<HomeProps> = () => {
                 Commencer gratuitement
                 <ExternalLink />
               </Button>
-              <Button variant="outline" size="lg">
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={() => (window.location.hash = '#references')}
+              >
                 En savoir plus
                 <ArrowDown />
               </Button>
@@ -119,7 +123,7 @@ const Home: FC<HomeProps> = () => {
           />
         </div>
       </PageSection>
-      <PageSeparation />
+      <PageSeparation id="references" />
       <PageSection className="pl-0 pt-15 pb-20">
         <div className="flex flex-col items-center">
           <h2 className="text-3xl font-medium text-center">
@@ -232,7 +236,7 @@ const Home: FC<HomeProps> = () => {
             className="mt-5"
             onClick={handleStart}
           >
-            Commencer maintenant <ExternalLink />
+            Commencer gratuitement <ExternalLink />
           </Button>
         </div>
       </PageSection>
@@ -264,7 +268,7 @@ const Home: FC<HomeProps> = () => {
       <PageSection className="px-0">
         <div className="px-20">
           <span className="text-xs font-medium uppercase text-muted-foreground">
-            Commencer maintenant
+            Commencer gratuitement
           </span>
           <h2 className="text-4xl font-bold">
             Gagnez du temps dès{' '}
@@ -368,7 +372,7 @@ const Home: FC<HomeProps> = () => {
             className="mt-5"
             onClick={handleStart}
           >
-            Commencer maintenant <ExternalLink />
+            Commencer gratuitement <ExternalLink />
           </Button>
         </div>
       </PageSection>
@@ -448,7 +452,7 @@ const Home: FC<HomeProps> = () => {
             className="mt-5"
             onClick={handleStart}
           >
-            Commencer maintenant <ExternalLink />
+            Commencer gratuitement <ExternalLink />
           </Button>
         </div>
       </PageSection>
