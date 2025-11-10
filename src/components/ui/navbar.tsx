@@ -10,7 +10,7 @@ export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useMotionValueEvent(scrollYProgress, 'change', (latest) => {
-    setScrolled(latest > 0.01); // 5% de scroll
+    setScrolled(latest > 0.01);
   });
 
   return (
