@@ -5,7 +5,7 @@ const Privacy = () => {
   return (
     <div className="lg:max-w-screen-2xl mx-auto border border-b-0 mt-15 min-h-screen rounded-t-lg">
       <PageSection className="px-0 pb-10">
-        <div className="px-20">
+        <div className="px-10 lg:px-20">
           <span className="text-xs font-medium uppercase text-muted-foreground">
             Politique de confidentialité
           </span>
@@ -20,7 +20,7 @@ const Privacy = () => {
       </PageSection>
       <PageSeparation />
       <PageSection className="px-0 pb-10">
-        <div className="px-20">
+        <div className="px-10 lg:px-20">
           <span className="text-xs font-medium uppercase text-muted-foreground">
             Politique de confidentialité
           </span>
@@ -44,7 +44,7 @@ const Privacy = () => {
       </PageSection>
       <PageSeparation />
       <PageSection className="px-0 pb-10">
-        <div className="px-20">
+        <div className="px-10 lg:px-20">
           <span className="text-xs font-medium uppercase text-muted-foreground">
             Politique de confidentialité
           </span>
@@ -68,7 +68,7 @@ const Privacy = () => {
       </PageSection>
       <PageSeparation />
       <PageSection className="px-0 pb-10">
-        <div className="px-20">
+        <div className="px-10 lg:px-20">
           <span className="text-xs font-medium uppercase text-muted-foreground">
             Politique de confidentialité
           </span>
@@ -82,7 +82,7 @@ const Privacy = () => {
       </PageSection>
       <PageSeparation />
       <PageSection className="px-0 pb-10">
-        <div className="px-20">
+        <div className="px-10 lg:px-20">
           <span className="text-xs font-medium uppercase text-muted-foreground">
             Politique de confidentialité
           </span>
@@ -102,10 +102,10 @@ const Privacy = () => {
       </PageSection>
       <PageSeparation />
       <PageSection className="px-0 pb-10 flex flex-col items-center">
-        <span className="text-lg font-medium text-muted-foreground">
+        <span className="text-lg font-medium text-muted-foreground text-center">
           Pour exercer vos droits ou pour toute question,
         </span>
-        <h1 className="text-2xl font-semibold">Contactez-nous à</h1>
+        <h1 className="text-2xl font-semibold text-center">Contactez-nous à</h1>
         <a
           href="mailto:privacy@optifit.app"
           className="text-primary underline mt-3 text-xl"

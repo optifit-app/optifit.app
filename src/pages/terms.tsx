@@ -5,7 +5,7 @@ const Terms = () => {
   return (
     <div className="lg:max-w-screen-2xl mx-auto border border-b-0 mt-15 min-h-screen rounded-t-lg">
       <PageSection className="px-0 pb-10">
-        <div className="px-20">
+        <div className="px-10 lg:px-20">
           <span className="text-xs font-medium uppercase text-muted-foreground">
             Conditions générales d'utilisation
           </span>
@@ -19,7 +19,7 @@ const Terms = () => {
       </PageSection>
       <PageSeparation />
       <PageSection className="px-0 pb-10">
-        <div className="px-20">
+        <div className="px-10 lg:px-20">
           <span className="text-xs font-medium uppercase text-muted-foreground">
             Conditions générales d'utilisation
           </span>
@@ -45,7 +45,7 @@ const Terms = () => {
       </PageSection>
       <PageSeparation />
       <PageSection className="px-0 pb-10">
-        <div className="px-20">
+        <div className="px-10 lg:px-20">
           <span className="text-xs font-medium uppercase text-muted-foreground">
             Conditions générales d'utilisation
           </span>
@@ -63,7 +63,7 @@ const Terms = () => {
       </PageSection>
       <PageSeparation />
       <PageSection className="px-0 pb-10">
-        <div className="px-20">
+        <div className="px-10 lg:px-20">
           <span className="text-xs font-medium uppercase text-muted-foreground">
             Conditions générales d'utilisation
           </span>
@@ -86,7 +86,7 @@ const Terms = () => {
       </PageSection>
       <PageSeparation />
       <PageSection className="px-0 pb-10">
-        <div className="px-20">
+        <div className="px-10 lg:px-20">
           <span className="text-xs font-medium uppercase text-muted-foreground">
             Conditions générales d'utilisation
           </span>
@@ -100,7 +100,7 @@ const Terms = () => {
       </PageSection>
       <PageSeparation />
       <PageSection className="px-0 pb-10">
-        <div className="px-20">
+        <div className="px-10 lg:px-20">
           <span className="text-xs font-medium uppercase text-muted-foreground">
             Conditions générales d'utilisation
           </span>
@@ -115,10 +115,10 @@ const Terms = () => {
       </PageSection>
       <PageSeparation />
       <PageSection className="px-0 pb-10 flex flex-col items-center">
-        <span className="text-lg font-medium text-muted-foreground">
+        <span className="text-lg font-medium text-muted-foreground text-center">
           Pour toute question,
         </span>
-        <h1 className="text-2xl font-semibold">
+        <h1 className="text-2xl font-semibold text-center">
           N'hésitez pas à nous contacter
         </h1>
         <a

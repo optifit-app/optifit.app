@@ -8,7 +8,7 @@ export const Changelog = () => {
   return (
     <div className="lg:max-w-screen-2xl mx-auto border border-b-0 mt-15 min-h-screen rounded-t-lg">
       <PageSection className="pt-15 px-0">
-        <div className="px-20 mb-15">
+        <div className="px-10 lg:px-20 mb-15">
           <span className="text-xs font-medium uppercase text-muted-foreground">
             Dernières mises à jour
           </span>
@@ -21,7 +21,7 @@ export const Changelog = () => {
       <PageSeparation />
       {entries.map((entry, index) => (
         <div key={index}>
-          <PageSection className="py-15 px-20">
+          <PageSection className="py-15 px-10 lg:px-20">
             <span className="text-xs font-medium uppercase text-muted-foreground">
               {entry.date}
             </span>
