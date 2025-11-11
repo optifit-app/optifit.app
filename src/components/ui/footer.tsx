@@ -1,149 +1,100 @@
-import React from 'react';
-import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
-import socraft from '@/assets/images/logos/socraft.svg';
-import socraftLight from '@/assets/images/logos/socraft-light.svg';
-import { useTheme } from '@/components/providers/theme-provider.tsx';
+import icon from '@/assets/images/icon.png';
+import { Github, Instagram, Linkedin } from 'lucide-react';
 
-interface Footer7Props {
-  logo?: {
-    url: string;
-    src: string;
-    alt: string;
-    title: string;
-  };
-  sections?: Array<{
-    title: string;
-    links: Array<{ name: string; href: string }>;
-  }>;
-  description?: string;
-  socialLinks?: Array<{
-    icon: React.ReactElement;
-    href: string;
-    label: string;
-  }>;
-  copyright?: string;
-}
+const linkedin = 'https://www.linkedin.com/company/optifit-software/';
+const instagram = 'https://www.instagram.com/optifit.app/';
+const github = 'https://github.com/optifit-app';
 
-const defaultSections = [
-  {
-    title: 'Product',
-    links: [
-      { name: 'Overview', href: '#' },
-      { name: 'Pricing', href: '#' },
-      { name: 'Marketplace', href: '#' },
-      { name: 'Features', href: '#' },
-    ],
-  },
-  {
-    title: 'Company',
-    links: [
-      { name: 'About', href: '#' },
-      { name: 'Team', href: '#' },
-      { name: 'Blog', href: '#' },
-      { name: 'Careers', href: '#' },
-    ],
-  },
-  {
-    title: 'Resources',
-    links: [
-      { name: 'Help', href: '#' },
-      { name: 'Sales', href: '#' },
-      { name: 'Advertise', href: '#' },
-      { name: 'Privacy', href: '#' },
-    ],
-  },
-];
-
-const defaultSocialLinks = [
-  { icon: <FaInstagram className="size-5" />, href: '#', label: 'Instagram' },
-  { icon: <FaFacebook className="size-5" />, href: '#', label: 'Facebook' },
-  { icon: <FaTwitter className="size-5" />, href: '#', label: 'Twitter' },
-  { icon: <FaLinkedin className="size-5" />, href: '#', label: 'LinkedIn' },
-];
-
-const Footer = ({
-  logo = {
-    url: 'https://www.shadcnblocks.com',
-    src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcnblockscom-icon.svg',
-    alt: 'logo',
-    title: 'Shadcnblocks.com',
-  },
-  sections = defaultSections,
-  description = 'A collection of components for your startup business or side project.',
-  socialLinks = defaultSocialLinks,
-  copyright = '© 2024 Shadcnblocks.com. All rights reserved.',
-}: Footer7Props) => {
-  const { theme } = useTheme();
-
+export const Footer = () => {
   return (
-    <section className="py-32 px-10  border-t">
-      <div className="container mx-auto">
-        <div className="flex w-full flex-col justify-between gap-10 lg:flex-row lg:items-start lg:text-left">
-          <div className="flex w-full flex-col justify-between gap-6 lg:items-start">
-            {/* Logo */}
-            <div className="flex items-center gap-2 lg:justify-start">
-              <a href={logo.url}>
-                <img
-                  src={logo.src}
-                  alt={logo.alt}
-                  title={logo.title}
-                  className="h-8"
-                />
-              </a>
-              <h2 className="text-xl font-semibold">{logo.title}</h2>
-            </div>
-            <p className="text-muted-foreground max-w-[70%] text-sm">
-              {description}
-            </p>
-            <ul className="text-muted-foreground flex items-center space-x-6">
-              {socialLinks.map((social, idx) => (
-                <li key={idx} className="hover:text-primary font-medium">
-                  <a href={social.href} aria-label={social.label}>
-                    {social.icon}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="grid w-full gap-6 md:grid-cols-3 lg:gap-20">
-            {sections.map((section, sectionIdx) => (
-              <div key={sectionIdx}>
-                <h3 className="mb-4 font-bold">{section.title}</h3>
-                <ul className="text-muted-foreground space-y-3 text-sm">
-                  {section.links.map((link, linkIdx) => (
-                    <li
-                      key={linkIdx}
-                      className="hover:text-primary font-medium"
-                    >
-                      <a href={link.href}>{link.name}</a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+    <div className="flex flex-col gap-4 lg:max-w-screen-2xl mx-auto border border-b-0 py-10 px-10 lg:px-25">
+      <div className="flex items-center justify-between flex-wrap gap-5 border-b pb-5">
+        <div
+          className="flex items-center gap-2 select-none cursor-pointer"
+          onClick={() => (window.location.href = window.location.origin)}
+        >
+          <img src={icon} alt="optifit icon" className="h-9 w-9" />
+          <span className="text-lg font-semibold">Optifit</span>
         </div>
-        <div className="text-muted-foreground mt-8 flex flex-col justify-between gap-4 border-t py-8 text-xs font-medium md:flex-row md:items-center md:text-left">
-          <p className="order-2 lg:order-1">{copyright}</p>
-          <p className="order-1 lg:order-2 flex items-center gap-3 text-md">
-            soutenu par{' '}
-            <a
-              href="https://www.socraft.ch"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 text-primary hover:underline"
-            >
-              <img
-                src={theme === 'dark' ? socraftLight : socraft}
-                alt="Socraft Logo"
-                className="h-5"
-              />
-            </a>
-          </p>
+        <div className="flex items-center gap-5">
+          <Linkedin
+            className="hover:text-primary cursor-pointer"
+            onClick={() => window.open(linkedin)}
+          />
+          <Instagram
+            className="hover:text-primary cursor-pointer"
+            onClick={() => window.open(instagram)}
+          />
+          <Github
+            className="hover:text-primary cursor-pointer"
+            onClick={() => window.open(github)}
+          />
         </div>
       </div>
-    </section>
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between flex-wrap gap-5 border-b pb-5">
+        <div className="flex flex-col">
+          <h3 className="text-xl font-semibold">Nous contacter</h3>
+          <a
+            href="mailto:info@optifit.app"
+            className="text-[15px] underline text-primary mt-2"
+          >
+            info@optifit.app
+          </a>
+          <p className="text-[15px]">
+            Avenue du Léman 2<br />
+            1005 Lausanne
+            <br />
+            Suisse
+          </p>
+        </div>
+        <div className="flex flex-col">
+          <h3 className="text-xl font-semibold">Liens utiles</h3>
+          <a
+            href="/#pricing"
+            className="text-[15px] hover:underline hover:text-primary mt-2"
+          >
+            Tarifs
+          </a>
+          <a
+            href="/#faq"
+            className="text-[15px] hover:underline hover:text-primary"
+          >
+            Questions fréquentes
+          </a>
+          <a
+            href="/changelog"
+            className="text-[15px] hover:underline hover:text-primary"
+          >
+            Changelog
+          </a>
+        </div>
+        <div className="flex flex-col">
+          <h3 className="text-lg font-medium">Besoin d'aide ?</h3>
+          <a
+            href="mailto:support@optifit.app"
+            className="text-[15px]  underline text-primary mt-2"
+          >
+            support@optifit.app
+          </a>
+          <a
+            href="/terms"
+            className="text-[15px] hover:underline hover:text-primary"
+          >
+            Conditions générales d'utilisation
+          </a>
+          <a
+            href="/privacy"
+            className="text-[15px] hover:underline hover:text-primary"
+          >
+            Politique de confidentialité
+          </a>
+        </div>
+      </div>
+      <div className="flex justify-center pt-5">
+        <span className="text-sm font-medium text-muted-foreground">
+          © {new Date().getFullYear()} Optifit. Tous droits réservés.
+        </span>
+      </div>
+    </div>
   );
 };
-
-export { Footer };

@@ -1,16 +1,16 @@
-import type { FC } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { useTheme } from '@/components/providers/theme-provider.tsx';
+import { Button } from '@/components/ui/button.tsx';
+import { Footer } from '@/components/ui/footer.tsx';
 import { Home } from '@/pages/home.tsx';
 import { Privacy } from '@/pages/privacy.tsx';
 import { Terms } from '@/pages/terms.tsx';
-import { Button } from '@/components/ui/button.tsx';
-import { useTheme } from '@/components/providers/theme-provider.tsx';
-import { Instagram, Linkedin, Moon, Sun } from 'lucide-react';
-import Changelog from '@/pages/changelog.tsx';
-import icon from '@/assets/images/icon.png';
-import { Footer } from '@/components/ui/footer.tsx';
-import { WinterTournaments } from './pages/winter-tournaments';
+import { Moon, Sun } from 'lucide-react';
+import type { FC } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import NotFound from './pages/not-found';
+import { WinterTournaments } from './pages/winter-tournaments';
+import { Navbar } from './components/ui/navbar';
+import { Changelog } from './pages/changelog';
 
 type AppProps = object;
 
@@ -22,74 +22,16 @@ const App: FC<AppProps> = () => {
 
   return (
     <div className="relative">
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/winter-tournaments" element={<WinterTournaments />} />
         <Route path="/changelog" element={<Changelog />} />
-        <Route path="/privacy-policy" element={<Privacy />} />
-        <Route path="/terms-and-conditions" element={<Terms />} />
+        <Route path="/winter-tournaments" element={<WinterTournaments />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <Footer
-        logo={{
-          url: 'https://www.optifit.app',
-          src: icon,
-          alt: 'Optifit Logo',
-          title: 'Optifit',
-        }}
-        description="Optifit est une application de gestion de tournois sportifs, développée en Suisse. Notre objectif est de simplifier l'organisation de vos événements sportifs avec une interface intuitive et des fonctionnalités puissantes."
-        copyright={`© ${new Date().getFullYear()} Optifit. Tous droits réservés.`}
-        sections={[
-          {
-            title: 'Liens utiles',
-            links: [
-              { name: 'Changelog', href: '/changelog' },
-              { name: 'Questions fréquentes', href: '/#faq' },
-              { name: 'Tarifs', href: '/#pricing' },
-              { name: 'Je veux une démo', href: 'https://demo.optifit.app' },
-            ],
-          },
-          {
-            title: 'Support',
-            links: [
-              {
-                name: "Demander de l'aide",
-                href: 'mailto:support@optifit.app',
-              },
-              { name: 'Politique de confidentialité', href: '/privacy-policy' },
-              {
-                name: 'Conditions d’utilisation',
-                href: '/terms-and-conditions',
-              },
-            ],
-          },
-          {
-            title: 'Réseaux sociaux',
-            links: [
-              {
-                name: 'Instagram',
-                href: 'https://www.instagram.com/optifit.app/',
-              },
-              {
-                name: 'LinkedIn',
-                href: 'https://www.linkedin.com/company/optifit-software',
-              },
-            ],
-          },
-        ]}
-        socialLinks={[
-          {
-            icon: <Instagram />,
-            href: 'https://www.instagram.com/optifit.app/',
-            label: 'Instagram',
-          },
-          {
-            icon: <Linkedin />,
-            href: 'https://www.linkedin.com/company/optifit-software',
-            label: 'LinkedIn',
-          },
-        ]}
-      />
+      <Footer />
       <Button
         variant="ghost"
         size="icon"
