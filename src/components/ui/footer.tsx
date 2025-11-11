@@ -7,7 +7,7 @@ const github = 'https://github.com/optifit-app';
 
 export const Footer = () => {
   return (
-    <div className="flex flex-col gap-4 lg:max-w-screen-2xl mx-auto border border-b-0 py-10 px-25">
+    <div className="flex flex-col gap-4 lg:max-w-screen-2xl mx-auto border border-b-0 py-10 px-10 lg:px-25">
       <div className="flex items-center justify-between flex-wrap gap-5 border-b pb-5">
         <div
           className="flex items-center gap-2 select-none cursor-pointer"
@@ -31,7 +31,7 @@ export const Footer = () => {
           />
         </div>
       </div>
-      <div className="flex items-center justify-between flex-wrap gap-5 border-b pb-5">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between flex-wrap gap-5 border-b pb-5">
         <div className="flex flex-col">
           <h3 className="text-xl font-semibold">Nous contacter</h3>
           <a
@@ -91,7 +91,7 @@ export const Footer = () => {
         </div>
       </div>
       <div className="flex justify-center pt-5">
-        <span className="text-md font-medium text-muted-foreground">
+        <span className="text-sm font-medium text-muted-foreground">
           © {new Date().getFullYear()} Optifit. Tous droits réservés.
         </span>
       </div>

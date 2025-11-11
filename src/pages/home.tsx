@@ -1,5 +1,3 @@
-import phones from '@/assets/images/feature-3.png';
-import icon from '@/assets/images/icon.png';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { PageSection } from '@/components/ui/page-section';
@@ -15,9 +13,11 @@ import { customers } from '@/optifit';
 import { ArrowDown, Check, ExternalLink } from 'lucide-react';
 import type { FC } from 'react';
 
+import ranking from '@/assets/images/feature-3.png';
+import icon from '@/assets/images/icon.png';
 import teamsFeature from '@/assets/images/feature-1.png';
 import matchesFeature from '@/assets/images/feature-2.png';
-import rankingFeature from '@/assets/images/feature-3.png';
+import rankingFeature from '@/assets/images/feature-4.png';
 import socraftLight from '@/assets/images/logos/socraft-light.svg';
 import socraft from '@/assets/images/logos/socraft.svg';
 import swissFlag from '@/assets/images/swiss-flag.png';
@@ -78,14 +78,14 @@ const Home: FC<HomeProps> = () => {
 
   return (
     <div className="lg:max-w-screen-2xl mx-auto border border-b-0 mt-15 min-h-screen rounded-t-lg">
-      <PageSection className="py-20">
-        <div className="flex items-center flex-2/3">
-          <div className="flex flex-col gap-2">
+      <PageSection className="pt-10 lg:pt-20 pl-10 xl:pl-20">
+        <div className="flex flex-col xl:flex-row items-center gap-10 relative pb-20">
+          <div className="flex flex-col gap-2 xl:flex-2/3 pr-20 xl:pr-0">
             <img className="h-12 w-12 mb-2" alt="Optifit Icon" src={icon} />
             <span className="text-md uppercase font-medium text-muted-foreground">
               Gestion de tournois simple & intuitive
             </span>
-            <h2 className="text-6xl font-bold">
+            <h2 className="text-5xl lg:text-6xl font-bold">
               Il ne vous reste plus qu'à profiter du jeu.
             </h2>
             <h3 className="text-xl">
@@ -117,16 +117,16 @@ const Home: FC<HomeProps> = () => {
             </span>
           </div>
           <img
-            className="h-110 flex-1/3 dark:opacity-50"
-            src={phones}
-            alt="Phones"
+            className="hidden lg:block h-80 xl:h-110 xl:flex-1/3 dark:opacity-50 absolute bottom-0 right-0 xl:static"
+            src={ranking}
+            alt="Ranking"
           />
         </div>
       </PageSection>
       <PageSeparation id="references" />
       <PageSection className="pl-0 pt-15 pb-20">
         <div className="flex flex-col items-center">
-          <h2 className="text-3xl font-medium text-center">
+          <h2 className="text-3xl font-medium text-center px-10">
             Ils ont déjà utilisé <span className="text-primary">Optifit</span>
           </h2>
           <Marquee className="mt-15">
@@ -145,8 +145,8 @@ const Home: FC<HomeProps> = () => {
         </div>
       </PageSection>
       <PageSeparation />
-      <PageSection className="py-30 pr-10">
-        <p className="text-3xl font-medium text-pretty">
+      <PageSection className="py-30 px-10">
+        <p className="text-xl lg:text-3xl font-medium text-pretty">
           Optifit est une application de gestion de tournois sportifs,{' '}
           <span className="text-primary">développée en Suisse</span>. Notre
           objectif est de <span className="text-primary">simplifier</span>{' '}
@@ -164,70 +164,70 @@ const Home: FC<HomeProps> = () => {
         </Button>
       </PageSection>
       <PageSeparation id="features" />
-      <PageSection className="pt-15 px-0">
-        <div className="px-20 mb-15">
+      <PageSection className="pt-10 px-0">
+        <div className="px-10 lg:pl-20 mb-10">
           <span className="text-xs font-medium uppercase text-muted-foreground">
             Fonctionnalités clés
           </span>
           <h2 className="text-4xl font-bold">Comment ça marche</h2>
         </div>
-        <div className="flex items-stretch border-t border-b">
-          <div className="pt-10 border-r flex-1/3 transition-all duration-150 hover:bg-foreground/1">
-            <div className="pr-5 pl-10">
-              <h3 className="text-3xl font-semibold text-pretty">
+        <div className="flex flex-col lg:flex-row items-stretch border-t border-b px-2 lg:px-0">
+          <div className="flex flex-col items-center lg:items-start pt-10 lg:border-r flex-1/3 transition-all duration-150 hover:bg-foreground/1">
+            <div className="pr-5 lg:pl-10">
+              <h3 className="text-3xl font-semibold text-pretty text-center lg:text-left">
                 Gérez <span className="text-primary">facilement</span> vos
                 équipes.
               </h3>
-              <p className="mt-2 text-muted-foreground">
+              <p className="mt-2 text-muted-foreground text-center lg:text-left">
                 Créez ou importez-les en un clic et commencez votre tournoi plus
                 vite.
               </p>
             </div>
             <img
-              className="w-[95%] mx-auto mt-15 dark:opacity-50"
+              className="w-[98%] mx-10 lg:mx-auto mt-5 lg:mt-8 dark:opacity-50 border border-b-0 rounded-t-lg"
               src={teamsFeature}
               alt="teams feature"
             />
           </div>
-          <div className="pt-10 border-r flex-1/3 transition-all duration-150 hover:bg-foreground/1">
-            <div className="pr-5 pl-10">
-              <h3 className="text-3xl font-semibold text-pretty">
+          <div className="flex flex-col items-center lg:items-start pt-10 lg:border-r flex-1/3 transition-all duration-150 hover:bg-foreground/1">
+            <div className="pr-5 lg:pl-10">
+              <h3 className="text-3xl font-semibold text-pretty text-center lg:text-left">
                 Planning du tournoi{' '}
                 <span className="text-primary">optimisé</span>.
               </h3>
-              <p className="mt-2 text-muted-foreground">
+              <p className="mt-2 text-muted-foreground text-center lg:text-left">
                 Génération faite pour un rythme équilibré entre les équipes.
               </p>
             </div>
             <img
-              className="w-[95%] mx-auto mt-15 dark:opacity-50"
+              className="w-[98%] mx-10 lg:mx-auto mt-5 lg:mt-8 dark:opacity-50 border border-b-0 rounded-t-lg"
               src={matchesFeature}
               alt="matches feature"
             />
           </div>
-          <div className="pt-10 pl-10 flex-1/3 transition-all duration-150 hover:bg-foreground/1">
-            <div className="pr-5">
-              <h3 className="text-3xl font-semibold text-pretty">
+          <div className="flex flex-col items-center lg:items-start pt-10 flex-1/3 transition-all duration-150 hover:bg-foreground/1">
+            <div className="pr-5 lg:pl-10">
+              <h3 className="text-3xl font-semibold text-pretty text-center lg:text-left">
                 Consultez et partagez les résultats en{' '}
                 <span className="text-primary">live</span>.
               </h3>
-              <p className="mt-2 text-muted-foreground">
+              <p className="mt-2 text-muted-foreground text-center lg:text-left">
                 Classements et scores mis à jour instantanément pour tous.
               </p>
             </div>
             <img
-              className="w-150 mt-5 dark:opacity-50"
+              className="w-[98%] mx-10 lg:mx-auto mt-5 lg:mt-8 dark:opacity-50 border border-b-0 rounded-t-lg"
               src={rankingFeature}
               alt="ranking feature"
             />
           </div>
         </div>
-        <div className="flex flex-col items-center py-10">
-          <h2 className="text-2xl font-medium">
+        <div className="flex flex-col items-center py-10 px-10">
+          <h2 className="text-2xl font-medium text-center">
             Créez votre premier tournoi{' '}
             <span className="text-primary">gratuit</span>
           </h2>
-          <span className="text-muted-foreground">
+          <span className="text-muted-foreground text-center">
             pas de carte bancaire requise
           </span>
           <Button
@@ -241,9 +241,9 @@ const Home: FC<HomeProps> = () => {
         </div>
       </PageSection>
       <PageSeparation />
-      <PageSection className="py-0">
-        <div className="flex items-center">
-          <div className="flex flex-col">
+      <PageSection className="py-0 pb-10 xl:pb-0">
+        <div className="flex items-center gap-10">
+          <div className="flex flex-col px-10">
             <p className="text-2xl italic font-medium py-10 pr-10">
               “Optifit est un super outil pour l'organisation de tournois !
               L’application est simple, efficace et fait gagner un temps
@@ -258,7 +258,7 @@ const Home: FC<HomeProps> = () => {
             </div>
           </div>
           <img
-            className="flex-1/2"
+            className="hidden xl:block flex-1/2"
             src={testimonial}
             alt="testimonial illustration"
           />
@@ -266,7 +266,7 @@ const Home: FC<HomeProps> = () => {
       </PageSection>
       <PageSeparation id="pricing" />
       <PageSection className="px-0">
-        <div className="px-20">
+        <div className="px-10 lg:pl-20">
           <span className="text-xs font-medium uppercase text-muted-foreground">
             Commencer gratuitement
           </span>
@@ -275,8 +275,8 @@ const Home: FC<HomeProps> = () => {
             <span className="text-primary">aujourd'hui</span>
           </h2>
         </div>
-        <div className="flex items-stretch border-t border-b mt-10">
-          <div className="py-5 border-r flex-1/2 transition-all duration-150 hover:bg-foreground/1">
+        <div className="flex flex-col md:flex-row items-stretch border-t border-b mt-10">
+          <div className="py-5 border-r border-b md:border-b-0 flex-1/2 transition-all duration-150 hover:bg-foreground/1">
             <div className="flex flex-col pb-5 border-b px-15">
               <span className="uppercase text-muted-foreground">
                 Essayer Optifit
@@ -358,12 +358,12 @@ const Home: FC<HomeProps> = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col items-center py-10">
-          <h2 className="text-2xl font-medium">
+        <div className="flex flex-col items-center py-10 px-10">
+          <h2 className="text-2xl font-medium text-center">
             Créez votre premier tournoi{' '}
             <span className="text-primary">gratuit</span>
           </h2>
-          <span className="text-muted-foreground">
+          <span className="text-muted-foreground text-center">
             pas de carte bancaire requise
           </span>
           <Button
@@ -378,7 +378,7 @@ const Home: FC<HomeProps> = () => {
       </PageSection>
       <PageSeparation id="team" />
       <PageSection className="px-0">
-        <div className="flex flex-col gap-1 px-20">
+        <div className="flex flex-col gap-1 px-10 lg:pl-20">
           <span className="text-xs font-medium uppercase text-muted-foreground">
             Qui sommes-nous
           </span>
@@ -386,11 +386,11 @@ const Home: FC<HomeProps> = () => {
             L'équipe <span className="text-primary">Optifit</span>
           </h2>
         </div>
-        <div className="flex items-stretch flex-wrap mt-10 border-t">
+        <div className="flex items-stretch flex-wrap mt-10">
           {teamMembers.map((member, index) => (
             <div
               className={cn(
-                'flex flex-1/5 flex-col items-center justify-center p-5 hover:bg-foreground/1',
+                'flex flex-1/5 flex-col items-center justify-center p-5 hover:bg-foreground/1 border-t',
                 index !== 4 && 'border-r',
               )}
               key={member.id}
@@ -424,12 +424,12 @@ const Home: FC<HomeProps> = () => {
         <img
           src={theme === 'dark' ? socraftLight : socraft}
           alt="Socraft Logo"
-          className="w-100 mx-auto mt-10 cursor-pointer"
+          className="w-70 lg:w-100 mx-auto mt-10 cursor-pointer"
           onClick={() => window.open('https://socraft.io')}
         />
       </PageSection>
       <PageSeparation id="faq" />
-      <PageSection className="pb-10 pr-20">
+      <PageSection className="pb-10 px-10 lg:px-20">
         <span className="text-xs font-medium uppercase text-muted-foreground">
           Questions fréquentes
         </span>
@@ -437,13 +437,13 @@ const Home: FC<HomeProps> = () => {
         <Faq />
       </PageSection>
       <PageSeparation />
-      <PageSection className="pb-10 px-20">
+      <PageSection className="pb-10 px-10">
         <div className="flex flex-col items-center">
-          <h2 className="text-2xl font-medium">
+          <h2 className="text-2xl font-medium text-center">
             Créez votre premier tournoi{' '}
             <span className="text-primary">gratuit</span>
           </h2>
-          <span className="text-muted-foreground">
+          <span className="text-muted-foreground text-center">
             pas de carte bancaire requise
           </span>
           <Button
