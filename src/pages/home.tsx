@@ -10,8 +10,9 @@ import {
 import { useCurrency } from '@/hooks/use-currency';
 import { cn } from '@/lib/utils';
 import { customers } from '@/optifit';
+import type { Product } from '@/types/pricing';
 import { ArrowDown, Check, ExternalLink } from 'lucide-react';
-import type { FC } from 'react';
+import { type FC, useState, useEffect } from 'react';
 
 import ranking from '@/assets/images/feature-3.png';
 import icon from '@/assets/images/icon.png';
@@ -29,6 +30,13 @@ import thomas from '@/assets/images/team/thomas.png';
 import testimonial from '@/assets/images/testimonial-illustration.png';
 import { useTheme } from '@/components/providers/theme-provider';
 import { Faq } from '@/components/ui/faq';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 type HomeProps = object;
 
@@ -71,8 +79,33 @@ const teamMembers = [
 ];
 
 const Home: FC<HomeProps> = () => {
-  const { currency, format } = useCurrency();
+  const [product, setProduct] = useState<Product | undefined>(undefined);
+  const [amount, setAmount] = useState<number>(100);
+
+  const { currency, setCurrency, availableCurrencies, format } =
+    useCurrency(product);
   const { theme } = useTheme();
+
+  useEffect(() => {
+    const initProduct = async (): Promise<void> => {
+      const response = await fetch(
+        'https://api.arena.optifit.app/public/pricing',
+      );
+      const result = await response.json();
+
+      setProduct(result.products[0]);
+    };
+
+    void initProduct();
+  }, []);
+
+  useEffect(() => {
+    const price = product?.prices.find(
+      (price: any) => price.currency === currency.toLowerCase(),
+    );
+
+    setAmount((price?.amount ?? 10000) / 100);
+  }, [currency, product]);
 
   const handleStart = () => window.open('https://arena.optifit.app/signin');
 
@@ -274,10 +307,24 @@ const Home: FC<HomeProps> = () => {
             Gagnez du temps dès{' '}
             <span className="text-primary">aujourd'hui</span>
           </h2>
+          <Select value={currency} onValueChange={setCurrency}>
+            <SelectTrigger className="mt-4">
+              <SelectValue>{currency}</SelectValue>
+            </SelectTrigger>
+            <SelectContent>
+              {availableCurrencies
+                .filter((c) => c !== currency)
+                .map((currency, key) => (
+                  <SelectItem key={key} value={currency}>
+                    {currency}
+                  </SelectItem>
+                ))}
+            </SelectContent>
+          </Select>
         </div>
-        <div className="flex flex-col md:flex-row items-stretch border-t border-b mt-10">
-          <div className="py-5 border-r border-b md:border-b-0 flex-1/2 transition-all duration-150 hover:bg-foreground/1">
-            <div className="flex flex-col pb-5 border-b px-15">
+        <div className="flex flex-col md:flex-row items-stretch border-t border-b mt-8">
+          <div className="py-5 border-r border-b-2 md:border-b-0 flex-1/2 transition-all duration-150 hover:bg-foreground/1">
+            <div className="flex flex-col pb-5 border-b px-10 lg:px-15">
               <span className="uppercase text-muted-foreground">
                 Essayer Optifit
               </span>
@@ -285,7 +332,7 @@ const Home: FC<HomeProps> = () => {
                 {format(currency, 0)}
               </h2>
             </div>
-            <div className="mt-5 flex flex-col gap-2 px-15">
+            <div className="mt-5 flex flex-col gap-2 px-10 lg:px-15">
               <span className="flex items-center gap-2">
                 <Check size={13} className="text-muted-foreground" />
                 Un seul tournoi
@@ -317,16 +364,16 @@ const Home: FC<HomeProps> = () => {
             </div>
           </div>
           <div className="py-5 flex-1/2 transition-all duration-150 hover:bg-foreground/1">
-            <div className="flex flex-col pb-5 border-b px-15">
+            <div className="flex flex-col pb-5 border-b px-10 lg:px-15">
               <span className="uppercase text-muted-foreground">
                 Optifit Pro
               </span>
               <h2 className="font-bold text-3xl font-mono flex gap-2 items-baseline">
-                {format(currency, 100)}
+                {format(currency, amount)}
                 <span className="text-lg font-sans">/an</span>
               </h2>
             </div>
-            <div className="mt-5 flex flex-col gap-2 px-15">
+            <div className="mt-5 flex flex-col gap-2 px-10 lg:px-15">
               <span className="flex items-center gap-2">
                 <Check size={13} className="text-green-500" />
                 Nombre de tournois illimité
