@@ -85,7 +85,7 @@ const Home: FC<HomeProps> = () => {
             <span className="text-md uppercase font-medium text-muted-foreground">
               Gestion de tournois simple & intuitive
             </span>
-            <h2 className="text-5xl lg:text-6xl font-bold">
+            <h2 className="text-4xl lg:text-6xl font-bold">
               Il ne vous reste plus qu'à profiter du jeu.
             </h2>
             <h3 className="text-xl">
@@ -126,7 +126,7 @@ const Home: FC<HomeProps> = () => {
       <PageSeparation id="references" />
       <PageSection className="pl-0 pt-15 pb-20">
         <div className="flex flex-col items-center">
-          <h2 className="text-3xl font-medium text-center px-10">
+          <h2 className="text-2xl lg:text-3xl font-semibold text-center px-10">
             Ils ont déjà utilisé <span className="text-primary">Optifit</span>
           </h2>
           <Marquee className="mt-15">
@@ -136,7 +136,7 @@ const Home: FC<HomeProps> = () => {
                   <img
                     src={customer}
                     alt="customer-logo"
-                    className="h-25 px-10 w-auto filter drop-shadow"
+                    className="h-15 lg:h-25 px-8 w-auto filter drop-shadow"
                   />
                 </MarqueeItem>
               ))}
@@ -145,7 +145,7 @@ const Home: FC<HomeProps> = () => {
         </div>
       </PageSection>
       <PageSeparation />
-      <PageSection className="py-30 px-10">
+      <PageSection className="py-20 px-10 lg:px-20">
         <p className="text-xl lg:text-3xl font-medium text-pretty">
           Optifit est une application de gestion de tournois sportifs,{' '}
           <span className="text-primary">développée en Suisse</span>. Notre
@@ -416,7 +416,7 @@ const Home: FC<HomeProps> = () => {
         </div>
       </PageSection>
       <PageSeparation />
-      <PageSection className="pb-20 text-center">
+      <PageSection className="pb-20 px-10 text-center">
         <span className="text-xs font-medium uppercase text-muted-foreground">
           Partenaire
         </span>

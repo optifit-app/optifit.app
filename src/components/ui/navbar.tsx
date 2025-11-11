@@ -9,6 +9,7 @@ import {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from './dropdown-menu';
 
@@ -79,16 +80,33 @@ export const Navbar = () => {
             <Menu />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent>
+        <DropdownMenuContent className="z-9999">
           <DropdownMenuGroup>
-            <DropdownMenuItem>Fonctionnalités</DropdownMenuItem>
-            <DropdownMenuItem>Tarifs</DropdownMenuItem>
-            <DropdownMenuItem>Équipe</DropdownMenuItem>
-            <DropdownMenuItem>FAQ</DropdownMenuItem>
-            <DropdownMenuItem>Changelog</DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => (window.location.hash = 'features')}
+            >
+              Fonctionnalités
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => (window.location.hash = 'pricing')}
+            >
+              Tarifs
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => (window.location.hash = 'team')}>
+              Équipe
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => (window.location.hash = 'faq')}>
+              FAQ
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => (window.location.href = 'changelog')}
+            >
+              Changelog
+            </DropdownMenuItem>
           </DropdownMenuGroup>
-          <DropdownMenuGroup className="lg:hidden">
-            <DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuGroup className="lg:hidden mt-2">
+            <DropdownMenuItem className="py-0">
               <Button
                 variant="outline"
                 size="sm"
