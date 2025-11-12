@@ -276,8 +276,8 @@ const Home: FC<HomeProps> = () => {
       <PageSeparation />
       <PageSection className="py-0 pb-10 xl:pb-0">
         <div className="flex items-center gap-10">
-          <div className="flex flex-col px-10">
-            <p className="text-2xl italic font-medium py-10 pr-10">
+          <div className="flex flex-col px-5 lg:pl-10 lg:pl-20">
+            <p className="text-2xl italic font-medium py-10 pr-10 text-pretty">
               “Optifit est un super outil pour l'organisation de tournois !
               L’application est simple, efficace et fait gagner un temps
               précieux. Le support est hyper réactif et à l’écoute des
