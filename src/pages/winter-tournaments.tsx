@@ -19,7 +19,6 @@ export const WinterTournaments = () => {
   }, []);
 
   const handleStart = () => window.open('https://arena.optifit.app/signin');
-  const handleLearnMore = () => (window.location.href = window.location.origin);
 
   return (
     <div className="flex items-center justify-center flex-col min-h-[60dvh] pt-[20vh] gap-5 max-w-full">
@@ -67,10 +66,6 @@ export const WinterTournaments = () => {
           className="inline h-6 w-6 align-middle"
         />
       </p>
-      <Button variant="link" onClick={handleLearnMore}>
-        En savoir plus
-        <ArrowRight className="ml-2" />
-      </Button>
       <ScreenshotsShowcase left={s1} center={s2} right={s3} />
     </div>
   );
