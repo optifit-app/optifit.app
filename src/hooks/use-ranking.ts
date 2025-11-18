@@ -41,16 +41,18 @@ export const useRanking = (tournamentId?: string): UseRankingProps => {
         return;
       }
 
-      try {
-        const result = await api.get<GetRankingResponse>(
-          `/public/${tournamentId}/ranking`,
-        );
+      setTimeout(async () => {
+        try {
+          const result = await api.get<GetRankingResponse>(
+            `/public/${tournamentId}/ranking`,
+          );
 
-        handleResult(result.data);
-      } catch {
-        setLoading(false);
-        setFailed(true);
-      }
+          handleResult(result.data);
+        } catch {
+          setLoading(false);
+          setFailed(true);
+        }
+      }, 1000);
     })();
   }, [tournamentId]);
 
