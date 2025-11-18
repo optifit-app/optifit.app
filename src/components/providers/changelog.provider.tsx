@@ -7,6 +7,7 @@ import {
   useState,
 } from 'react';
 import { parseNotionChangelog } from '@/lib/notion';
+import { useApi } from '@/lib/axios';
 
 export type ChangelogEntry = {
   version: string;
@@ -35,13 +36,13 @@ const ChangelogContext = createContext<ChangelogContextProps | undefined>(
 
 export const ChangelogProvider: FC<ChangelogProviderProps> = ({ children }) => {
   const [entries, setEntries] = useState<ChangelogEntry[]>([]);
+  const api = useApi();
 
   useEffect(() => {
     const initChangelog = async (): Promise<void> => {
-      const request = await fetch('https://api.arena.optifit.app/changelog');
-      const result = await request.json();
+      const result = await api.get<{ blocks: any }>('/changelog');
 
-      const parsed = parseNotionChangelog(result.blocks);
+      const parsed = parseNotionChangelog(result.data.blocks);
       setEntries(parsed);
     };
 
