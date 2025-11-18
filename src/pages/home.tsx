@@ -87,6 +87,20 @@ const Home: FC<HomeProps> = () => {
   const { theme } = useTheme();
 
   useEffect(() => {
+    const hash = window.location.hash;
+
+    if (hash) {
+      const el = document.querySelector(hash);
+
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }, 0);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
     const initProduct = async (): Promise<void> => {
       const response = await fetch(
         'https://api.arena.optifit.app/public/pricing',
@@ -107,7 +121,12 @@ const Home: FC<HomeProps> = () => {
     setAmount((price?.amount ?? 10000) / 100);
   }, [currency, product]);
 
-  const handleStart = () => window.open('https://arena.optifit.app/signin');
+  const handleStart = () => {
+    (window as any).gtag('event', 'begin_signup', {
+      method: 'auth0',
+    });
+    window.open('https://arena.optifit.app/signin');
+  };
 
   return (
     <div className="lg:max-w-screen-2xl mx-auto border border-b-0 mt-15 min-h-screen rounded-t-lg">
