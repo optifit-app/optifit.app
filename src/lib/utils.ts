@@ -5,6 +5,25 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export const formatRankingCriterion = (criterion: any): string => {
+  switch (criterion) {
+    case 'points':
+      return 'Points';
+    case 'goalDifference':
+      return 'Différence de buts';
+    case 'goalsFor':
+      return 'Buts marqués';
+    case 'directConfrontation':
+      return 'Confrontation directe';
+    case 'fairPlayAverage':
+      return 'Moyenne des points Fair-Play';
+    case 'alphabeticalOrder':
+      return 'Ordre alphabétique';
+    default:
+      return 'Critère inconnu';
+  }
+};
+
 export const months = [
   'janvier',
   'février',
