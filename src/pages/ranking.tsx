@@ -135,46 +135,39 @@ export const Ranking = () => {
                 {!finalRankingCollapsed && (
                   <>
                     {finalRanking !== undefined && finalRanking.length > 0 ? (
-                      <CardContent className="px-2 xl:px-5">
-                        <Table className="w-full">
-                          <TableHeader>
-                            <TableRow>
-                              <TableHead>Équipe</TableHead>
+                      <CardContent className="flex flex-col gap-2 px-2 xl:px-5">
+                        <Table className="text-[12px]">
+                          {finalRanking.map((team, index) => (
+                            <TableRow key={index} className="flex items-center">
+                              <TableCell>
+                                <div className="flex items-center gap-1">
+                                  {index + 1}.
+                                  {index >= 0 && index <= 2 && (
+                                    <Trophy
+                                      size={14}
+                                      className={cn(
+                                        index === 0
+                                          ? 'text-yellow-500'
+                                          : index === 1
+                                            ? 'text-zinc-400'
+                                            : 'text-amber-700',
+                                      )}
+                                    />
+                                  )}
+                                </div>
+                              </TableCell>
+                              <TableCell className="flex items-center gap-2 pl-0">
+                                {tournament.teamsHaveColors &&
+                                  (team.color?.length ?? 0) > 0 && (
+                                    <span
+                                      className="inline-block w-3 h-3 rounded border flex-shrink-0"
+                                      style={{ backgroundColor: team.color }}
+                                    />
+                                  )}
+                                {team.name}
+                              </TableCell>
                             </TableRow>
-                          </TableHeader>
-                          <TableBody>
-                            {finalRanking.map((team, index) => (
-                              <TableRow key={index}>
-                                <TableCell>
-                                  <div className="flex items-center gap-2">
-                                    {index + 1}.
-                                    {index >= 0 && index <= 2 && (
-                                      <Trophy
-                                        size={14}
-                                        className={cn(
-                                          index === 0
-                                            ? 'text-yellow-500'
-                                            : index === 1
-                                              ? 'text-zinc-400'
-                                              : 'text-amber-700',
-                                        )}
-                                      />
-                                    )}
-                                  </div>
-                                </TableCell>
-                                <TableCell className="flex items-center gap-2">
-                                  {tournament.teamsHaveColors &&
-                                    (team.color?.length ?? 0) > 0 && (
-                                      <span
-                                        className="inline-block w-3 h-3 rounded border flex-shrink-0"
-                                        style={{ backgroundColor: team.color }}
-                                      />
-                                    )}
-                                  {team.name}
-                                </TableCell>
-                              </TableRow>
-                            ))}
-                          </TableBody>
+                          ))}
                         </Table>
                       </CardContent>
                     ) : (
