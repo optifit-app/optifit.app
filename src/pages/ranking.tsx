@@ -24,6 +24,8 @@ import {
   formatDate,
   formatMatchForDisplay,
   formatRankingCriterion,
+  getFinalLabel,
+  getPhaseLabel,
 } from '@/lib/utils';
 import { ChevronDown, CircleAlert, Trophy } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
@@ -33,8 +35,16 @@ import MatchStatusBadge from '@/components/common/match-status-badge';
 
 export const Ranking = () => {
   const { tournamentId } = useParams();
-  const { loading, failed, tournament, teams, groups, finalRanking, matches } =
-    useRanking(tournamentId);
+  const {
+    loading,
+    failed,
+    tournament,
+    teams,
+    groups,
+    finalRanking,
+    matches,
+    phases,
+  } = useRanking(tournamentId);
   const [finalRankingCollapsed, setFinalRankingCollapsed] =
     useState<boolean>(true);
   const [
@@ -47,6 +57,20 @@ export const Ranking = () => {
       tournament?.type !== 'swiss' && (tournament?.phases?.length ?? 0) > 0
     );
   }, [tournament]);
+
+  const allRankingInterphasesMatches = useMemo(
+    () =>
+      (phases ?? [])
+        .filter((phase) => phase.type === 'ranking-interphase')
+        .flatMap((phase) => phase.matches)
+        .sort((a, b) => (a.startAfter ?? 0) - (b.startAfter ?? 0)),
+    [phases],
+  );
+
+  const allMatches = [
+    ...(matches ?? []),
+    ...(phases?.flatMap((p) => p.matches) ?? []),
+  ].sort((a, b) => (a.startAfter || 0) - (b.startAfter || 0));
 
   useEffect(() => {
     if (shouldHaveFinalRanking && finalRanking?.length) {
@@ -429,13 +453,13 @@ export const Ranking = () => {
           </PageSection>
         </TabsContent>
         <TabsContent value="matches">
-          <PageSection className="pt-2 px-2 lg:px-10 lg:pl-20 pb-5">
+          <PageSection className="pt-2 px-2 lg:px-10 lg:pl-20 pb-10">
             <Card>
               <CardHeader>
                 <CardTitle>Tour préliminaire</CardTitle>
                 <CardDescription>{matches?.length} matchs</CardDescription>
               </CardHeader>
-              <CardContent className="flex flex-col gap-1">
+              <CardContent>
                 <Table>
                   <TableHeader>
                     <TableRow>
@@ -461,7 +485,11 @@ export const Ranking = () => {
 
                         return (
                           <TableRow key={index} className="first:border-t-0">
-                            <TableCell>{index + 1}</TableCell>
+                            <TableCell>
+                              {(allMatches?.findIndex(
+                                (m) => m.id === match.id,
+                              ) ?? 0) + 1}
+                            </TableCell>
                             <TableCell>
                               <>
                                 {match.startAt?.hours
@@ -523,6 +551,133 @@ export const Ranking = () => {
                 </Table>
               </CardContent>
             </Card>
+            {phases?.map((phase, key) => (
+              <Card key={key} className="mt-3">
+                <CardHeader>
+                  <CardTitle>
+                    {getPhaseLabel(phase.type, phase.matches)}
+                  </CardTitle>
+                  <CardDescription>
+                    {phase.matches.length} match
+                    {phase.matches.length > 1 ? 's' : ''}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>#</TableHead>
+                        <TableHead>Début</TableHead>
+                        <TableHead>Lieu</TableHead>
+                        {(phase.type === 'final' ||
+                          phase.type === 'ranking-interphase') && (
+                          <TableHead>Étiquette</TableHead>
+                        )}
+                        <TableHead>Équipe 1</TableHead>
+                        <TableHead>Équipe 2</TableHead>
+                        <TableHead>Score</TableHead>
+                        <TableHead>Statut</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {phase.matches
+                        ?.sort(
+                          (a, b) => (a.startAfter ?? 0) - (b.startAfter ?? 0),
+                        )
+                        .map((match, index) => {
+                          const formatted = formatMatchForDisplay(
+                            match,
+                            tournament,
+                          );
+
+                          return (
+                            <TableRow key={index} className="first:border-t-0">
+                              <TableCell>
+                                {(allMatches?.findIndex(
+                                  (m) => m.id === match.id,
+                                ) ?? 0) + 1}
+                              </TableCell>
+                              <TableCell>
+                                <>
+                                  {match.startAt?.hours
+                                    .toString()
+                                    .padStart(2, '0')}
+                                  h
+                                  {match.startAt?.minutes
+                                    .toString()
+                                    .padStart(2, '0')}
+                                </>
+                              </TableCell>
+                              <TableCell>
+                                <Badge className="bg-background text-sidebar-foreground border border-sidebar-border font-medium">
+                                  {formatted.fieldLabel}
+                                </Badge>
+                              </TableCell>
+                              {(phase.type === 'final' ||
+                                phase.type === 'ranking-interphase') && (
+                                <TableCell>
+                                  {getFinalLabel(
+                                    phase.type === 'final'
+                                      ? index
+                                      : allRankingInterphasesMatches.findIndex(
+                                          (m) => (m.id = match.id),
+                                        ),
+                                    phase.type === 'ranking-interphase'
+                                      ? allRankingInterphasesMatches.length
+                                      : phase.matches.length,
+                                    phase.type === 'ranking-interphase',
+                                    tournament,
+                                  )}
+                                </TableCell>
+                              )}
+                              <TableCell>
+                                <div className="flex items-center gap-2">
+                                  {tournament.teamsHaveColors &&
+                                    (teams?.find((t) => t.id === match.team1)
+                                      ?.color?.length ?? 0) > 0 && (
+                                      <span
+                                        className="inline-block w-3 h-3 rounded border flex-shrink-0"
+                                        style={{
+                                          backgroundColor: teams?.find(
+                                            (t) => t.id === match.team1,
+                                          )?.color,
+                                        }}
+                                      />
+                                    )}
+                                  {teams?.find((t) => t.id === match.team1)
+                                    ?.name ?? 'Non défini'}
+                                </div>
+                              </TableCell>
+                              <TableCell>
+                                <div className="flex items-center gap-2">
+                                  {tournament.teamsHaveColors &&
+                                    (teams?.find((t) => t.id === match.team2)
+                                      ?.color?.length ?? 0) > 0 && (
+                                      <span
+                                        className="inline-block w-3 h-3 rounded border flex-shrink-0"
+                                        style={{
+                                          backgroundColor: teams?.find(
+                                            (t) => t.id === match.team2,
+                                          )?.color,
+                                        }}
+                                      />
+                                    )}
+                                  {teams?.find((t) => t.id === match.team2)
+                                    ?.name ?? 'Non défini'}
+                                </div>
+                              </TableCell>
+                              <TableCell>{match.score.join(' - ')}</TableCell>
+                              <TableCell>
+                                <MatchStatusBadge match={match} />
+                              </TableCell>
+                            </TableRow>
+                          );
+                        })}
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+            ))}
           </PageSection>
         </TabsContent>
       </Tabs>

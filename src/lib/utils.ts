@@ -82,3 +82,81 @@ export const formatMatchForDisplay = (
     fieldLabel,
   };
 };
+
+export const getPhaseLabel = (
+  step:
+    | 'thirty-second'
+    | 'sixteenth'
+    | 'eighth'
+    | 'quarter'
+    | 'semi'
+    | 'final'
+    | 'ranking-interphase'
+    | 'unknown',
+  matches?: Match[],
+  suffix?: number,
+  disablePlural?: boolean,
+): string | undefined => {
+  const stepNames: Record<string, string> = {
+    'thirty-second': 'Trente-deuxièmes-de-finale',
+    sixteenth: 'Seizièmes-de-finale',
+    eighth: 'Huitièmes-de-finale',
+    quarter: 'Quarts-de-finale',
+    semi: 'Demi-finales',
+    final: 'Finale',
+    'ranking-interphase': 'Classement',
+  };
+
+  if (stepNames[step] === 'Finale' && (matches ?? []).length > 1) {
+    return disablePlural ? 'Finale' : 'Finales';
+  }
+
+  return stepNames[step]
+    ? stepNames[step] + (suffix ? ` (${suffix})` : '')
+    : undefined;
+};
+
+export const getFinalLabel = (
+  index: number,
+  matchesNumber: number,
+  rankingInterphase?: boolean,
+  tournament?: Tournament | null,
+): string => {
+  if (!rankingInterphase) {
+    const position = matchesNumber * 2 - (index + 1) * 2 + 1;
+
+    if (position === 1 && tournament?.finalType === 'small') {
+      return 'Grande finale';
+    }
+
+    if (position === 3 && tournament?.finalType === 'small') {
+      return 'Petite finale';
+    }
+
+    if (position === 1 && tournament?.finalType === 'simple') {
+      return 'Finale';
+    }
+
+    return `${position} et ${position + 1}ème place`;
+  }
+
+  if (!tournament) {
+    return 'Classement';
+  }
+
+  const totalTeams = tournament.teamsNumber ?? 0;
+
+  const qualifiedTeams = tournament.phases?.find(
+    (phase) => phase.type === 'final',
+  )?.matches?.length
+    ? (tournament.phases.find((phase) => phase.type === 'final')!.matches
+        ?.length ?? 0) * 2
+    : 0;
+
+  const teamsInRanking = totalTeams - qualifiedTeams;
+
+  const startFrom = teamsInRanking + (teamsInRanking % 2 === 0 ? 0 : -1);
+  const position = startFrom - index * 2 + 3;
+
+  return `${position} et ${position + 1}ème place`;
+};
