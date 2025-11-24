@@ -19,14 +19,21 @@ import {
 } from '@/components/ui/table';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useRanking } from '@/hooks/use-ranking';
-import { cn, formatDate, formatRankingCriterion } from '@/lib/utils';
+import {
+  cn,
+  formatDate,
+  formatMatchForDisplay,
+  formatRankingCriterion,
+} from '@/lib/utils';
 import { ChevronDown, CircleAlert, Trophy } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Badge } from '@/components/ui/badge';
+import MatchStatusBadge from '@/components/common/match-status-badge';
 
 export const Ranking = () => {
   const { tournamentId } = useParams();
-  const { loading, failed, tournament, teams, groups, finalRanking } =
+  const { loading, failed, tournament, teams, groups, finalRanking, matches } =
     useRanking(tournamentId);
   const [finalRankingCollapsed, setFinalRankingCollapsed] =
     useState<boolean>(true);
@@ -138,7 +145,10 @@ export const Ranking = () => {
                       <CardContent className="flex flex-col gap-2 px-2 xl:px-5">
                         <Table className="text-[12px]">
                           {finalRanking.map((team, index) => (
-                            <TableRow key={index} className="flex items-center">
+                            <TableRow
+                              key={index}
+                              className="flex items-center first:border-t-0"
+                            >
                               <TableCell>
                                 <div className="flex items-center gap-1">
                                   {index + 1}.
@@ -419,8 +429,100 @@ export const Ranking = () => {
           </PageSection>
         </TabsContent>
         <TabsContent value="matches">
-          <PageSection className="pt-2 px-2 lg:px-10 lg:pl-20">
-            <h1>Matches</h1>
+          <PageSection className="pt-2 px-2 lg:px-10 lg:pl-20 pb-5">
+            <Card>
+              <CardHeader>
+                <CardTitle>Tour préliminaire</CardTitle>
+                <CardDescription>{matches?.length} matchs</CardDescription>
+              </CardHeader>
+              <CardContent className="flex flex-col gap-1">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>#</TableHead>
+                      <TableHead>Début</TableHead>
+                      <TableHead>Lieu</TableHead>
+                      <TableHead>Équipe 1</TableHead>
+                      <TableHead>Équipe 2</TableHead>
+                      <TableHead>Score</TableHead>
+                      <TableHead>Statut</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {matches
+                      ?.sort(
+                        (a, b) => (a.startAfter ?? 0) - (b.startAfter ?? 0),
+                      )
+                      .map((match, index) => {
+                        const formatted = formatMatchForDisplay(
+                          match,
+                          tournament,
+                        );
+
+                        return (
+                          <TableRow key={index} className="first:border-t-0">
+                            <TableCell>{index + 1}</TableCell>
+                            <TableCell>
+                              <>
+                                {match.startAt?.hours
+                                  .toString()
+                                  .padStart(2, '0')}
+                                h
+                                {match.startAt?.minutes
+                                  .toString()
+                                  .padStart(2, '0')}
+                              </>
+                            </TableCell>
+                            <TableCell>
+                              <Badge className="bg-background text-sidebar-foreground border border-sidebar-border font-medium">
+                                {formatted.fieldLabel}
+                              </Badge>
+                            </TableCell>
+                            <TableCell>
+                              <div className="flex items-center gap-2">
+                                {tournament.teamsHaveColors &&
+                                  (teams?.find((t) => t.id === match.team1)
+                                    ?.color?.length ?? 0) > 0 && (
+                                    <span
+                                      className="inline-block w-3 h-3 rounded border flex-shrink-0"
+                                      style={{
+                                        backgroundColor: teams?.find(
+                                          (t) => t.id === match.team1,
+                                        )?.color,
+                                      }}
+                                    />
+                                  )}
+                                {teams?.find((t) => t.id === match.team1)?.name}
+                              </div>
+                            </TableCell>
+                            <TableCell>
+                              <div className="flex items-center gap-2">
+                                {tournament.teamsHaveColors &&
+                                  (teams?.find((t) => t.id === match.team2)
+                                    ?.color?.length ?? 0) > 0 && (
+                                    <span
+                                      className="inline-block w-3 h-3 rounded border flex-shrink-0"
+                                      style={{
+                                        backgroundColor: teams?.find(
+                                          (t) => t.id === match.team2,
+                                        )?.color,
+                                      }}
+                                    />
+                                  )}
+                                {teams?.find((t) => t.id === match.team2)?.name}
+                              </div>
+                            </TableCell>
+                            <TableCell>{match.score.join(' - ')}</TableCell>
+                            <TableCell>
+                              <MatchStatusBadge match={match} />
+                            </TableCell>
+                          </TableRow>
+                        );
+                      })}
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
           </PageSection>
         </TabsContent>
       </Tabs>

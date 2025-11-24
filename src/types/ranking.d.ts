@@ -41,6 +41,7 @@ export interface Tournament {
 export interface Group {
   id: string;
   name: string;
+  teams?: Team[];
 }
 
 export interface Team {
@@ -119,4 +120,10 @@ export interface GetRankingResponse {
     groups?: Group[];
     finalRanking?: FinalRanking;
   };
+}
+
+export interface MatchForDisplay extends Match {
+  team1Color?: string;
+  team2Color?: string;
+  fieldLabel?: string;
 }

@@ -66,7 +66,7 @@ export const useRanking = (tournamentId?: string): UseRankingProps => {
       );
     }
 
-    setMatches(result.ranking.matches);
+    setMatches(result.ranking.matches.filter((match) => !match.phaseId));
     setGroups(result.ranking.groups);
     setFinalRanking(result.ranking.finalRanking);
 
