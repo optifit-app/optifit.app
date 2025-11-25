@@ -1,3 +1,5 @@
+import MatchStatusBadge from '@/components/common/match-status-badge';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -11,13 +13,18 @@ import { PageSection } from '@/components/ui/page-section';
 import { Spinner } from '@/components/ui/spinner';
 import {
   Table,
+  TableBody,
+  TableCell,
   TableHead,
   TableHeader,
   TableRow,
-  TableCell,
-  TableBody,
 } from '@/components/ui/table';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import { useRanking } from '@/hooks/use-ranking';
 import {
   cn,
@@ -27,16 +34,9 @@ import {
   getFinalLabel,
   getPhaseLabel,
 } from '@/lib/utils';
-import { ChevronDown, CircleAlert, Trophy } from 'lucide-react';
+import { ChevronDown, CircleAlert, MapPin, Trophy } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Badge } from '@/components/ui/badge';
-import MatchStatusBadge from '@/components/common/match-status-badge';
-import {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-} from '@/components/ui/tooltip';
 
 export const Ranking = () => {
   const { tournamentId } = useParams();
@@ -135,6 +135,17 @@ export const Ranking = () => {
             <h2 className="text-2xl lg:text-3xl font-semibold">
               {tournament.name}
             </h2>
+            {(tournament.location?.length ?? 0) > 0 && (
+              <span className="flex items-center gap-2 text-muted-foreground">
+                <MapPin size={14} />
+                <a
+                  className="underline select-none"
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(tournament?.location ?? '')}`}
+                >
+                  {tournament.location}
+                </a>
+              </span>
+            )}
           </div>
         </div>
       </PageSection>
