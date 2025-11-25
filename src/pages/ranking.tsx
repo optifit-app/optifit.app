@@ -1,9 +1,10 @@
 import MatchStatusBadge from '@/components/common/match-status-badge';
+import { FinalRanking } from '@/components/ranking/final-ranking';
+import { PreliminaryPhaseRanking } from '@/components/ranking/preliminary-phase-ranking';
+import { RankingCriteria } from '@/components/ranking/ranking-criteria';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardHeader,
@@ -27,14 +28,12 @@ import {
 } from '@/components/ui/tooltip';
 import { useRanking } from '@/hooks/use-ranking';
 import {
-  cn,
   formatDate,
   formatMatchForDisplay,
-  formatRankingCriterion,
   getFinalLabel,
   getPhaseLabel,
 } from '@/lib/utils';
-import { ChevronDown, CircleAlert, MapPin, Trophy } from 'lucide-react';
+import { CircleAlert, MapPin } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -52,10 +51,6 @@ export const Ranking = () => {
   } = useRanking(tournamentId);
   const [finalRankingCollapsed, setFinalRankingCollapsed] =
     useState<boolean>(true);
-  const [
-    preliminaryPhaseRankingCollapsed,
-    setPreliminaryPhaseRankingCollapsed,
-  ] = useState<boolean>(false);
 
   const shouldHaveFinalRanking = useMemo(() => {
     return (
@@ -85,9 +80,6 @@ export const Ranking = () => {
 
   const toggleFinalRankingCollapsed = () =>
     setFinalRankingCollapsed(!finalRankingCollapsed);
-
-  const togglePreliminaryPhaseRankingCollapsed = () =>
-    setPreliminaryPhaseRankingCollapsed(!preliminaryPhaseRankingCollapsed);
 
   if (loading) {
     return (
@@ -159,313 +151,22 @@ export const Ranking = () => {
         <TabsContent value="ranking">
           <PageSection className="pt-2 px-2 lg:px-20 pb-10 flex flex-col gap-3 items-stretch">
             {shouldHaveFinalRanking && (
-              <Card>
-                <CardHeader>
-                  <CardTitle>Classement final</CardTitle>
-                  <CardDescription>Classement final du tournoi</CardDescription>
-                  <CardAction>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={toggleFinalRankingCollapsed}
-                    >
-                      <ChevronDown
-                        className={cn(
-                          finalRankingCollapsed && 'rotate-180',
-                          'transition-all duration-200',
-                        )}
-                        size={35}
-                      />
-                    </Button>
-                  </CardAction>
-                </CardHeader>
-                {!finalRankingCollapsed && (
-                  <>
-                    {finalRanking !== undefined && finalRanking.length > 0 ? (
-                      <CardContent className="flex flex-col gap-2 px-2 xl:px-5">
-                        <Table className="text-[12px]">
-                          {finalRanking.map((team, index) => (
-                            <TableRow
-                              key={index}
-                              className="flex items-center first:border-t-0"
-                            >
-                              <TableCell>
-                                <div className="flex items-center gap-1">
-                                  {index + 1}.
-                                  {index >= 0 && index <= 2 && (
-                                    <Trophy
-                                      size={14}
-                                      className={cn(
-                                        index === 0
-                                          ? 'text-yellow-500'
-                                          : index === 1
-                                            ? 'text-zinc-400'
-                                            : 'text-amber-700',
-                                      )}
-                                    />
-                                  )}
-                                </div>
-                              </TableCell>
-                              <TableCell className="flex items-center gap-2 pl-0">
-                                {tournament.teamsHaveColors &&
-                                  (team.color?.length ?? 0) > 0 && (
-                                    <span
-                                      className="inline-block w-3 h-3 rounded border flex-shrink-0"
-                                      style={{ backgroundColor: team.color }}
-                                    />
-                                  )}
-                                {team.name}
-                              </TableCell>
-                            </TableRow>
-                          ))}
-                        </Table>
-                      </CardContent>
-                    ) : (
-                      <CardContent>
-                        <p>
-                          Vous pourrez consulter le classement final dès que le
-                          tournoi sera terminé.
-                        </p>
-                      </CardContent>
-                    )}
-                  </>
-                )}
-              </Card>
+              <FinalRanking
+                finalRanking={finalRanking}
+                visible={finalRanking !== undefined && finalRanking.length > 0}
+                teamsHaveColors={tournament.teamsHaveColors}
+                finalRankingCollapsed={finalRankingCollapsed}
+                toggleFinalRankingCollapsed={toggleFinalRankingCollapsed}
+              />
             )}
-            <Card>
-              <CardHeader>
-                {tournament.type === 'swiss' ? (
-                  <>
-                    <CardTitle>Classement des participants</CardTitle>
-                    <CardDescription>
-                      Se met à jour après chaque tour
-                    </CardDescription>
-                  </>
-                ) : (
-                  <>
-                    <CardTitle>Classement préliminaire</CardTitle>
-                    <CardDescription>
-                      {tournament.hasGroups
-                        ? 'Phases de groupes'
-                        : 'Tour préliminaire'}
-                    </CardDescription>
-                  </>
-                )}
-                <CardAction>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={togglePreliminaryPhaseRankingCollapsed}
-                  >
-                    <ChevronDown
-                      className={cn(
-                        preliminaryPhaseRankingCollapsed && 'rotate-180',
-                        'transition-all duration-200',
-                      )}
-                      size={35}
-                    />
-                  </Button>
-                </CardAction>
-              </CardHeader>
-              {!preliminaryPhaseRankingCollapsed && (
-                <>
-                  {tournament.hasGroups ? (
-                    <CardContent
-                      className="
-                        px-2 xl:px-5
-                        grid gap-3
-                        xl:grid-cols-2
-                      "
-                    >
-                      {groups?.map((group, key) => (
-                        <Table key={key} className="w-full text-[12px]">
-                          <TableHeader>
-                            <TableRow>
-                              <TableHead className="px-1 pl-3 xl:px-3 text-left">
-                                {group.name}
-                              </TableHead>
-                              <TableHead className="px-1 xl:px-3 w-[20px] text-center">
-                                M
-                              </TableHead>
-                              <TableHead className="px-1 xl:px-3 w-[20px] text-center">
-                                G
-                              </TableHead>
-                              <TableHead className="px-1 xl:px-3 w-[20px] text-center">
-                                N
-                              </TableHead>
-                              <TableHead className="px-1 xl:px-3 w-[20px] text-center">
-                                P
-                              </TableHead>
-                              <TableHead className="px-1 xl:px-3 w-[50px] text-center">
-                                B
-                              </TableHead>
-                              <TableHead className="px-1 xl:px-3 w-[32px] text-center">
-                                +/-
-                              </TableHead>
-                              <TableHead className="px-1 w-[28px] text-right pr-2 xl:px-3">
-                                Pts
-                              </TableHead>
-                            </TableRow>
-                          </TableHeader>
-                          <TableBody>
-                            {teams
-                              ?.filter((t) => t.group === group.id)
-                              .map((team, index) => (
-                                <TableRow
-                                  key={index}
-                                  className="first:border-t-0 odd:bg-accent/80"
-                                >
-                                  <TableCell className="px-1 xl:px-3 align-top">
-                                    <div className="flex items-start xl:items-center gap-1 xl:gap-2">
-                                      <span className="w-[18px] text-right flex-shrink-0">
-                                        {index + 1}.
-                                      </span>
-                                      {tournament.teamsHaveColors &&
-                                        (team.color?.length ?? 0) > 0 && (
-                                          <span
-                                            className="inline-block w-3 h-3 rounded border flex-shrink-0"
-                                            style={{
-                                              backgroundColor: team.color,
-                                            }}
-                                          />
-                                        )}
-                                      <span className="whitespace-normal leading-tight">
-                                        {team.name}
-                                      </span>
-                                    </div>
-                                  </TableCell>
-                                  <TableCell className="px-1 w-[20px] text-center">
-                                    {team.matchesPlayed}
-                                  </TableCell>
-                                  <TableCell className="px-1 w-[20px] text-center">
-                                    {team.wins}
-                                  </TableCell>
-                                  <TableCell className="px-1 w-[20px] text-center">
-                                    {team.draws}
-                                  </TableCell>
-                                  <TableCell className="px-1 w-[20px] text-center">
-                                    {team.looses}
-                                  </TableCell>
-                                  <TableCell className="px-1 w-[50px] text-center">
-                                    {team.goalsFor} : {team.goalsAgainst}
-                                  </TableCell>
-                                  <TableCell className="px-1 w-[32px] text-center">
-                                    {team.goalDifference}
-                                  </TableCell>
-                                  <TableCell className="px-1 text-right pr-3 w-[28px] font-medium text-primary">
-                                    {team.points}
-                                  </TableCell>
-                                </TableRow>
-                              ))}
-                          </TableBody>
-                        </Table>
-                      ))}
-                    </CardContent>
-                  ) : (
-                    <CardContent>
-                      <Table className="w-full text-[12px]">
-                        <TableHeader>
-                          <TableRow>
-                            <TableHead className="px-1 pl-3 xl:px-3 text-left">
-                              {tournament.type === 'swiss'
-                                ? 'Participant'
-                                : 'Équipe'}
-                            </TableHead>
-                            <TableHead className="px-1 xl:px-3 w-[20px] text-center">
-                              M
-                            </TableHead>
-                            <TableHead className="px-1 xl:px-3 w-[20px] text-center">
-                              G
-                            </TableHead>
-                            <TableHead className="px-1 xl:px-3 w-[20px] text-center">
-                              N
-                            </TableHead>
-                            <TableHead className="px-1 xl:px-3 w-[20px] text-center">
-                              P
-                            </TableHead>
-                            <TableHead className="px-1 xl:px-3 w-[50px] text-center">
-                              B
-                            </TableHead>
-                            <TableHead className="px-1 xl:px-3 w-[32px] text-center">
-                              +/-
-                            </TableHead>
-                            <TableHead className="px-1 w-[28px] text-right pr-2 xl:px-3">
-                              Pts
-                            </TableHead>
-                          </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                          {teams?.map((team, index) => (
-                            <TableRow
-                              key={index}
-                              className="first:border-t-0 odd:bg-accent/80"
-                            >
-                              <TableCell className="px-1 xl:px-3 align-top">
-                                <div className="flex items-start xl:items-center gap-1 xl:gap-2">
-                                  <span className="w-[18px] text-right flex-shrink-0">
-                                    {index + 1}.
-                                  </span>
-                                  {tournament.teamsHaveColors &&
-                                    (team.color?.length ?? 0) > 0 && (
-                                      <span
-                                        className="inline-block w-3 h-3 rounded border flex-shrink-0"
-                                        style={{ backgroundColor: team.color }}
-                                      />
-                                    )}
-                                  <span className="whitespace-normal leading-tight">
-                                    {team.name}
-                                  </span>
-                                </div>
-                              </TableCell>
-                              <TableCell className="px-1 w-[20px] text-center">
-                                {team.matchesPlayed}
-                              </TableCell>
-                              <TableCell className="px-1 w-[20px] text-center">
-                                {team.wins}
-                              </TableCell>
-                              <TableCell className="px-1 w-[20px] text-center">
-                                {team.draws}
-                              </TableCell>
-                              <TableCell className="px-1 w-[20px] text-center">
-                                {team.looses}
-                              </TableCell>
-                              <TableCell className="px-1 w-[50px] text-center">
-                                {team.goalsFor} : {team.goalsAgainst}
-                              </TableCell>
-                              <TableCell className="px-1 w-[32px] text-center">
-                                {team.goalDifference}
-                              </TableCell>
-                              <TableCell className="px-1 text-right pr-3 w-[28px] font-medium text-primary">
-                                {team.points}
-                              </TableCell>
-                            </TableRow>
-                          ))}
-                        </TableBody>
-                      </Table>
-                    </CardContent>
-                  )}
-                </>
-              )}
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle>Critères de classement</CardTitle>
-                <CardDescription>
-                  Pour classer les équipes, les critères sont pris dans l'ordre
-                  suivant
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="flex flex-col gap-1">
-                {tournament.rankingCriteria.map((criterion, index) => (
-                  <span key={index} className="text-muted-foreground">
-                    <span className="text-foreground font-medium">
-                      {index + 1}.
-                    </span>{' '}
-                    {formatRankingCriterion(criterion)}
-                  </span>
-                ))}
-              </CardContent>
-            </Card>
+            <PreliminaryPhaseRanking
+              swiss={tournament.type === 'swiss'}
+              hasGroups={tournament.hasGroups}
+              teamsHaveColors={tournament.teamsHaveColors}
+              groups={groups}
+              teams={teams}
+            />
+            <RankingCriteria rankingCriteria={tournament.rankingCriteria} />
           </PageSection>
         </TabsContent>
         <TabsContent value="matches">
@@ -492,7 +193,7 @@ export const Ranking = () => {
                 <CardDescription>{matches?.length} matchs</CardDescription>
               </CardHeader>
               <CardContent>
-                <Table>
+                <Table className="text-[12px]">
                   <TableHeader>
                     <TableRow>
                       <TableHead>#</TableHead>
@@ -534,7 +235,7 @@ export const Ranking = () => {
                               </>
                             </TableCell>
                             <TableCell>
-                              <Badge className="bg-background text-sidebar-foreground border border-sidebar-border font-medium">
+                              <Badge className="bg-background text-sidebar-foreground border border-sidebar-border font-medium text-[12px]">
                                 {formatted.fieldLabel}
                               </Badge>
                             </TableCell>
@@ -595,7 +296,7 @@ export const Ranking = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Table>
+                  <Table className="text-[12px]">
                     <TableHeader>
                       <TableRow>
                         <TableHead>#</TableHead>
@@ -641,7 +342,7 @@ export const Ranking = () => {
                                 </>
                               </TableCell>
                               <TableCell>
-                                <Badge className="bg-background text-sidebar-foreground border border-sidebar-border font-medium">
+                                <Badge className="bg-background text-sidebar-foreground border border-sidebar-border font-medium text-[12px]">
                                   {formatted.fieldLabel}
                                 </Badge>
                               </TableCell>
