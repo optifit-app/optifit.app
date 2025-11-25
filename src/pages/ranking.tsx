@@ -32,6 +32,11 @@ import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
 import MatchStatusBadge from '@/components/common/match-status-badge';
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@/components/ui/tooltip';
 
 export const Ranking = () => {
   const { tournamentId } = useParams();
@@ -456,7 +461,23 @@ export const Ranking = () => {
           <PageSection className="pt-2 px-2 lg:px-10 lg:pl-20 pb-10">
             <Card>
               <CardHeader>
-                <CardTitle>Tour préliminaire</CardTitle>
+                <CardTitle className="flex items-center gap-3 flex-wrap">
+                  Tour préliminaire
+                  {tournament.preliminaryPhaseBehavior ===
+                    'partial-round-robin' && (
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Badge className="bg-sky-500/10 text-sky-500 border-sky-500/20 flex justify-start items-center px-1.5 font-normal">
+                          Mode restreint
+                        </Badge>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        Chaque équipe joue un nombre restreint de matchs pendant
+                        cette phase.
+                      </TooltipContent>
+                    </Tooltip>
+                  )}
+                </CardTitle>
                 <CardDescription>{matches?.length} matchs</CardDescription>
               </CardHeader>
               <CardContent>

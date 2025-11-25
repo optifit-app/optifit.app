@@ -36,6 +36,8 @@ export interface Tournament {
   needParticipantsCreation?: boolean;
   location?: string;
   rankingCriteria: Criterion[];
+  preliminaryPhaseBehavior?: 'full-round-robin' | 'partial-round-robin';
+  preliminaryMatchesPerTeam?: number;
 }
 
 export interface Group {
