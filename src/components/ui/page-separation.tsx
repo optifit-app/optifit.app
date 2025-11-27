@@ -1,7 +1,18 @@
-export const PageSeparation = ({ id }: { id?: string }) => {
+import { cn } from '@/lib/utils';
+
+export const PageSeparation = ({
+  id,
+  className,
+}: {
+  id?: string;
+  className?: string;
+}) => {
   return (
     <div
-      className="relative h-35 w-full border border-l-0 border-r-0 overflow-hidden"
+      className={cn(
+        'relative h-35 w-full border border-l-0 border-r-0 overflow-hidden',
+        className,
+      )}
       id={id}
     >
       <div

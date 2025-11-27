@@ -11,6 +11,7 @@ import NotFound from './pages/not-found';
 import { WinterTournaments } from './pages/winter-tournaments';
 import { Navbar } from './components/ui/navbar';
 import { Changelog } from './pages/changelog';
+import { Ranking } from './pages/ranking';
 
 type AppProps = object;
 
@@ -29,6 +30,7 @@ const App: FC<AppProps> = () => {
         <Route path="/winter-tournaments" element={<WinterTournaments />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
+        <Route path="/t/:tournamentId" element={<Ranking />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

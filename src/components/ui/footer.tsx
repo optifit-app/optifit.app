@@ -1,9 +1,8 @@
 import icon from '@/assets/images/icon.png';
-import { Github, Instagram, Linkedin } from 'lucide-react';
+import { Instagram, Linkedin } from 'lucide-react';
 
 const linkedin = 'https://www.linkedin.com/company/optifit-software/';
 const instagram = 'https://www.instagram.com/optifit.app/';
-const github = 'https://github.com/optifit-app';
 
 export const Footer = () => {
   return (
@@ -24,10 +23,6 @@ export const Footer = () => {
           <Instagram
             className="hover:text-primary cursor-pointer"
             onClick={() => window.open(instagram)}
-          />
-          <Github
-            className="hover:text-primary cursor-pointer"
-            onClick={() => window.open(github)}
           />
         </div>
       </div>
@@ -69,7 +64,7 @@ export const Footer = () => {
           </a>
         </div>
         <div className="flex flex-col">
-          <h3 className="text-lg font-medium">Besoin d'aide ?</h3>
+          <h3 className="text-xl font-semibold">Besoin d'aide?</h3>
           <a
             href="mailto:support@optifit.app"
             className="text-[15px]  underline text-primary mt-2"
