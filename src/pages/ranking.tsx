@@ -1,38 +1,12 @@
-import MatchStatusBadge from '@/components/common/match-status-badge';
 import { FinalRanking } from '@/components/ranking/final-ranking';
+import { Phase } from '@/components/ranking/phase';
 import { PreliminaryPhaseRanking } from '@/components/ranking/preliminary-phase-ranking';
 import { RankingCriteria } from '@/components/ranking/ranking-criteria';
-import { Badge } from '@/components/ui/badge';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
 import { PageSection } from '@/components/ui/page-section';
 import { Spinner } from '@/components/ui/spinner';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
 import { useRanking } from '@/hooks/use-ranking';
-import {
-  formatDate,
-  formatMatchForDisplay,
-  getFinalLabel,
-  getPhaseLabel,
-} from '@/lib/utils';
+import { formatDate } from '@/lib/utils';
 import { CircleAlert, MapPin } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -171,245 +145,26 @@ export const Ranking = () => {
         </TabsContent>
         <TabsContent value="matches">
           <PageSection className="pt-2 px-2 lg:px-10 lg:pl-20 pb-10">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3 flex-wrap">
-                  Tour préliminaire
-                  {tournament.preliminaryPhaseBehavior ===
-                    'partial-round-robin' && (
-                    <Tooltip>
-                      <TooltipTrigger>
-                        <Badge className="bg-sky-500/10 text-sky-500 border-sky-500/20 flex justify-start items-center px-1.5 font-normal">
-                          Mode restreint
-                        </Badge>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        Chaque équipe joue un nombre restreint de matchs pendant
-                        cette phase.
-                      </TooltipContent>
-                    </Tooltip>
-                  )}
-                </CardTitle>
-                <CardDescription>{matches?.length} matchs</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Table className="text-[12px]">
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>#</TableHead>
-                      <TableHead>Début</TableHead>
-                      <TableHead>Lieu</TableHead>
-                      <TableHead>Équipe 1</TableHead>
-                      <TableHead>Équipe 2</TableHead>
-                      <TableHead>Score</TableHead>
-                      <TableHead>Statut</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {matches
-                      ?.sort(
-                        (a, b) => (a.startAfter ?? 0) - (b.startAfter ?? 0),
-                      )
-                      .map((match, index) => {
-                        const formatted = formatMatchForDisplay(
-                          match,
-                          tournament,
-                        );
-
-                        return (
-                          <TableRow key={index} className="first:border-t-0">
-                            <TableCell>
-                              {(allMatches?.findIndex(
-                                (m) => m.id === match.id,
-                              ) ?? 0) + 1}
-                            </TableCell>
-                            <TableCell>
-                              <>
-                                {match.startAt?.hours
-                                  .toString()
-                                  .padStart(2, '0')}
-                                h
-                                {match.startAt?.minutes
-                                  .toString()
-                                  .padStart(2, '0')}
-                              </>
-                            </TableCell>
-                            <TableCell>
-                              <Badge className="bg-background text-sidebar-foreground border border-sidebar-border font-medium text-[12px]">
-                                {formatted.fieldLabel}
-                              </Badge>
-                            </TableCell>
-                            <TableCell>
-                              <div className="flex items-center gap-2">
-                                {tournament.teamsHaveColors &&
-                                  (teams?.find((t) => t.id === match.team1)
-                                    ?.color?.length ?? 0) > 0 && (
-                                    <span
-                                      className="inline-block w-3 h-3 rounded border flex-shrink-0"
-                                      style={{
-                                        backgroundColor: teams?.find(
-                                          (t) => t.id === match.team1,
-                                        )?.color,
-                                      }}
-                                    />
-                                  )}
-                                {teams?.find((t) => t.id === match.team1)?.name}
-                              </div>
-                            </TableCell>
-                            <TableCell>
-                              <div className="flex items-center gap-2">
-                                {tournament.teamsHaveColors &&
-                                  (teams?.find((t) => t.id === match.team2)
-                                    ?.color?.length ?? 0) > 0 && (
-                                    <span
-                                      className="inline-block w-3 h-3 rounded border flex-shrink-0"
-                                      style={{
-                                        backgroundColor: teams?.find(
-                                          (t) => t.id === match.team2,
-                                        )?.color,
-                                      }}
-                                    />
-                                  )}
-                                {teams?.find((t) => t.id === match.team2)?.name}
-                              </div>
-                            </TableCell>
-                            <TableCell>{match.score.join(' - ')}</TableCell>
-                            <TableCell>
-                              <MatchStatusBadge match={match} />
-                            </TableCell>
-                          </TableRow>
-                        );
-                      })}
-                  </TableBody>
-                </Table>
-              </CardContent>
-            </Card>
+            <Phase
+              phaseType="preliminary"
+              matches={matches ?? []}
+              tournament={tournament}
+              partialRoundRobin={
+                tournament.preliminaryPhaseBehavior === 'partial-round-robin'
+              }
+              teams={teams ?? []}
+              allMatches={allMatches}
+            />
             {phases?.map((phase, key) => (
-              <Card key={key} className="mt-3">
-                <CardHeader>
-                  <CardTitle>
-                    {getPhaseLabel(phase.type, phase.matches)}
-                  </CardTitle>
-                  <CardDescription>
-                    {phase.matches.length} match
-                    {phase.matches.length > 1 ? 's' : ''}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Table className="text-[12px]">
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead>#</TableHead>
-                        <TableHead>Début</TableHead>
-                        <TableHead>Lieu</TableHead>
-                        {(phase.type === 'final' ||
-                          phase.type === 'ranking-interphase') && (
-                          <TableHead>Étiquette</TableHead>
-                        )}
-                        <TableHead>Équipe 1</TableHead>
-                        <TableHead>Équipe 2</TableHead>
-                        <TableHead>Score</TableHead>
-                        <TableHead>Statut</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {phase.matches
-                        ?.sort(
-                          (a, b) => (a.startAfter ?? 0) - (b.startAfter ?? 0),
-                        )
-                        .map((match, index) => {
-                          const formatted = formatMatchForDisplay(
-                            match,
-                            tournament,
-                          );
-
-                          return (
-                            <TableRow key={index} className="first:border-t-0">
-                              <TableCell>
-                                {(allMatches?.findIndex(
-                                  (m) => m.id === match.id,
-                                ) ?? 0) + 1}
-                              </TableCell>
-                              <TableCell>
-                                <>
-                                  {match.startAt?.hours
-                                    .toString()
-                                    .padStart(2, '0')}
-                                  h
-                                  {match.startAt?.minutes
-                                    .toString()
-                                    .padStart(2, '0')}
-                                </>
-                              </TableCell>
-                              <TableCell>
-                                <Badge className="bg-background text-sidebar-foreground border border-sidebar-border font-medium text-[12px]">
-                                  {formatted.fieldLabel}
-                                </Badge>
-                              </TableCell>
-                              {(phase.type === 'final' ||
-                                phase.type === 'ranking-interphase') && (
-                                <TableCell>
-                                  {getFinalLabel(
-                                    phase.type === 'final'
-                                      ? index
-                                      : allRankingInterphasesMatches.findIndex(
-                                          (m) => (m.id = match.id),
-                                        ),
-                                    phase.type === 'ranking-interphase'
-                                      ? allRankingInterphasesMatches.length
-                                      : phase.matches.length,
-                                    phase.type === 'ranking-interphase',
-                                    tournament,
-                                  )}
-                                </TableCell>
-                              )}
-                              <TableCell>
-                                <div className="flex items-center gap-2">
-                                  {tournament.teamsHaveColors &&
-                                    (teams?.find((t) => t.id === match.team1)
-                                      ?.color?.length ?? 0) > 0 && (
-                                      <span
-                                        className="inline-block w-3 h-3 rounded border flex-shrink-0"
-                                        style={{
-                                          backgroundColor: teams?.find(
-                                            (t) => t.id === match.team1,
-                                          )?.color,
-                                        }}
-                                      />
-                                    )}
-                                  {teams?.find((t) => t.id === match.team1)
-                                    ?.name ?? 'Non défini'}
-                                </div>
-                              </TableCell>
-                              <TableCell>
-                                <div className="flex items-center gap-2">
-                                  {tournament.teamsHaveColors &&
-                                    (teams?.find((t) => t.id === match.team2)
-                                      ?.color?.length ?? 0) > 0 && (
-                                      <span
-                                        className="inline-block w-3 h-3 rounded border flex-shrink-0"
-                                        style={{
-                                          backgroundColor: teams?.find(
-                                            (t) => t.id === match.team2,
-                                          )?.color,
-                                        }}
-                                      />
-                                    )}
-                                  {teams?.find((t) => t.id === match.team2)
-                                    ?.name ?? 'Non défini'}
-                                </div>
-                              </TableCell>
-                              <TableCell>{match.score.join(' - ')}</TableCell>
-                              <TableCell>
-                                <MatchStatusBadge match={match} />
-                              </TableCell>
-                            </TableRow>
-                          );
-                        })}
-                    </TableBody>
-                  </Table>
-                </CardContent>
-              </Card>
+              <Phase
+                phaseType={phase.type}
+                matches={phase.matches}
+                tournament={tournament}
+                teams={teams ?? []}
+                allMatches={allMatches}
+                key={key}
+                className="mt-5"
+              />
             ))}
           </PageSection>
         </TabsContent>
