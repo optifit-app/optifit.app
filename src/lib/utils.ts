@@ -47,7 +47,13 @@ export const formatDate = (date: Date): string => {
   return `${day} ${months[month - 1]} ${year}`;
 };
 
-import type { Match, MatchForDisplay, Team, Tournament } from '@/types/ranking';
+import type {
+  Break,
+  Match,
+  MatchForDisplay,
+  Team,
+  Tournament,
+} from '@/types/ranking';
 
 export const formatMatchForDisplay = (
   match: Match,
@@ -159,4 +165,17 @@ export const getFinalLabel = (
   const position = startFrom - index * 2 + 3;
 
   return `${position} et ${position + 1}ème place`;
+};
+
+export const getAvailableBreaks = (
+  matches: Match[],
+  breaks: Break[],
+): Break[] => {
+  const matchTimes = matches.map((m) => m.startAfter ?? 0);
+  const minStart = Math.min(...matchTimes);
+  const maxStart = Math.max(...matchTimes);
+
+  return breaks.filter(
+    ({ startAfter }) => startAfter >= minStart && startAfter <= maxStart,
+  );
 };

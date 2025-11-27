@@ -129,3 +129,18 @@ export interface MatchForDisplay extends Match {
   team2Color?: string;
   fieldLabel?: string;
 }
+
+export interface Break {
+  startAt: {
+    hours: number;
+    minutes: number;
+  };
+  endAt: {
+    hours: number;
+    minutes: number;
+  };
+  title: string;
+  startAfter: number;
+  isBreak: true;
+  id: string;
+}

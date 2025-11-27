@@ -8,11 +8,17 @@ import { Spinner } from '@/components/ui/spinner';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useRanking } from '@/hooks/use-ranking';
 import { formatDate } from '@/lib/utils';
-import { CircleAlert, MapPin, RotateCcw } from 'lucide-react';
-import { useEffect, useMemo, useState } from 'react';
+import { CircleAlert, MapPin, Printer, RotateCcw } from 'lucide-react';
+import { useEffect, useMemo, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
+import { PrintableSheet } from '@/components/ranking/printable-sheet';
+import { useReactToPrint } from 'react-to-print';
 
 export const Ranking = () => {
+  const [finalRankingCollapsed, setFinalRankingCollapsed] =
+    useState<boolean>(true);
+  const [printSheetLoading, setPrintSheetLoading] = useState<boolean>(false);
+
   const { tournamentId } = useParams();
   const {
     loading,
@@ -25,8 +31,8 @@ export const Ranking = () => {
     phases,
     refetch,
   } = useRanking(tournamentId);
-  const [finalRankingCollapsed, setFinalRankingCollapsed] =
-    useState<boolean>(true);
+
+  const printableSheetRef = useRef<HTMLDivElement>(null);
 
   const shouldHaveFinalRanking = useMemo(() => {
     return (
@@ -61,6 +67,36 @@ export const Ranking = () => {
     setFinalRankingCollapsed(!finalRankingCollapsed);
 
   const handleRefetch = () => void refetch();
+
+  const printSheet = useReactToPrint({
+    contentRef: printableSheetRef,
+    documentTitle: `${tournament?.name} - Feuille du tournoi`,
+    pageStyle: `
+        @page { size: A4; }
+        @media print {
+          html, body {
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            background-color: #fff;
+            padding: 0 10px 10px 10px;
+            font-size: 80%;
+          }
+          .table-container {
+            page-break-inside: avoid;
+            padding: 20px 0 0 0;
+          }
+          table {
+            border-radius: 20px;
+          }
+        }
+      `,
+    onAfterPrint: () => setPrintSheetLoading(false),
+  });
+
+  const handlePrintSheet = (): void => {
+    setPrintSheetLoading(true);
+    printSheet();
+  };
 
   if (loading) {
     return (
@@ -119,7 +155,7 @@ export const Ranking = () => {
                 </a>
               </span>
             )}
-            <div className="flex items-center gap-2 mt-3">
+            <div className="flex items-center gap-3 mt-3">
               <Button
                 variant="secondary"
                 size="sm"
@@ -128,65 +164,87 @@ export const Ranking = () => {
               >
                 Rafraichir <RotateCcw />
               </Button>
+              {tournament.type !== 'swiss' && (
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  className="text-sm"
+                  onClick={handlePrintSheet}
+                  loading={printSheetLoading}
+                >
+                  Imprimer la feuille du tournoi <Printer />
+                </Button>
+              )}
             </div>
           </div>
         </div>
       </PageSection>
-      <Tabs defaultValue="ranking">
-        <PageSection className="px-0 pt-0">
-          <TabsList className="w-full rounded-none">
-            <TabsTrigger value="ranking">Classement</TabsTrigger>
-            <TabsTrigger value="matches">Matchs</TabsTrigger>
-          </TabsList>
+      {tournament.type === 'swiss' ? (
+        <PageSection className="pt-2 px-2 lg:px-20 pb-10 flex flex-col gap-3 items-stretch">
+          <PreliminaryPhaseRanking swiss teams={teams} />
         </PageSection>
-        <TabsContent value="ranking">
-          <PageSection className="pt-2 px-2 lg:px-20 pb-10 flex flex-col gap-3 items-stretch">
-            {shouldHaveFinalRanking && (
-              <FinalRanking
-                finalRanking={finalRanking}
-                visible={finalRanking !== undefined && finalRanking.length > 0}
-                teamsHaveColors={tournament.teamsHaveColors}
-                finalRankingCollapsed={finalRankingCollapsed}
-                toggleFinalRankingCollapsed={toggleFinalRankingCollapsed}
-              />
-            )}
-            <PreliminaryPhaseRanking
-              swiss={tournament.type === 'swiss'}
-              hasGroups={tournament.hasGroups}
-              teamsHaveColors={tournament.teamsHaveColors}
-              groups={groups}
-              teams={teams}
-            />
-            <RankingCriteria rankingCriteria={tournament.rankingCriteria} />
-          </PageSection>
-        </TabsContent>
-        <TabsContent value="matches">
-          <PageSection className="pt-2 px-2 lg:px-10 lg:pl-20 pb-10">
-            <Phase
-              phaseType="preliminary"
-              matches={matches ?? []}
-              tournament={tournament}
-              partialRoundRobin={
-                tournament.preliminaryPhaseBehavior === 'partial-round-robin'
-              }
-              teams={teams ?? []}
-              allMatches={allMatches}
-            />
-            {phases?.map((phase, key) => (
-              <Phase
-                className="mt-5"
-                phaseType={phase.type}
-                matches={phase.matches}
-                tournament={tournament}
-                teams={teams ?? []}
-                allMatches={allMatches}
-                allPhasesMatches={allPhasesMatches}
-                key={key}
-              />
-            ))}
-          </PageSection>
-        </TabsContent>
-      </Tabs>
+      ) : (
+        <>
+          <Tabs defaultValue="ranking">
+            <PageSection className="px-0 pt-0">
+              <TabsList className="w-full rounded-none">
+                <TabsTrigger value="ranking">Classement</TabsTrigger>
+                <TabsTrigger value="matches">Matchs</TabsTrigger>
+              </TabsList>
+            </PageSection>
+            <TabsContent value="ranking">
+              <PageSection className="pt-2 px-2 lg:px-20 pb-10 flex flex-col gap-3 items-stretch">
+                {shouldHaveFinalRanking && (
+                  <FinalRanking
+                    finalRanking={finalRanking}
+                    visible={
+                      finalRanking !== undefined && finalRanking.length > 0
+                    }
+                    teamsHaveColors={tournament.teamsHaveColors}
+                    finalRankingCollapsed={finalRankingCollapsed}
+                    toggleFinalRankingCollapsed={toggleFinalRankingCollapsed}
+                  />
+                )}
+                <PreliminaryPhaseRanking
+                  hasGroups={tournament.hasGroups}
+                  teamsHaveColors={tournament.teamsHaveColors}
+                  groups={groups}
+                  teams={teams}
+                />
+                <RankingCriteria rankingCriteria={tournament.rankingCriteria} />
+              </PageSection>
+            </TabsContent>
+            <TabsContent value="matches">
+              <PageSection className="pt-2 px-2 lg:px-10 lg:pl-20 pb-10">
+                <Phase
+                  phaseType="preliminary"
+                  matches={matches ?? []}
+                  tournament={tournament}
+                  partialRoundRobin={
+                    tournament.preliminaryPhaseBehavior ===
+                    'partial-round-robin'
+                  }
+                  teams={teams ?? []}
+                  allMatches={allMatches}
+                />
+                {phases?.map((phase, key) => (
+                  <Phase
+                    className="mt-5"
+                    phaseType={phase.type}
+                    matches={phase.matches}
+                    tournament={tournament}
+                    teams={teams ?? []}
+                    allMatches={allMatches}
+                    allPhasesMatches={allPhasesMatches}
+                    key={key}
+                  />
+                ))}
+              </PageSection>
+            </TabsContent>
+          </Tabs>
+          <PrintableSheet tournament={tournament} ref={printableSheetRef} />
+        </>
+      )}
     </div>
   );
 };
