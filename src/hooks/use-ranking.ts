@@ -20,6 +20,7 @@ interface UseRankingProps {
   matches?: Match[];
   phases?: PhaseWithItsMatches[];
   finalRanking?: FinalRanking;
+  refetch: () => Promise<void>;
 }
 
 export const useRanking = (tournamentId?: string): UseRankingProps => {
@@ -35,24 +36,28 @@ export const useRanking = (tournamentId?: string): UseRankingProps => {
   const api = useApi();
 
   useEffect(() => {
-    (async () => {
-      if (!tournamentId) {
-        setFailed(true);
-        return;
-      }
-
-      try {
-        const result = await api.get<GetRankingResponse>(
-          `/public/${tournamentId}/ranking`,
-        );
-
-        handleResult(result.data);
-      } catch {
-        setLoading(false);
-        setFailed(true);
-      }
-    })();
+    void fetch();
   }, [tournamentId]);
+
+  const fetch = async (): Promise<void> => {
+    setLoading(true);
+
+    if (!tournamentId) {
+      setFailed(true);
+      return;
+    }
+
+    try {
+      const result = await api.get<GetRankingResponse>(
+        `/public/${tournamentId}/ranking`,
+      );
+
+      handleResult(result.data);
+    } catch {
+      setLoading(false);
+      setFailed(true);
+    }
+  };
 
   const handleResult = (result: GetRankingResponse): void => {
     setTournament(result.ranking.tournament);
@@ -92,5 +97,6 @@ export const useRanking = (tournamentId?: string): UseRankingProps => {
     matches,
     phases,
     finalRanking,
+    refetch: fetch,
   };
 };

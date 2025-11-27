@@ -2,12 +2,13 @@ import { FinalRanking } from '@/components/ranking/final-ranking';
 import { Phase } from '@/components/ranking/phase';
 import { PreliminaryPhaseRanking } from '@/components/ranking/preliminary-phase-ranking';
 import { RankingCriteria } from '@/components/ranking/ranking-criteria';
+import { Button } from '@/components/ui/button';
 import { PageSection } from '@/components/ui/page-section';
 import { Spinner } from '@/components/ui/spinner';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useRanking } from '@/hooks/use-ranking';
 import { formatDate } from '@/lib/utils';
-import { CircleAlert, MapPin } from 'lucide-react';
+import { CircleAlert, MapPin, RotateCcw } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -22,6 +23,7 @@ export const Ranking = () => {
     finalRanking,
     matches,
     phases,
+    refetch,
   } = useRanking(tournamentId);
   const [finalRankingCollapsed, setFinalRankingCollapsed] =
     useState<boolean>(true);
@@ -58,6 +60,8 @@ export const Ranking = () => {
   const toggleFinalRankingCollapsed = () =>
     setFinalRankingCollapsed(!finalRankingCollapsed);
 
+  const handleRefetch = () => void refetch();
+
   if (loading) {
     return (
       <div className="lg:max-w-screen-2xl mx-auto border border-b-0 mt-15 rounded-t-lg px-10">
@@ -90,10 +94,10 @@ export const Ranking = () => {
 
   return (
     <div className="lg:max-w-screen-2xl mx-auto border border-b-0 mt-15 rounded-t-lg">
-      <PageSection className="pt-8 px-0">
+      <PageSection className="pt-8 px-0 flex items-center justify-between">
         <div className="flex flex-col items-start gap-3 lg:flex-row lg:gap-6 lg:items-center px-5 lg:pl-20 mb-7">
           <img
-            className="h-12 lg:h-18 rounded"
+            className="h-12 lg:h-20 rounded"
             src={tournament.iconDownloadUrl}
             alt={tournament.name}
           />
@@ -115,6 +119,16 @@ export const Ranking = () => {
                 </a>
               </span>
             )}
+            <div className="flex items-center gap-2 mt-3">
+              <Button
+                variant="secondary"
+                size="sm"
+                className="text-sm"
+                onClick={handleRefetch}
+              >
+                Rafraichir <RotateCcw />
+              </Button>
+            </div>
           </div>
         </div>
       </PageSection>
