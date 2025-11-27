@@ -41,6 +41,7 @@ interface PhaseProps {
   teams: Team[];
   allMatches: Match[];
   className?: string;
+  allPhasesMatches?: Match[];
 }
 
 export const Phase: FC<PhaseProps> = ({
@@ -51,6 +52,7 @@ export const Phase: FC<PhaseProps> = ({
   teams,
   allMatches,
   className,
+  allPhasesMatches,
 }) => {
   const showTag =
     phaseType === 'ranking-interphase' ||
@@ -113,8 +115,14 @@ export const Phase: FC<PhaseProps> = ({
                       <TableCell>
                         <Badge variant="secondary">
                           {getFinalLabel(
-                            0,
-                            matches.length,
+                            phaseType === 'final'
+                              ? index
+                              : (allPhasesMatches?.findIndex(
+                                  (m) => m.id === match.id,
+                                ) ?? 0),
+                            phaseType === 'ranking-interphase'
+                              ? (allPhasesMatches?.length ?? 0)
+                              : matches.length,
                             phaseType === 'ranking-interphase',
                             tournament,
                           )}

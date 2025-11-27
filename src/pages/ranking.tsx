@@ -32,10 +32,13 @@ export const Ranking = () => {
     );
   }, [tournament]);
 
-  const allRankingInterphasesMatches = useMemo(
+  const allPhasesMatches = useMemo(
     () =>
       (phases ?? [])
-        .filter((phase) => phase.type === 'ranking-interphase')
+        .filter(
+          (phase) =>
+            phase.type === 'ranking-interphase' || phase.type === 'final',
+        )
         .flatMap((phase) => phase.matches)
         .sort((a, b) => (a.startAfter ?? 0) - (b.startAfter ?? 0)),
     [phases],
@@ -157,13 +160,14 @@ export const Ranking = () => {
             />
             {phases?.map((phase, key) => (
               <Phase
+                className="mt-5"
                 phaseType={phase.type}
                 matches={phase.matches}
                 tournament={tournament}
                 teams={teams ?? []}
                 allMatches={allMatches}
+                allPhasesMatches={allPhasesMatches}
                 key={key}
-                className="mt-5"
               />
             ))}
           </PageSection>
