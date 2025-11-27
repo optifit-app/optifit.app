@@ -10,7 +10,7 @@ import { useRanking } from '@/hooks/use-ranking';
 import { formatDate } from '@/lib/utils';
 import { CircleAlert, MapPin, Printer, RotateCcw } from 'lucide-react';
 import { useEffect, useMemo, useState, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { PrintableSheet } from '@/components/ranking/printable-sheet';
 import { useReactToPrint } from 'react-to-print';
 
@@ -18,6 +18,7 @@ export const Ranking = () => {
   const [finalRankingCollapsed, setFinalRankingCollapsed] =
     useState<boolean>(true);
   const [printSheetLoading, setPrintSheetLoading] = useState<boolean>(false);
+  const [searchParams] = useSearchParams();
 
   const { tournamentId } = useParams();
   const {
@@ -30,7 +31,7 @@ export const Ranking = () => {
     matches,
     phases,
     refetch,
-  } = useRanking(tournamentId);
+  } = useRanking(searchParams.get('dev'), tournamentId);
 
   const printableSheetRef = useRef<HTMLDivElement>(null);
 

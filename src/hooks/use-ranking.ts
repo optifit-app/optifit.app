@@ -23,7 +23,10 @@ interface UseRankingProps {
   refetch: () => Promise<void>;
 }
 
-export const useRanking = (tournamentId?: string): UseRankingProps => {
+export const useRanking = (
+  dev: string | null,
+  tournamentId?: string,
+): UseRankingProps => {
   const [loading, setLoading] = useState<boolean>(true);
   const [failed, setFailed] = useState<boolean>(false);
   const [tournament, setTournament] = useState<Tournament>();
@@ -49,7 +52,7 @@ export const useRanking = (tournamentId?: string): UseRankingProps => {
 
     try {
       const result = await api.get<GetRankingResponse>(
-        `/public/${tournamentId}/ranking`,
+        `${dev ? 'http://localhost:8000' : ''}/public/${tournamentId}/ranking`,
       );
 
       handleResult(result.data);
