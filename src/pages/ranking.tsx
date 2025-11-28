@@ -1,23 +1,33 @@
 import { FinalRanking } from '@/components/ranking/final-ranking';
 import { Phase } from '@/components/ranking/phase';
 import { PreliminaryPhaseRanking } from '@/components/ranking/preliminary-phase-ranking';
+import { PrintableSheet } from '@/components/ranking/printable-sheet';
 import { RankingCriteria } from '@/components/ranking/ranking-criteria';
 import { Button } from '@/components/ui/button';
 import { PageSection } from '@/components/ui/page-section';
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { Spinner } from '@/components/ui/spinner';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useRanking } from '@/hooks/use-ranking';
 import { formatDate } from '@/lib/utils';
-import { CircleAlert, MapPin, Printer, RotateCcw } from 'lucide-react';
-import { useEffect, useMemo, useState, useRef } from 'react';
+import { CircleAlert, MapPin, Printer, RotateCcw, X } from 'lucide-react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
-import { PrintableSheet } from '@/components/ranking/printable-sheet';
 import { useReactToPrint } from 'react-to-print';
 
 export const Ranking = () => {
   const [finalRankingCollapsed, setFinalRankingCollapsed] =
     useState<boolean>(true);
   const [printSheetLoading, setPrintSheetLoading] = useState<boolean>(false);
+  const [selectedTeamId, setSelectedTeamId] = useState<string>();
   const [searchParams] = useSearchParams();
 
   const { tournamentId } = useParams();
@@ -29,9 +39,11 @@ export const Ranking = () => {
     groups,
     finalRanking,
     matches,
+    allMatches,
+    allPhasesMatches,
     phases,
     refetch,
-  } = useRanking(searchParams.get('dev'), tournamentId);
+  } = useRanking(searchParams.get('dev'), tournamentId, selectedTeamId);
 
   const printableSheetRef = useRef<HTMLDivElement>(null);
 
@@ -40,23 +52,6 @@ export const Ranking = () => {
       tournament?.type !== 'swiss' && (tournament?.phases?.length ?? 0) > 0
     );
   }, [tournament]);
-
-  const allPhasesMatches = useMemo(
-    () =>
-      (phases ?? [])
-        .filter(
-          (phase) =>
-            phase.type === 'ranking-interphase' || phase.type === 'final',
-        )
-        .flatMap((phase) => phase.matches)
-        .sort((a, b) => (a.startAfter ?? 0) - (b.startAfter ?? 0)),
-    [phases],
-  );
-
-  const allMatches = [
-    ...(matches ?? []),
-    ...(phases?.flatMap((p) => p.matches) ?? []),
-  ].sort((a, b) => (a.startAfter || 0) - (b.startAfter || 0));
 
   useEffect(() => {
     if (shouldHaveFinalRanking && finalRanking?.length) {
@@ -98,6 +93,8 @@ export const Ranking = () => {
     setPrintSheetLoading(true);
     printSheet();
   };
+
+  const handleResetFilter = () => setSelectedTeamId(undefined);
 
   if (loading) {
     return (
@@ -156,7 +153,7 @@ export const Ranking = () => {
                 </a>
               </span>
             )}
-            <div className="flex items-center gap-3 mt-3">
+            <div className="flex items-center gap-3 mt-3 flex-wrap">
               <Button
                 variant="secondary"
                 size="sm"
@@ -187,7 +184,7 @@ export const Ranking = () => {
       ) : (
         <>
           <Tabs defaultValue="ranking">
-            <PageSection className="px-0 pt-0">
+            <PageSection className="px-0 pt-0 sticky top-15 lg:top-14 z-20">
               <TabsList className="w-full rounded-none">
                 <TabsTrigger value="ranking">Classement</TabsTrigger>
                 <TabsTrigger value="matches">Matchs</TabsTrigger>
@@ -216,6 +213,70 @@ export const Ranking = () => {
               </PageSection>
             </TabsContent>
             <TabsContent value="matches">
+              <PageSection className="px-0 pt-0 sticky top-25 z-20">
+                <div className="px-2 lg:px-10 lg:pl-20 py-1 flex items-center gap-2">
+                  <Select
+                    value={selectedTeamId || ''}
+                    onValueChange={setSelectedTeamId}
+                  >
+                    <SelectTrigger className="bg-background dark:bg-background w-full cursor-pointer">
+                      <SelectValue placeholder="Filtrez par équipe..." />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {tournament.hasGroups ? (
+                        <>
+                          {groups?.map((group, key) => (
+                            <SelectGroup key={key}>
+                              <SelectLabel>{group.name}</SelectLabel>
+                              {teams
+                                ?.filter((t) => t.group === group.id)
+                                .map((team, key) => (
+                                  <SelectItem value={team.id} key={key}>
+                                    {tournament.teamsHaveColors &&
+                                      (team.color?.length ?? 0) > 0 && (
+                                        <span
+                                          className="inline-block w-3 h-3 rounded border flex-shrink-0"
+                                          style={{
+                                            backgroundColor: team.color,
+                                          }}
+                                        />
+                                      )}
+                                    {team.name}
+                                  </SelectItem>
+                                ))}
+                            </SelectGroup>
+                          ))}
+                        </>
+                      ) : (
+                        <SelectGroup>
+                          <SelectLabel>Équipes</SelectLabel>
+                          {teams?.map((team, key) => (
+                            <SelectItem key={key} value={team.id}>
+                              {tournament.teamsHaveColors &&
+                                (team.color?.length ?? 0) > 0 && (
+                                  <span
+                                    className="inline-block w-3 h-3 rounded border flex-shrink-0"
+                                    style={{
+                                      backgroundColor: team.color,
+                                    }}
+                                  />
+                                )}
+                              {team.name}
+                            </SelectItem>
+                          ))}
+                        </SelectGroup>
+                      )}
+                    </SelectContent>
+                  </Select>
+                  <Button
+                    disabled={!selectedTeamId}
+                    onClick={handleResetFilter}
+                    variant="secondary"
+                  >
+                    Effacer le filtre <X />
+                  </Button>
+                </div>
+              </PageSection>
               <PageSection className="pt-2 px-2 lg:px-10 lg:pl-20 pb-10">
                 <Phase
                   phaseType="preliminary"
@@ -226,7 +287,7 @@ export const Ranking = () => {
                     'partial-round-robin'
                   }
                   teams={teams ?? []}
-                  allMatches={allMatches}
+                  allMatches={allMatches ?? []}
                 />
                 {phases?.map((phase, key) => (
                   <Phase
@@ -235,7 +296,7 @@ export const Ranking = () => {
                     matches={phase.matches}
                     tournament={tournament}
                     teams={teams ?? []}
-                    allMatches={allMatches}
+                    allMatches={allMatches ?? []}
                     allPhasesMatches={allPhasesMatches}
                     key={key}
                   />
