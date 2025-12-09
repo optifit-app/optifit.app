@@ -19,6 +19,8 @@ export const formatRankingCriterion = (criterion: any): string => {
       return 'Moyenne des points Fair-Play';
     case 'alphabeticalOrder':
       return 'Ordre alphabétique';
+    case 'pointsAverage':
+      return 'Moyenne de points par match';
     default:
       return 'Critère inconnu';
   }
